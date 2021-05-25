@@ -95,7 +95,7 @@ class RoboController extends Controller
         $data-> numExterior = $request -> numExterior;
         $data-> codigoPostal = $request -> codigoPostal;
         $data-> tipoLugar_id = $request -> tipoLugar_id;
-        $data-> tipoLugar = $request -> tipoLugar_;
+        $data-> tipoLugar = $request -> tipoLugar;
         $data-> descLugar = $request -> descLugar;
         $data-> delito = $request -> delito;
         $data-> armaAsociada = $request -> armaAsociada;
