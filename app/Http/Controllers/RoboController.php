@@ -102,7 +102,7 @@ class RoboController extends Controller
         $data-> estatus_id = $request -> estatus_id;
         $data-> estatus = $request-> estatus;
         $data->save();
-        return response()->json($data);
+        return redirect()->route('robos.index');
     }
 
     /**
