@@ -86,21 +86,21 @@ class RoboController extends Controller
         $dateTime = $fecha.' '.$hora;
         $data-> dateTime = $dateTime;
         $data-> entidad_id = $request -> entidad_id;
-        $data-> entidad = $request->entidad_nombre;
+        $data-> entidad = $request->entidad;
         $data-> municipio_id = $request -> municipio_id;
-        $data-> municipio = $request -> municipio_nombre;
+        $data-> municipio = $request -> municipio;
         $data-> localidad_id = $request -> localidad_id;
-        $data-> localidad = $request -> localidad_nombre;
+        $data-> localidad = $request -> localidad;
         $data-> calle = $request -> calle;
         $data-> numExterior = $request -> numExterior;
         $data-> codigoPostal = $request -> codigoPostal;
         $data-> tipoLugar_id = $request -> tipoLugar_id;
-        $data-> tipoLugar = $request -> tipoLugar_nombre;
+        $data-> tipoLugar = $request -> tipoLugar_;
         $data-> descLugar = $request -> descLugar;
         $data-> delito = $request -> delito;
-        $data-> armaAsociada = $request -> arma;
+        $data-> armaAsociada = $request -> armaAsociada;
         $data-> estatus_id = $request -> estatus_id;
-        $data-> estatus = $request-> estatus_nombre;
+        $data-> estatus = $request-> estatus;
         $data->save();
         return response()->json($data);
     }
@@ -148,9 +148,16 @@ class RoboController extends Controller
      * @param  \App\Models\Robo  $robo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Robo $robo)
+    public function update(Request $request, $robo)
     {
-        //
+        
+        $data = $request->except(['_token','_method']);
+        $dateTime = $data['fecha'].' '.$data['hora'].':00';
+        $data['dateTime'] = $dateTime;
+        unset($data['fecha'],$data['hora']);
+        Robo::where('id','=',$robo)->update($data);
+        $robo= Robo::findOrFail($robo);
+        return redirect()->route('robos.index')->withSuccess('Registro Actualizado');
     }
 
     /**

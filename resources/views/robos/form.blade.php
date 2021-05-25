@@ -6,27 +6,25 @@
     <input type="time" name="hora" id="hora" class="form-control" value="{{isset($robo->hora)?$robo->hora:''}}">
     <br><br>
     <label for="entidad">Entidad: </label>
-    <input type="hidden" name="entidad_nombre" id="entidad_nombre" value="{{isset($robo->entidad)?$robo->entidad:''}}">
+    <input type="hidden" name="entidad" id="entidad_nombre" value="{{isset($robo->entidad)?$robo->entidad:''}}">
     <select name="entidad_id" id="entidad_id" class="form-control">
         @if ($modo == 'Ingresar')
             <option value="" >--Seleccione una entidad--</option>
         @endif 
     
         @foreach ($entidades as $entidad)
-            <option value="{{$entidad['entidad_id']}}"  {{ $robo->entidad_id == $entidad['entidad_id'] ? 'selected="selected"' : '' }}>{{$entidad['nombre']}}</option>
+            <option value="{{$entidad['entidad_id']}}"  {{ isset($robo->entidad_id)? $robo->entidad_id == $entidad['entidad_id'] ? 'selected="selected"' : '':'' }}>{{$entidad['nombre']}}</option>
         @endforeach
     </select>
     <br><br>
     <label for="municipio">Municipio: </label>
-    <input type="hidden" name="municipio_nombre" id="municipio_nombre">
+    <input type="hidden" name="municipio" id="municipio_nombre" value="{{isset($robo->municipio)?$robo->municipio:''}}">
     <select name="municipio_id" id="municipio_id" class="form-control">
-        @if ()
-            
-        @endif
+      
     </select>
     <br><br>
     <label for="localidad">Localidad: </label>
-    <input type="hidden" name="localidad_nombre" id="localidad_nombre">
+    <input type="hidden" name="localidad" id="localidad_nombre" value="{{isset($robo->localidad)?$robo->localidad:''}}">
     <select name="localidad_id" id="localidad_id" class="form-control">
 
     </select>
@@ -41,14 +39,14 @@
     <input type="number" name="codigoPostal" id="codigoPostal" class="form-control" value="{{isset($robo->codigoPostal)?$robo->codigoPostal:'' }}">
     <br><br>
     <label for="tipoLugar">Tipo de lugar: </label>
-    <input type="hidden" name="tipoLugar_nombre" id="tipoLugar_nombre">
+    <input type="hidden" name="tipoLugar" id="tipoLugar_nombre" value="{{isset($robo->tipoLugar)?$robo->tipoLugar:''}}">
     <select name="tipoLugar_id" id="tipoLugar_id" class="form-control">
         @if ($modo == 'Ingresar')
             <option value="" >--Seleccione el lugar de los hechos--</option>
         @endif
         
         @foreach ($lugares as $lugar)
-            <option value="{{$lugar['lugar_id']}}" {{ $robo->tipoLugar_id == $lugar['lugar_id'] ? 'selected="selected"' : '' }}>{{$lugar['descripcion']}}</option>
+            <option value="{{$lugar['lugar_id']}}" {{ isset($robo->tipoLugar_id)? $robo->tipoLugar_id == $lugar['lugar_id'] ? 'selected="selected"' : '':'' }}>{{$lugar['descripcion']}}</option>
         @endforeach
     </select>
     <br><br>
@@ -61,14 +59,16 @@
     <input type="text" name="delito" id="delito" class="form-control" value="{{isset($robo->delito)?$robo->delito:''}}">
     <br><br>
     <label for="arma">Arma asociada: </label>
-    <input type="text" name="arma" id="arma" class="form-control" value="{{isset($robo->armaAsociada)?$robo->armaAsociada:''}}">
+    <input type="text" name="armaAsociada" id="arma" class="form-control" value="{{isset($robo->armaAsociada)?$robo->armaAsociada:''}}">
     <br><br>
     <label for="estatus">Estatus: </label>
-    <input type="hidden" name="estatus_nombre" id="estatus_nombre">
+    <input type="hidden" name="estatus" id="estatus_nombre" value="{{isset($robo->estatus)?$robo->estatus:''}}">
     <select name="estatus_id" id="estatus_id" class="form-control">
-        <option value="" >--Seleccione el estatus de la denuncia--</option>
+        @if ($modo == 'Ingresar')
+            <option value="" >--Seleccione el estatus de la denuncia--</option>
+        @endif
         @foreach ($estatuses as $estatus)
-            <option value="{{$estatus['estatus_id']}}">{{$estatus['descripcion']}}</option>
+            <option value="{{$estatus['estatus_id']}}" {{ isset($robo->estatus_id)? $robo->estatus_id == $estatus['estatus_id'] ? 'selected="selected"' : '':'' }}>{{$estatus['descripcion']}}</option>
         @endforeach
     </select>
     <br><br>
