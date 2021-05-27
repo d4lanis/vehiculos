@@ -170,7 +170,6 @@ class RoboController extends Controller
     {
         //
         $robo->delete();
-        //return redirect()->route('robos.index')->withSuccess('Registro Borrado');
-        return response()->json($data);
+        return redirect()->route('robos.index')->withSuccess('Registro Borrado');
     }
 }

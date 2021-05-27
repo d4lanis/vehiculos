@@ -49,13 +49,11 @@
                     <a class="btn btn-warning" style="width: 40px" href="{{ route('robos.edit',$robo->id)}}">
                         <span class="fa fa-edit"></span>
                     </a>
-                    <a>
                         <form action="{{ route('robos.destroy',$robo->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}} 
                             <button class="fa fa-trash btn btn-danger" style="width: 40px"  type="submit" onclick="return confirm('¿Seguro que desea borrar este regitro?')" value="submit">
                         </form>
-                    </a>
                 </td>
             </tr>
         @endforeach
