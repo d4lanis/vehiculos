@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vehiculo;
+use App\Models\Marca;
+use App\Models\SubMarca;
+use App\Models\Colores;
+use App\Models\TipoVehiculo;
+use App\Models\ClaseVehiculo;
+use App\Models\Procedencia;
+
 use Illuminate\Http\Request;
 
 class VehiculoController extends Controller
@@ -14,7 +21,8 @@ class VehiculoController extends Controller
      */
     public function index()
     {
-        //
+        $data['vehiculos'] = Vehiculo::paginate();
+        return view('vehiculos.index',$data);
     }
 
     /**
