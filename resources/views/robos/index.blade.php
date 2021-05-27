@@ -12,8 +12,8 @@
 
 <a href="{{route('robos.create')}}" class="btn btn-success">Nuevo</a>
 <br><br>
-<table id="robos" class="table table-striped table-light table-bordered mt-4">
-    <thead class="thead-dark">
+<table id="robos" class="table table-striped table-bordered">
+    <thead>
         <tr>
             <th>FECHA Y HORA</th>
             <th>ENTIDAD</th>
@@ -63,6 +63,8 @@
 
 <script>
     $(document).ready( function () {
-    $('#robos').DataTable();
-    } );
+    $('#robos').DataTable({
+        "lengthMenu": [[5,10,50,100,-1],[5,10,50,100,"All"]]
+    });
+    });
 </script>
