@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ColoresController;
 use App\Http\Controllers\RoboController;
+use App\Http\Controllers\VehiculoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,4 @@ Route::resource('colores', ColoresController::class);
 Route::resource('robos', RoboController::class);
 Route::get('/municipios_id', [RoboController::class, 'getMunicipio']);
 Route::get('/localidades_id', [RoboController::class, 'getLocalidad']);
+Route::resource('vehiculos', VehiculoController::class);
