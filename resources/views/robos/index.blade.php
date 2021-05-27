@@ -4,12 +4,15 @@
     <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 
 <a href="{{route('robos.create')}}" class="btn btn-success">Nuevo</a>
-
-<table class="table table-striped table-bordered mt-4">
+<br><br>
+<table id="robos" class="table table-striped table-light table-bordered mt-4">
     <thead>
         <tr>
             <th>FECHA Y HORA</th>
@@ -42,15 +45,26 @@
                 <td>{{$robo->delito}}</td>
                 <td>{{$robo->armaAsociada}}</td>
                 <td>{{$robo->estatus}}</td>
-                <td> <a class="btn btn-warning" href="{{ route('robos.edit',$robo->id)}}">Editar</a>
-                        <form action="{{ route('robos.destroy',$robo->id)}}" method="post" class="d.inline">
+                <td> 
+                    <a class="btn btn-warning" style="width: 40px" href="{{ route('robos.edit',$robo->id)}}">
+                        <span class="fa fa-edit"></span>
+                    </a>
+                    <a>
+                        <form action="{{ route('robos.destroy',$robo->id)}}" method="post">
                             @csrf
-                            {{method_field('DELETE')}}
-                            <input class="btn btn-danger" type="submit" onclick="return confirm('¿Seguro que desea borrar este regitro?')" value="Borrar">
+                            {{method_field('DELETE')}} 
+                            <button class="fa fa-trash btn btn-danger" style="width: 40px"  type="submit" onclick="return confirm('¿Seguro que desea borrar este regitro?')" value="">
                         </form>
+                    </a>
                 </td>
             </tr>
         @endforeach
     </tbody>
     </thead>
 </table>
+
+<script>
+    $(document).ready( function () {
+    $('#robos').DataTable();
+    } );
+</script>

@@ -46,7 +46,7 @@ class RoboController extends Controller
                             ->where('entidad_id', $request['id'])
                             ->get();
 
-        $result = '<option value="0">--Selecciona el municipio--</option>';
+        $result = '<option value="">--Selecciona el municipio--</option>';
 
         for ($i=0; $i < sizeof($data); $i++) {
             $result.='<option value="'.$data[$i]['municipio_id'].'">'.$data[$i]['nombre'].'</option>'; 
@@ -61,7 +61,7 @@ class RoboController extends Controller
                             ->where('municipio_id', $request['id'])
                             ->get();
 
-        $result = '< value="0">--Selecciona la localidad--</>';
+        $result = '< value="">--Selecciona la localidad--</>';
 
         for ($i=0; $i < sizeof($data); $i++) {
             $result.='<option value="'.$data[$i]['localidad_id'].'">'.$data[$i]['nombre'].'</option>'; 
