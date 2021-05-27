@@ -13,7 +13,7 @@
 <a href="{{route('robos.create')}}" class="btn btn-success">Nuevo</a>
 <br><br>
 <table id="robos" class="table table-striped table-light table-bordered mt-4">
-    <thead>
+    <thead class="thead-dark">
         <tr>
             <th>FECHA Y HORA</th>
             <th>ENTIDAD</th>
@@ -53,7 +53,7 @@
                         <form action="{{ route('robos.destroy',$robo->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}} 
-                            <button class="fa fa-trash btn btn-danger" style="width: 40px"  type="submit" onclick="return confirm('¿Seguro que desea borrar este regitro?')" value="">
+                            <button class="fa fa-trash btn btn-danger" style="width: 40px"  type="submit" onclick="return confirm('¿Seguro que desea borrar este regitro?')" value="submit">
                         </form>
                     </a>
                 </td>

@@ -61,7 +61,7 @@ class RoboController extends Controller
                             ->where('municipio_id', $request['id'])
                             ->get();
 
-        $result = '< value="">--Selecciona la localidad--</>';
+        $result = '<option value="">--Selecciona la localidad--</option>';
 
         for ($i=0; $i < sizeof($data); $i++) {
             $result.='<option value="'.$data[$i]['localidad_id'].'">'.$data[$i]['nombre'].'</option>'; 
@@ -170,6 +170,7 @@ class RoboController extends Controller
     {
         //
         $robo->delete();
-        return redirect()->route('robos.index')->withSuccess('Registro Borrado');
+        //return redirect()->route('robos.index')->withSuccess('Registro Borrado');
+        return response()->json($data);
     }
 }
