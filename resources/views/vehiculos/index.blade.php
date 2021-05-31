@@ -31,7 +31,7 @@
         @foreach ($vehiculos as $item)
             <tr>
                 <td>{{$item->marca}}</td>
-                <td>{{$item->submarca}}</td>
+                <td>{{$item->subMarca}}</td>
                 <td>{{$item->modelo}}</td>
                 <td>{{$item->color}}</td>
                 <td>{{$item->numSerie}}</td>

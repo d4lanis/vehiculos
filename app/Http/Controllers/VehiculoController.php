@@ -82,9 +82,9 @@ class VehiculoController extends Controller
         $data -> procedencia_id = $request -> procedencia_id;
         $data -> procedencia = $request -> procedencia;
         $data -> aseguradora = $request -> aseguradora;
-        //$data -> robo_id = 1;
+        $data -> robo_id = 1;
         $data -> save();
-        
+        //return response()->json($data);
         return redirect()->route('vehiculos.index');
     }
 
@@ -128,6 +128,7 @@ class VehiculoController extends Controller
     public function update(Request $request, Vehiculo $vehiculo)
     {
         //
+
     }
 
     /**
@@ -138,6 +139,7 @@ class VehiculoController extends Controller
      */
     public function destroy(Vehiculo $vehiculo)
     {
-        //
+        $vehiculo->delete();
+        return redirect()->route('vehiculos.index');
     }
 }
