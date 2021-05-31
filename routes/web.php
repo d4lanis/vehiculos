@@ -25,3 +25,4 @@ Route::resource('robos', RoboController::class);
 Route::get('/municipios_id', [RoboController::class, 'getMunicipio']);
 Route::get('/localidades_id', [RoboController::class, 'getLocalidad']);
 Route::resource('vehiculos', VehiculoController::class);
+Route::get('/submarcas_id', [VehiculoController::class, 'getSubmarca']);

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vehiculo;
 use App\Models\Marca;
-use App\Models\SubMarca;
+use App\Models\Submarca;
 use App\Models\Colores;
 use App\Models\TipoVehiculo;
 use App\Models\ClaseVehiculo;
@@ -32,7 +32,29 @@ class VehiculoController extends Controller
      */
     public function create()
     {
-        return view ('vehiculos.create');
+        $data['marca'] = Marca::all();
+        $data['submarca'] = Submarca::all();
+        $data['colores'] = Colores::all();
+        $data['tipoVehiculo'] = TipoVehiculo::all();
+        $data['claseVehiculo'] = ClaseVehiculo::all();
+        $data['procedencia'] = Procedencia::all();
+        //return response()->json($data);
+        return view ('vehiculos.create', compact('data'));
+    }
+
+    public function getSubmarca(Request $request)
+    {
+        $data = Submarca::select('subMarca_id','descripcion')
+                            ->where('subMarca_id', $request['id'])
+                            ->get();
+
+        $result = '<option value="">--Seleccion una opcion--</option>';
+
+        for ($i=0; $i < sizeof($data); $i++) {
+            $result.='<option value="'.$data[$i]['subMarca_id'].'">'.$data[$i]['descripcion'].'</option>'; 
+       }
+
+        return response()->json($result);
     }
 
     /**
@@ -43,7 +65,27 @@ class VehiculoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Vehiculo;
+        $data -> marca_id = $request -> marca_id;
+        $data -> marca = $request -> marca;
+        $data -> subMarca_id = $request -> subMarca_id;
+        $data -> subMarca = $request -> subMarca;
+        $data -> modelo = $request -> modelo;
+        $data -> color_id = $request -> color_id;
+        $data -> color = $request -> color;
+        $data -> numSerie = $request -> numSerie;
+        $data -> tipoVehiculo_id = $request -> tipoVehiculo_id;
+        $data -> tipoVehiculo = $request -> tipoVehiculo;
+        $data -> claseVehiculo_id = $request -> claseVehiculo_id;
+        $data -> claseVehiculo = $request -> claseVehiculo;
+        $data -> señas= $request -> señas;
+        $data -> procedencia_id = $request -> procedencia_id;
+        $data -> procedencia = $request -> procedencia;
+        $data -> aseguradora = $request -> aseguradora;
+        //$data -> robo_id = 1;
+        $data -> save();
+        
+        return redirect()->route('vehiculos.index');
     }
 
     /**
@@ -63,9 +105,17 @@ class VehiculoController extends Controller
      * @param  \App\Models\Vehiculo  $vehiculo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vehiculo $vehiculo)
+    public function edit($id)
     {
-        //
+        $data['marca'] = Marca::all();
+        $data['submarca'] = Submarca::all();
+        $data['colores'] = Colores::all();
+        $data['tipoVehiculo'] = TipoVehiculo::all();
+        $data['claseVehiculo'] = ClaseVehiculo::all();
+        $data['procedencia'] = Procedencia::all();
+        $vehiculo = Vehiculo::findOrFail($id);
+        //return response()->json($data);
+        return view ('vehiculos.edit', compact('vehiculo','data'));   
     }
 
     /**

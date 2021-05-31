@@ -15,4 +15,4 @@
     @include('vehiculos.form',['modo'=>'Ingresar']);
 </form>
 
-<script src="{{asset('js/robo.js')}}"></script>
+<script src="{{asset('js/vehiculo.js')}}"></script>

@@ -39,11 +39,12 @@
                 <td>{{$item->claseVehiculo}}</td>
                 <td>{{$item->señas}}</td>
                 <td>{{$item->procedencia}}</td>
+                <td>{{$item->procedencia}}</td>
                 <td> 
-                    <a class="btn btn-warning" style="width: 40px" href="{{ route('robos.edit',$item->id)}}">
+                    <a class="btn btn-warning" style="width: 40px" href="{{ route('vehiculos.edit',$item->id)}}">
                         <span class="fa fa-edit"></span>
                     </a>
-                        <form action="{{ route('robos.destroy',$item->id)}}" method="post">
+                        <form action="{{ route('vehiculos.destroy',$item->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}} 
                             <button class="fa fa-trash btn btn-danger" style="width: 40px"  type="submit" onclick="return confirm('¿Seguro que desea borrar este regitro?')" value="submit">
