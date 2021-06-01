@@ -10,46 +10,53 @@
 </head>
 
 
-<a href="{{route('robos.create')}}" class="btn btn-success">Nuevo</a>
+<a href="{{route('denunciantes.create')}}" class="btn btn-success">Nuevo</a>
 <br><br>
-<table id="robos" class="table table-striped table-bordered">
+<table id="denunciantes" class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th>FECHA Y HORA</th>
+            <th>NOMBRE</th>
+            <th>PATERNO</th>
+            <th>MATERNO</th>
+            <th>RFC</th>
+            <th>CURP</th>
+            <th>LICENCIA CONDUCCIÓN</th>
+            <th>PASAPORTE</th>
+            <th>TELEFONO</th>
+            <th>CORREO</th>
+            <th>DOMICILIO</th>
+            <th>NUM. EXTERIOR</th>
+            <th>NUM. INTERIOR</th>
+            <th>COLONIA</th>
+            <th>CP</th>
             <th>ENTIDAD</th>
             <th>MUNICIPIO</th>
-            <th>LOCALIDAD</th>
-            <th>CALLE</th>
-            <th>NUMERO EXTERIOR</th>
-            <th>CP</th>
-            <th>TIPO DE LUGAR</th>
-            <th>DESCRIPCION</th>
-            <th>DELITO</th>
-            <th>ARMA ASOCIADA</th>
-            <th>ESTATUS</th>
-            <th>Acciones</th>
+            <th>ACCIONES</th>
         </tr>
-
     <tbody>
-        @foreach ($robos as $robo)
+        @foreach ($denunciantes as $item)
             <tr>
-                <td>{{$robo->dateTime}}</td>
-                <td>{{$robo->entidad}}</td>
-                <td>{{$robo->municipio}}</td>
-                <td>{{$robo->localidad}}</td>
-                <td>{{$robo->calle}}</td>
-                <td>{{$robo->numExterior}}</td>
-                <td>{{$robo->codigoPostal}}</td>
-                <td>{{$robo->tipoLugar}}</td>
-                <td>{{$robo->descLugar}}</td>
-                <td>{{$robo->delito}}</td>
-                <td>{{$robo->armaAsociada}}</td>
-                <td>{{$robo->estatus}}</td>
-                <td> 
-                    <a class="btn btn-warning" style="width: 40px" href="{{ route('robos.edit',$robo->id)}}">
+                <td>{{$item->nombre}}</td>
+                <td>{{$item->paterno}}</td>
+                <td>{{$item->materno}}</td>
+                <td>{{$item->rfc}}</td>
+                <td>{{$item->curp}}</td>
+                <td>{{$item->licencia}}</td>
+                <td>{{$item->pasaporte}}</td>
+                <td>{{$item->telefono}}</td>
+                <td>{{$item->correo}}</td>
+                <td>{{$item->domicilio}}</td>
+                <td>{{$item->numExterior}}</td>
+                <td>{{$item->numInterior}}</td>
+                <td>{{$item->colonia}}</td>
+                <td>{{$item->codigoPostal}}</td>
+                <td>{{$item->entidad}}</td>
+                <td>{{$item->municipio}}</td>
+                <td>
+                    <a class="btn btn-warning" style="width: 40px" href="{{ route('denunciantes.edit',$item->id)}}">
                         <span class="fa fa-edit"></span>
                     </a>
-                    <a class="btn btn-danger" href="{{route('robos.destroy',$robo->id)}}" onclick="return confirm('¿Seguro que desea borrar este regitro?')">
+                    <a class="btn btn-danger" href="{{route('denunciantes.destroy',$item->id)}}" onclick="return confirm('¿Seguro que desea borrar este regitro?')">
                         <span class="fa fa-trash"></span>
                     </a>
                 </td>
@@ -61,7 +68,7 @@
 
 <script>
     $(document).ready( function () {
-    $('#robos').DataTable({
+    $('#denunciantes').DataTable({
         "lengthMenu": [[5,10,50,100,-1],[5,10,50,100,"All"]]
     });
     });

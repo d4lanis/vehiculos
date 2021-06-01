@@ -39,16 +39,13 @@
                 <td>{{$item->claseVehiculo}}</td>
                 <td>{{$item->señas}}</td>
                 <td>{{$item->procedencia}}</td>
-                <td>{{$item->procedencia}}</td>
+                <td>{{$item->aseguradora}}</td>
                 <td> 
                     <a class="btn btn-warning" style="width: 40px" href="{{ route('vehiculos.edit',$item->id)}}">
                         <span class="fa fa-edit"></span>
                     </a>
-                        <form action="{{ route('vehiculos.destroy',$item->id)}}" method="post">
-                            @csrf
-                            {{method_field('DELETE')}} 
-                            <button class="fa fa-trash btn btn-danger" style="width: 40px"  type="submit" onclick="return confirm('¿Seguro que desea borrar este regitro?')" value="submit">
-                        </form>
+                    <a class="btn btn-danger" href="{{route('vehiculos.destroy',$item->id)}}" onclick="return confirm('¿Seguro que desea borrar este regitro?')">
+                    <span class="fa fa-trash"></span></a>
                 </td>
             </tr>
         @endforeach
