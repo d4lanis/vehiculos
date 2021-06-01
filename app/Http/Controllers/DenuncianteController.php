@@ -14,7 +14,8 @@ class DenuncianteController extends Controller
      */
     public function index()
     {
-        //
+        $data['denunciantes'] = Denunciante::paginate();
+        return view('denunciantes.index',$data);
     }
 
     /**
@@ -24,7 +25,7 @@ class DenuncianteController extends Controller
      */
     public function create()
     {
-        //
+        return view('denunciantes.create'); 
     }
 
     /**
@@ -57,7 +58,7 @@ class DenuncianteController extends Controller
      */
     public function edit(Denunciante $denunciante)
     {
-        //
+        return view ('vehiculos.edit', compact('vehiculo','data')); 
     }
 
     /**
