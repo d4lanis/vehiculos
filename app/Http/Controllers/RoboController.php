@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Robo;
 use App\Models\Entidad;
-use App\Models\Municipio;
-use App\Models\Localidad;
+//use App\Models\Municipio;
+//use App\Models\Localidad;
 use App\Models\Lugar;
 use App\Models\Estatus;
 use Illuminate\Http\Request;
@@ -32,12 +32,12 @@ class RoboController extends Controller
     public function create()
     {
         //
-        $entidades = Entidad::all();
-        $municipios = Municipio::all();
-        $lugares = Lugar::all();
-        $estatuses = Estatus::all();
-        $localidades = Localidad::all();
-        return view('robos.create',compact('entidades','lugares','municipios','estatuses','localidades'));
+        $data['entidad'] = Entidad::all();
+        //$data['municipio'] = Municipio::all();
+        $data['lugar'] = Lugar::all();
+        $data['estatus']= Estatus::all();
+        //$data['localidad'] = Localidad::all();
+        return view('robos.create',compact('data'));
     }
 
     public function getMunicipio(Request $request)
@@ -125,11 +125,11 @@ class RoboController extends Controller
     public function edit($id)
     {
         //
-        $entidades = Entidad::all();
-        $municipios = Municipio::all();
-        $lugares = Lugar::all();
-        $estatuses = Estatus::all();
-        $localidades = Localidad::all();
+        $data['entidad'] = Entidad::all();
+        //$data['municipio'] = Municipio::all();
+        $data['lugar'] = Lugar::all();
+        $data['estatus']= Estatus::all();
+        //$data['localidad'] = Localidad::all();
         $robo = Robo::findOrFail($id);
         $date = strtotime($robo-> dateTime);
         $hora = date('H:i', $date);
@@ -138,7 +138,7 @@ class RoboController extends Controller
         $robo->hora = $hora;
         $robo->fecha= $fecha;
         //return response()->json($robo);
-        return view('robos.edit', compact('robo','entidades','municipios','lugares','estatuses','localidades'));
+        return view('robos.edit', compact('robo','data'));
     }
 
     /**
