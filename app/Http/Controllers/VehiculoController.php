@@ -125,9 +125,12 @@ class VehiculoController extends Controller
      * @param  \App\Models\Vehiculo  $vehiculo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vehiculo $vehiculo)
+    public function update(Request $request, $vehiculo)
     {
-        //
+        $data = $request->except(['_token','_method']);
+        Vehiculo::where('id','=',$vehiculo)->update($data);
+        $vehiculo= Vehiculo::findOrFail($vehiculo);
+        return redirect()->route('vehiculos.index')->withSuccess('Registro Actualizado');
 
     }
 

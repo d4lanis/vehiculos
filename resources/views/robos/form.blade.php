@@ -21,8 +21,8 @@
     <input type="hidden" name="municipio" id="municipio" value="{{isset($robo->municipio)?$robo->municipio:''}}">
     <select name="municipio_id" id="municipio_id" class="form-control">
         @if ($modo == 'Editar')
-        <option value="{{isset($robo->municipio_id)?$robo->municipio_id:''}}">{{isset($robo->municipio_id)?$robo->municipio:''}}</option>
-    @endif
+            <option value="{{isset($robo->municipio_id)?$robo->municipio_id:''}}">{{isset($robo->municipio_id)?$robo->municipio:''}}</option>
+        @endif
     </select>
     <br><br>
     <label for="localidad">Localidad: </label>

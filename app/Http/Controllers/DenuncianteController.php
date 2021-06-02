@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Denunciante;
+use App\Models\Entidad;
+use App\Models\Municipio;
 use Illuminate\Http\Request;
 
 class DenuncianteController extends Controller
@@ -25,7 +27,9 @@ class DenuncianteController extends Controller
      */
     public function create()
     {
-        return view('denunciantes.create'); 
+        $data['entidad'] = Entidad::all();
+        $data['municipio'] = Municipio::all();
+        return view('denunciantes.create', compact('data')); 
     }
 
     /**
@@ -36,7 +40,30 @@ class DenuncianteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Denunciante;
+        $data -> nombre = $request -> nombre;
+        $data -> paterno = $request -> paterno;
+        $data -> materno = $request -> materno;
+        $data -> rfc = $request -> rfc;
+        $data -> curp= $request -> curp;
+        $data -> licencia= $request -> licencia;
+        $data -> pasaporte= $request -> pasaporte;
+        $data -> telefono= $request -> telefono;
+        $data -> correo= $request -> correo;
+        $data -> domicilio= $request -> domicilio;
+        $data -> numExterior = $request -> numExterior;
+        $data -> numInterior = $request -> numInterior;
+        $data -> codigoPostal = $request -> codigoPostal;
+        $data -> entidad_id = $request -> entidad_id;
+        $data -> entidad= $request -> entidad;
+        $data -> municipio_id= $request -> municipio_id;
+        $data -> municipio= $request -> municipio;
+        $data -> colonia= $request -> colonia;
+        //$data -> robo_id = 2;
+        $data -> save();
+
+        //return response()->json($data);
+        return redirect()-> route('denunciantes.index');
     }
 
     /**
@@ -56,9 +83,12 @@ class DenuncianteController extends Controller
      * @param  \App\Models\Denunciante  $denunciante
      * @return \Illuminate\Http\Response
      */
-    public function edit(Denunciante $denunciante)
+    public function edit($id)
     {
-        return view ('vehiculos.edit', compact('vehiculo','data')); 
+        $data['entidad'] = Entidad::all();
+        $data['municipio'] = Municipio::all();
+        $denunciante = Denunciante::findOrFail($id);
+        return view ('denunciantes.edit', compact('data','denunciante')); 
     }
 
     /**
@@ -68,9 +98,12 @@ class DenuncianteController extends Controller
      * @param  \App\Models\Denunciante  $denunciante
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Denunciante $denunciante)
+    public function update(Request $request, $denunciante)
     {
-        //
+        $data = $request->except(['_token','_method']);
+        Denunciante::where('id','=',$denunciante)->update($data);
+        $denunciante= Denunciante::findOrFail($denunciante);
+        return redirect()->route('denunciantes.index')->withSuccess('Registro Actualizado');
     }
 
     /**
@@ -81,6 +114,7 @@ class DenuncianteController extends Controller
      */
     public function destroy(Denunciante $denunciante)
     {
-        //
+        $denunciante->delete();
+        return redirect()->route('denunciantes.index');
     }
 }

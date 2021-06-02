@@ -7,10 +7,10 @@
 </head>
 
 <div class="container">
-    <form action="{{route('vehiculos.update', $vehiculo->id)}}" method="post">
+    <form action="{{route('denunciantes.update', $denunciante->id)}}" method="post">
         @csrf
         {{ method_field('PATCH') }}
-        @include('vehiculos.form',['modo'=>'Editar'])
+        @include('denunciantes.form',['modo'=>'Editar'])
     </form>
 </div>
 

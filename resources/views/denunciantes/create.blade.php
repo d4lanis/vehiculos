@@ -8,11 +8,11 @@
 
 <h1>Denuncia de denunciantes Robados</h1>
 
-<h2>Informacion del Vehiculo</h2>
+<h2>Informacion del Denunciante</h2>
 
 <form class="container" action="{{url('denunciantes')}}" method="POST">
     @csrf
     @include('denunciantes.form',['modo'=>'Ingresar']);
 </form>
 
-<script src="{{asset('js/vehiculo.js')}}"></script>
+<script src="{{asset('js/robo.js')}}"></script>
