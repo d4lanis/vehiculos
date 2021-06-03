@@ -9,6 +9,7 @@ use App\Models\Colores;
 use App\Models\TipoVehiculo;
 use App\Models\ClaseVehiculo;
 use App\Models\Procedencia;
+use App\Models\Robo;
 
 use Illuminate\Http\Request;
 
@@ -82,9 +83,10 @@ class VehiculoController extends Controller
         $data -> procedencia_id = $request -> procedencia_id;
         $data -> procedencia = $request -> procedencia;
         $data -> aseguradora = $request -> aseguradora;
-        $data -> robo_id = 1;
+        $robo_id = Robo::latest('id')->first('id');
+        $data -> robo_id = $robo_id['id'];
         $data -> save();
-        //return response()->json($data);
+        return response()->json($data);
         return redirect()->route('vehiculos.index');
     }
 

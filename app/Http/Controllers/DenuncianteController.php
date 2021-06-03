@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Denunciante;
 use App\Models\Entidad;
 use App\Models\Municipio;
+use App\Models\Robo;
 use Illuminate\Http\Request;
 
 class DenuncianteController extends Controller
@@ -59,7 +60,8 @@ class DenuncianteController extends Controller
         $data -> municipio_id= $request -> municipio_id;
         $data -> municipio= $request -> municipio;
         $data -> colonia= $request -> colonia;
-        //$data -> robo_id = 2;
+        $robo_id = Robo::latest('id')->first('id');
+        $data -> robo_id = $robo_id['id'];
         $data -> save();
 
         //return response()->json($data);

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Robo;
 use App\Models\Entidad;
-//use App\Models\Municipio;
-//use App\Models\Localidad;
+use App\Models\Municipio;
+use App\Models\Localidad;
 use App\Models\Lugar;
 use App\Models\Estatus;
 use Illuminate\Http\Request;
@@ -33,10 +33,10 @@ class RoboController extends Controller
     {
         //
         $data['entidad'] = Entidad::all();
-        //$data['municipio'] = Municipio::all();
+        $data['municipio'] = Municipio::all();
         $data['lugar'] = Lugar::all();
         $data['estatus']= Estatus::all();
-        //$data['localidad'] = Localidad::all();
+        $data['localidad'] = Localidad::all();
         return view('robos.create',compact('data'));
     }
 
@@ -126,10 +126,10 @@ class RoboController extends Controller
     {
         //
         $data['entidad'] = Entidad::all();
-        //$data['municipio'] = Municipio::all();
+        $data['municipio'] = Municipio::all();
         $data['lugar'] = Lugar::all();
         $data['estatus']= Estatus::all();
-        //$data['localidad'] = Localidad::all();
+        $data['localidad'] = Localidad::all();
         $robo = Robo::findOrFail($id);
         $date = strtotime($robo-> dateTime);
         $hora = date('H:i', $date);
