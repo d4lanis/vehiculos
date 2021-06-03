@@ -6,13 +6,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 </head>
 
-<h1>Denuncia de Vehiculos Robados</h1>
+<div class="container">
+    <h1>Denuncia de Vehiculos Robados</h1>
 
-<h2>Lugar del Robo</h2>
+    <h2>Lugar del Robo</h2>
 
-<form class="container" action="{{url('robos')}}" method="POST">
-    @csrf
-    @include('robos.form',['modo'=>'Ingresar']);
-</form>
+    <form class="container" action="{{url('robos')}}" method="POST">
+        @csrf
+        @include('robos.form',['modo'=>'Ingresar']);
+    </form>
 
-<script src="{{asset('js/robo.js')}}"></script>
+    <script src="{{asset('js/robo.js')}}"></script>
+</div>
