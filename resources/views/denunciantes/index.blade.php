@@ -4,34 +4,34 @@
     <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/r-2.2.8/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/r-2.2.8/datatables.min.js"></script>
 </head>
 
 <div class="container-xl">
     <a href="{{route('denunciantes.create')}}" class="btn btn-success">Nuevo</a>
 <br><br>
-<table id="denunciantes" class="table table-striped table-bordered">
+<table id="denunciantes" class="table table-striped table-bordered table-responsive">
     <thead class="table-info">
         <tr>
-            <th>NOMBRE</th>
-            <th>PATERNO</th>
-            <th>MATERNO</th>
-            <th>RFC</th>
-            <th>CURP</th>
-            <th>LICENCIA CONDUCCIÓN</th>
-            <th>PASAPORTE</th>
-            <th>TELEFONO</th>
-            <th>CORREO</th>
-            <th>DOMICILIO</th>
-            <th>NUM. EXTERIOR</th>
-            <th>NUM. INTERIOR</th>
-            <th>COLONIA</th>
-            <th>CP</th>
-            <th>ENTIDAD</th>
-            <th>MUNICIPIO</th>
-            <th>ACCIONES</th>
+            <th data-priority="1">NOMBRE</th>
+            <th data-priority="1">PATERNO</th>
+            <th data-priority="1">MATERNO</th>
+            <th data-priority="2">RFC</th>
+            <th data-priority="2">CURP</th>
+            <th data-priority="2">LICENCIA CONDUCCIÓN</th>
+            <th data-priority="2">PASAPORTE</th>
+            <th data-priority="1">TELEFONO</th>
+            <th data-priority="1">CORREO</th>
+            <th data-priority="1">ENTIDAD</th>
+            <th data-priority="1">MUNICIPIO</th>
+            <th data-priority="2" >DOMICILIO</th>
+            <th data-priority="2">NUM. EXTERIOR</th>
+            <th data-priority="2">NUM. INTERIOR</th>
+            <th data-priority="2">COLONIA</th>
+            <th data-priority="2">CP</th>
+            <th data-priority="1">ACCIONES</th>
         </tr>
     <tbody>
         @foreach ($denunciantes as $item)
@@ -45,13 +45,14 @@
                 <td>{{$item->pasaporte}}</td>
                 <td>{{$item->telefono}}</td>
                 <td>{{$item->correo}}</td>
+                <td>{{$item->entidad}}</td>
+                <td>{{$item->municipio}}</td>
                 <td>{{$item->domicilio}}</td>
                 <td>{{$item->numExterior}}</td>
                 <td>{{$item->numInterior}}</td>
                 <td>{{$item->colonia}}</td>
                 <td>{{$item->codigoPostal}}</td>
-                <td>{{$item->entidad}}</td>
-                <td>{{$item->municipio}}</td>
+                
                 <td>
                     <a class="btn btn-warning" style="width: 40px" href="{{ route('denunciantes.edit',$item->id)}}">
                         <span class="fa fa-edit"></span>
@@ -70,10 +71,13 @@
     $(document).ready( function () {
         $('#denunciantes').DataTable({            
             "lengthMenu": [[5,10,50,100,-1],[5,10,50,100,"Todos"]],
-            "scrollY":        "300px",
-            "scrollX":        true,
-            "scrollCollapse": true,
-            "responsive": true
+            "responsive": true,
+            "columnDefs": 
+            [
+                { responsivePriority: 1, targets: 1 },
+                { responsivePriority: 2, targets: -2 }
+            ]
+            
         });
     });
 

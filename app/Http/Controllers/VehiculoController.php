@@ -86,7 +86,7 @@ class VehiculoController extends Controller
         $robo_id = Robo::latest('id')->first('id');
         $data -> robo_id = $robo_id['id'];
         $data -> save();
-        return response()->json($data);
+        //return response()->json($data);
         return redirect()->route('vehiculos.index');
     }
 
