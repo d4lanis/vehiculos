@@ -31,7 +31,7 @@ $(document).ready(function(){
       });
 
     $('#claseVehiculo_id').change(function() {
-        $('#claseVehiculo').val($('#color_id :selected').text());
+        $('#claseVehiculo').val($('#claseVehiculo_id :selected').text());
       });
       
     $('#procedencia_id').change(function() {

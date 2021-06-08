@@ -133,7 +133,6 @@ class VehiculoController extends Controller
         Vehiculo::where('id','=',$vehiculo)->update($data);
         $vehiculo= Vehiculo::findOrFail($vehiculo);
         return redirect()->route('vehiculos.index')->withSuccess('Registro Actualizado');
-
     }
 
     /**

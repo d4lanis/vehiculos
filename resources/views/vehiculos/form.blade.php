@@ -6,7 +6,7 @@
             <option value="{{$item['marca_id']}}"" {{ isset($vehiculo->marca_id)? $vehiculo->marca_id == $item['marca_id'] ? 'selected="selected"' : '':'' }}>{{$item['descripcion']}}</option>
         @endforeach
     </select>
-    <input type="hidden" value="" name="marca" id="marca" class="form-control" value="{{isset($vehiculo->marca)?$vehiculo->marca:''}}">
+    <input type="hidden" name="marca" id="marca" class="form-control" value="{{isset($vehiculo->marca)?$vehiculo->marca:''}}">
     <br><br>
     <label for="submarca">Submarca del Vehiculo: </label>
     <select name="subMarca_id" id="subMarca_id" class="form-control">
@@ -26,7 +26,7 @@
             <option value="{{$item['id']}}" {{ isset($vehiculo->color_id)? $vehiculo->color_id == $item['id'] ? 'selected="selected"' : '':'' }}>{{$item['descripcion']}}</option>
         @endforeach
     </select>
-    <input type="hidden" value="" name="color" id="color" class="form-control" value="{{isset($vehiculo->color)?$vehiculo->color:''}}">
+    <input type="hidden" name="color" id="color" class="form-control" value="{{isset($vehiculo->color)?$vehiculo->color:''}}">
     <br><br>
     <label for="numSerie">Numero de Serie: </label>
     <input type="text" name="numSerie" id="numSerie" class="form-control" value="{{isset($vehiculo->numSerie)?$vehiculo->numSerie:''}}">
@@ -38,7 +38,7 @@
             <option value="{{$item['tipoVehiculo_id']}}" {{ isset($vehiculo->tipoVehiculo_id)? $vehiculo->tipoVehiculo_id == $item['tipoVehiculo_id'] ? 'selected="selected"' : '':'' }}>{{$item['descripcion']}}</option>
         @endforeach
     </select>
-    <input type="hidden" value="" name="tipoVehiculo" id="tipoVehiculo" class="form-control" value="{{isset($vehiculo->tipoVehiculo)?$vehiculo->tipoVehiculo:''}}">
+    <input type="hidden" name="tipoVehiculo" id="tipoVehiculo" class="form-control" value="{{isset($vehiculo->tipoVehiculo)?$vehiculo->tipoVehiculo:''}}">
     <br><br>
     <label for="claseVehiculo">Clase de Vehiculo: </label>
     <select name="claseVehiculo_id" id="claseVehiculo_id" class="form-control">
@@ -47,7 +47,7 @@
             <option value="{{$item['claseVehiculo_id']}}" {{ isset($vehiculo->claseVehiculo_id)? $vehiculo->claseVehiculo_id == $item['claseVehiculo_id'] ? 'selected="selected"' : '':'' }}>{{$item['descripcion']}}</option>
         @endforeach
     </select>
-    <input type="hidden" value="" name="claseVehiculo" id="claseVehiculo" class="form-control" value="{{isset($vehiculo->claseVehiculo)?$vehiculo->claseVehiculo:''}}">
+    <input type="hidden" name="claseVehiculo" id="claseVehiculo" class="form-control" value="{{isset($vehiculo->claseVehiculo)?$vehiculo->claseVehiculo:''}}">
     <br><br>
     <label for="señas">Señas: </label>
     <textarea name="señas" id="señas" cols="30" rows="10" class="form-control" value="{{isset($vehiculo->señas)?$vehiculo->señas:''}}"></textarea>
@@ -58,7 +58,7 @@
             <option value="{{$item['id']}}" {{ isset($vehiculo->procedencia_id)? $vehiculo->procedencia_id == $item['id'] ? 'selected="selected"' : '':'' }}>{{$item['descripcion']}}</option>
         @endforeach
     </select>
-    <input type="hidden" value="" name="procedencia" id="procedencia" class="form-control" value="{{isset($vehiculo->procedencia)?$vehiculo->procedencia:''}}">
+    <input type="hidden" name="procedencia" id="procedencia" class="form-control" value="{{isset($vehiculo->procedencia)?$vehiculo->procedencia:''}}">
     <br><br>
     <label for="aseguradora">Aseguradora: </label>
     <input type="text" name="aseguradora" id="aseguradora" class="form-control" value="{{isset($vehiculo->aseguradora)?$vehiculo->aseguradora:''}}">
