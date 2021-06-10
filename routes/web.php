@@ -5,6 +5,7 @@ use App\Http\Controllers\ColoresController;
 use App\Http\Controllers\RoboController;
 use App\Http\Controllers\VehiculoController;
 use App\Http\Controllers\DenuncianteController;
+use App\Http\Controllers\OperacionesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ use App\Http\Controllers\DenuncianteController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::resource('colores', ColoresController::class);
@@ -31,3 +32,4 @@ Route::get('vehiculos/{vehiculo}', [VehiculoController::class, 'destroy'])->name
 Route::get('/submarcas_id', [VehiculoController::class, 'getSubmarca']);
 Route::resource('denunciantes', DenuncianteController::class);
 Route::get('denunciantes/{denunciante}', [DenuncianteController::class, 'destroy'])->name('denunciantes.destroy');
+Route::resource('/',OperacionesController::class);
