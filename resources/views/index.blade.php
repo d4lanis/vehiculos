@@ -13,10 +13,15 @@
 <div class="container-lg">
     <a href="{{route('robos.create')}}" class="btn btn-success">Nuevo</a>
 <br><br>
-<table id="index" class="table table-striped table-bordered table-sm">
+<table id="index" class="table table-striped table-bordered table-sm" style="width: 100%">
     <thead class="table-info">
         <tr>
-            <th data-priority="1">Id</th>
+            <th rowspan="2" data-priority="1">Id</th>
+            <th colspan="4">Informacion del Robo</th>
+            <th colspan="5">Informacion del Vehiculo</th>
+            <th></th>
+        </tr>
+        <tr>
             <th data-priority="1">Fecha/Hora</th>
             <th data-priority="1">Entidad</th>
             <th data-priority="1">Municipio</th>
