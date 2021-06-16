@@ -63,6 +63,4 @@
     <label for="aseguradora">Aseguradora: </label>
     <input type="text" name="aseguradora" id="aseguradora" class="form-control" value="{{isset($vehiculo->aseguradora)?$vehiculo->aseguradora:''}}">
     <br><br>
-    <input type="submit" value="Enviar" class="btn btn-success">
-    <a href="{{ route('vehiculos.index')}}" class="btn btn-default btn-outline-dark">Regresar</a>
 </div>

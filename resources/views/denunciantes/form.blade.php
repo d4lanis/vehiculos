@@ -39,7 +39,7 @@
     <input type="text" name="codigoPostal" id="codigoPostal" class="form-control" value="{{isset($denunciante->codigoPostal)?$denunciante->codigoPostal:''}}">
     <br><br>
     <label for="entidad">Entidad: </label>
-    <select name="entidad_id" id="entidad_id" class="form-control" >
+    <select name="entidad_idD" id="entidad_idD" class="form-control" >
         @if ($modo == 'Ingresar')
             <option value="" >--Seleccione una entidad--</option>
         @endif 
@@ -48,19 +48,17 @@
             <option value="{{$entidad['entidad_id']}}"  {{ isset($denunciante->entidad_id)? $denunciante->entidad_id == $entidad['entidad_id'] ? 'selected="selected"' : '':'' }}>{{$entidad['nombre']}}</option>
         @endforeach
     </select>
-    <input type="hidden" name="entidad" id="entidad" class="form-control" value="{{isset($denunciante->entidad)?$denunciante->entidad:''}}">
+    <input type="hidden" name="entidadD" id="entidadD" class="form-control" value="{{isset($denunciante->entidad)?$denunciante->entidad:''}}">
     <br><br>
     <label for="municipio">Municipio: </label>
-    <select name="municipio_id" id="municipio_id" class="form-control">
+    <select name="municipio_idD" id="municipio_idD" class="form-control">
         @if ($modo == 'Editar')
             <option value="{{isset($denunciante->municipio_id)?$denunciante->municipio_id:''}}">{{isset($denunciante->municipio_id)?$denunciante->municipio:''}}</option>
         @endif
     </select>
-    <input type="hidden" name="municipio" id="municipio" class="form-control" value="{{isset($denunciante->municipio)?$denunciante->municipio:''}}">
+    <input type="hidden" name="municipioD" id="municipioD" class="form-control" value="{{isset($denunciante->municipio)?$denunciante->municipio:''}}">
     <br><br>
     <label for="colonia">Colonia: </label>
     <input type="text" name="colonia" id="colonia" class="form-control" value="{{isset($denunciante->colonia)?$denunciante->colonia:''}}">
     <br><br> 
-    <input type="submit" value="Enviar" class="btn btn-success">
-    <a href="{{ route('denunciantes.index')}}" class="btn btn-default btn-outline-dark">Regresar</a>
 </div>

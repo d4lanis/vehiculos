@@ -10,10 +10,11 @@
 </head>
 
 
-<div class="container-lg">
-    <a href="{{route('robos.create')}}" class="btn btn-success">Nuevo</a>
+<div class="container-fluid">
+    <br>
+    <a href="{{route('home.create')}}" class="btn btn-success">Nuevo</a>
 <br><br>
-<table id="index" class="table table-striped table-bordered table-sm" style="width: 100%">
+<table id="index" class="table table-striped table-bordered" style="width: 100%;">
     <thead class="table-info">
         <tr>
             <th rowspan="2" data-priority="1">Id</th>
@@ -43,8 +44,8 @@
             <th>Correo</th>
             <th>Domicilio del Denunciante</th>
             <th>Numero Interior</th>
-            <th>Entidad</th>
-            <th>Municipio</th>
+            <th>Entidad del Denunciante</th>
+            <th>Municipio del Denunciante</th>
             <th data-priority="1">Acciones</th>
         </tr>
     </thead>
@@ -85,7 +86,7 @@
                 <td>{{$denunciante->entidad}}</td>
                 <td>{{$denunciante->municipio}}</td>
                 <td> 
-                    <a class="btn btn-warning" style="width: 40px" href="{{ route('robos.edit',$robo->id)}}">
+                    <a class="btn btn-warning" style="width: 40px" href="{{ route('home.edit',$robo->id)}}">
                         <span class="fa fa-edit"></span>
                     </a>
                     <a class="btn btn-danger" href="#" onclick="return confirm('¿Seguro que desea borrar este regitro?')">

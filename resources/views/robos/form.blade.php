@@ -76,6 +76,4 @@
         @endforeach
     </select>
     <br><br>
-    <input type="submit" value="Enviar" class="btn btn-success">
-    <a href="{{ route('robos.index')}}" class="btn btn-default btn-outline-dark">Regresar</a>
 </div>

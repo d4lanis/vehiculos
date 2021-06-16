@@ -32,24 +32,18 @@
     <!-- Tabs navs -->
   
     <!-- Tabs content -->
-    <form action="{{route('home.store')}}" method="post">
-        @csrf
-        
-        <div class="tab-content" id="ex1-content">
-            <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
-                @include('robos.form',['modo'=>'Ingresar']);
-            </div>
-            <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-                @include('vehiculos.form',['modo'=>'Ingresar']);
-            </div>
-            <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
-                @include('denunciantes.form',['modo'=>'Ingresar']);
-            </div>
-            <script src="{{asset('js/vehiculo.js')}}"></script>
-            <script src="{{asset('js/robo.js')}}"></script>
-            <script src="{{asset('js/denunciante.js')}}"></script>
+    <div class="tab-content" id="ex1-content">
+        <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+            @include('robos.edit')
         </div>
+        <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+            @include('vehiculos.edit')
+        </div>
+        <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+            @include('denunciantes.edit')
+        </div>
+
         <button class="btn btn-success" type="submit">Enviar</button>
-    </form>
+    </div>
     <!-- Tabs content -->
 </div>
