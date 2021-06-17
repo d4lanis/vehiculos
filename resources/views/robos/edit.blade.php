@@ -11,6 +11,8 @@
         @csrf
         {{ method_field('PATCH') }}
         @include('robos.form',['modo'=>'Editar'])
+
+        <input type="submit" value="">
     </form>
 </div>
 

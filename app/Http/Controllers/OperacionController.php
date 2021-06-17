@@ -115,9 +115,9 @@ class OperacionController extends Controller
         $data['denunciante'] -> telefono= $request -> telefono;
         $data['denunciante'] -> correo= $request -> correo;
         $data['denunciante'] -> domicilio= $request -> domicilio;
-        $data['denunciante'] -> numExterior = $request -> numExterior;
-        $data['denunciante'] -> numInterior = $request -> numInterior;
-        $data['denunciante'] -> codigoPostal = $request -> codigoPostal;
+        $data['denunciante'] -> numExterior = $request -> numExteriorD;
+        $data['denunciante'] -> numInterior = $request -> numInteriorD;
+        $data['denunciante'] -> codigoPostal = $request -> codigoPostalD;
         $data['denunciante'] -> entidad_id = $request -> entidad_idD;
         $data['denunciante'] -> entidad= $request -> entidadD;
         $data['denunciante'] -> municipio_id= $request -> municipio_idD;
@@ -176,9 +176,69 @@ class OperacionController extends Controller
      * @param  \App\Models\Operacion  $operacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Operacion $operacion)
+    public function update(Request $request, $id)
     {
-        //
+        $robo['hora']= $request -> hora;
+        $robo['fecha']= $request -> fecha;
+        $dateTime = $robo['fecha'].' '.$robo['hora'].':00';
+        unset($robo['fecha'],$robo['hora']);
+        $robo['dateTime']= $dateTime;
+        $robo['entidad_id']= $request -> entidad_id;
+        $robo['entidad']= $request->entidad;
+        $robo['municipio_id']= $request -> municipio_id;
+        $robo['municipio']= $request -> municipio;
+        $robo['localidad_id']= $request -> localidad_id;
+        $robo['localidad']= $request -> localidad;
+        $robo['calle']= $request -> calle;
+        $robo['numExterior']= $request -> numExterior;
+        $robo['codigoPostal']= $request -> codigoPostal;
+        $robo['tipoLugar_id']= $request -> tipoLugar_id;
+        $robo['tipoLugar']= $request -> tipoLugar;
+        $robo['descLugar']= $request -> descLugar;
+        $robo['delito']= $request -> delito;
+        $robo['armaAsociada']= $request -> armaAsociada;
+        $robo['estatus_id']= $request -> estatus_id;
+        $robo['estatus']= $request-> estatus;
+        $vehiculo['marca_id']= $request -> marca_id;
+        $vehiculo['marca']= $request -> marca;
+        $vehiculo['subMarca_id']= $request -> subMarca_id;
+        $vehiculo['subMarca']= $request -> subMarca;
+        $vehiculo['modelo']= $request -> modelo;
+        $vehiculo['color_id']= $request -> color_id;
+        $vehiculo['color']= $request -> color;
+        $vehiculo['numSerie']= $request -> numSerie;
+        $vehiculo['tipoVehiculo_id']= $request -> tipoVehiculo_id;
+        $vehiculo['tipoVehiculo']= $request -> tipoVehiculo;
+        $vehiculo['claseVehiculo_id']= $request -> claseVehiculo_id;
+        $vehiculo['claseVehiculo']= $request -> claseVehiculo;
+        $vehiculo['señas']= $request -> señas;
+        $vehiculo['procedencia_id']= $request -> procedencia_id;
+        $vehiculo['procedencia']= $request -> procedencia;
+        $vehiculo['aseguradora']= $request -> aseguradora;
+        $denunciante['nombre']= $request -> nombre;
+        $denunciante['paterno']= $request -> paterno;
+        $denunciante['materno']= $request -> materno;
+        $denunciante['rfc']= $request -> rfc;
+        $denunciante['curp']= $request -> curp;
+        $denunciante['licencia']= $request -> licencia;
+        $denunciante['pasaporte']= $request -> pasaporte;
+        $denunciante['telefono']= $request -> telefono;
+        $denunciante['correo']= $request -> correo;
+        $denunciante['domicilio']= $request -> domicilio;
+        $denunciante['numExterior']= $request -> numExteriorD;
+        $denunciante['numInterior']= $request -> numInteriorD;
+        $denunciante['codigoPostal']= $request -> codigoPostalD;
+        $denunciante['entidad_id']= $request -> entidad_idD;
+        $denunciante['entidad']= $request -> entidadD;
+        $denunciante['municipio_id']= $request -> municipio_idD;
+        $denunciante['municipio']= $request -> municipioD;
+        $denunciante['colonia']= $request -> colonia;
+
+        
+        Robo::where('id','=',$id)->update($robo);
+        Vehiculo::where('id','=',$id)->update($vehiculo);
+        Denunciante::where('id','=',$id)->update($denunciante);
+        return redirect()->route('home.index');
     }
 
     /**

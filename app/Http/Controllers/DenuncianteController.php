@@ -104,7 +104,7 @@ class DenuncianteController extends Controller
     {
         $data = $request->except(['_token','_method']);
         Denunciante::where('id','=',$denunciante)->update($data);
-        $denunciante= Denunciante::findOrFail($denunciante);
+        //$denunciante= Denunciante::findOrFail($denunciante);
         return redirect()->route('denunciantes.index')->withSuccess('Registro Actualizado');
     }
 

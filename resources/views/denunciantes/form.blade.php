@@ -30,13 +30,13 @@
     <input type="text" name="domicilio" id="domicilio" class="form-control" value="{{isset($denunciante->domicilio)?$denunciante->domicilio:''}}">
     <br><br>
     <label for="numExterior">Numero Exterior: </label>
-    <input type="text" name="numExterior" id="numExterior" class="form-control" value="{{isset($denunciante->numExterior)?$denunciante->numExterior:''}}">
+    <input type="text" name="numExteriorD" id="numExteriorD" class="form-control" value="{{isset($denunciante->numExterior)?$denunciante->numExterior:''}}">
     <br><br>
     <label for="numInterior">Numero Interior: </label>
-    <input type="text" name="numInterior" id="numInterior" class="form-control" value="{{isset($denunciante->numInterior)?$denunciante->numInterior:''}}">
+    <input type="text" name="numInteriorD" id="numInteriorD" class="form-control" value="{{isset($denunciante->numInterior)?$denunciante->numInterior:''}}">
     <br><br>
     <label for="codigoPostal">Codigo Postal: </label>
-    <input type="text" name="codigoPostal" id="codigoPostal" class="form-control" value="{{isset($denunciante->codigoPostal)?$denunciante->codigoPostal:''}}">
+    <input type="text" name="codigoPostalD" id="codigoPostalD" class="form-control" value="{{isset($denunciante->codigoPostal)?$denunciante->codigoPostal:''}}">
     <br><br>
     <label for="entidad">Entidad: </label>
     <select name="entidad_idD" id="entidad_idD" class="form-control" >
