@@ -126,6 +126,7 @@ class OperacionController extends Controller
         $data['denunciante'] -> robo_id = $data['robo']['id'];
         $data['denunciante'] -> save();
         return redirect()->route('home.index');
+        //return response()->json($data);
     }
 
     /**
@@ -165,7 +166,7 @@ class OperacionController extends Controller
         $robo->hora = $hora;
         $robo->fecha= $fecha;
         $vehiculo = Vehiculo::findOrFail($id);
-        $denunciante = Denunciante::findOrFail($id);
+        $denunciante = Denunciante::findOrFail($id);;
         return view('edit', compact('robo','vehiculo','denunciante','data'));
     }
 

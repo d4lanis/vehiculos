@@ -7,49 +7,58 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/r-2.2.8/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/r-2.2.8/datatables.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+    <script src="{{asset('js/navegacion.js')}}"></script>
+    <script src="{{asset('js/vehiculo.js')}}"></script>
+    <script src="{{asset('js/robo.js')}}"></script>
+    <script src="{{asset('js/denunciante.js')}}"></script>
+  </head>
 
 <div class="container">
     <br>
-    <!-- Tabs navs -->
-    <ul class="nav nav-tabs nav-fill mb-3" id="ex1" role="tablist">
-        <li class="nav-item" role="presentation">
-            <a class="nav-link active" id="ex1-tab-1" data-bs-toggle="tab" href="#ex1-tabs-1" role="tab" aria-controls="ex1-tabs-1" aria-selected="true">
-                Paso 1
-            </a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="ex1-tab-2" data-bs-toggle="tab" href="#ex1-tabs-2" role="tab" aria-controls="ex1-tabs-2" aria-selected="false">
-                Paso 2
-            </a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="ex1-tab-3" data-bs-toggle="tab" href="#ex1-tabs-3" role="tab" aria-controls="ex1-tabs-3" aria-selected="false">
-                Paso 3
-            </a>
-        </li>
-    </ul>
-    <!-- Tabs navs -->
-  
-    <!-- Tabs content -->
-    <form action="{{route('home.store')}}" method="post">
-        @csrf
-        
-        <div class="tab-content" id="ex1-content">
-            <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
-                @include('robos.form',['modo'=>'Ingresar']);
+    <h1>Denuncia de Vehiculos Robados</h1>
+  <ul class="nav nav-tabs nav-fill mb-3" role="tablist">
+    <li class="nav-item active" role="presentation">
+      <a class="nav-link active" href="#paso1" aria-controls="paso1" role="tab" data-bs-toggle="tab" aria-expanded="true">Paso 1</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" href="#paso2" aria-controls="paso2" role="tab" data-bs-toggle="tab" aria-expanded="false">Paso 2</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" href="#paso3" aria-controls="paso3" role="tab" data-bs-toggle="tab" aria-expanded="false">Paso 3</a>
+    </li>
+  </ul>
+
+  <form action="{{route('home.store')}}" method="POST">
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="paso1">
+            <h3 class="">Información del Robo</h3>
+            @include('robos.form',['modo'=>'Ingresar']);
+            <div class="pull-right">
+              <a class="btn btn-primary continue" id="continue">Continuar</a>
+              <a class="btn btn-warning" href="">Cancelar</a>
             </div>
-            <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-                @include('vehiculos.form',['modo'=>'Ingresar']);
-            </div>
-            <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
-                @include('denunciantes.form',['modo'=>'Ingresar']);
-            </div>
-            <script src="{{asset('js/vehiculo.js')}}"></script>
-            <script src="{{asset('js/robo.js')}}"></script>
-            <script src="{{asset('js/denunciante.js')}}"></script>
         </div>
-        <button class="btn btn-success" type="submit">Enviar</button>
-    </form>
-    <!-- Tabs content -->
+
+        <div role="tabpanel" class="tab-pane" id="paso2">
+            <h3 class="">Información del Vehiculo</h3>
+            @include('vehiculos.form',['modo'=>'Ingresar']);
+            <div class="pull-right">
+              <a class="btn btn-primary back">Regresar</a>
+              <a class="btn btn-primary continue">Continuar</a>
+              <a class="btn btn-warning" href="">Cancelar</a>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="paso3">
+            <h3 class="">Información del Denunciante</h3>
+            @include('denunciantes.form',['modo'=>'Ingresar']);
+            <div class="pull-right">
+              <a class="btn btn-primary back">Regresar</a>
+              <button class="btn btn-success" type="submit">Enviar</button>
+              <a class="btn btn-warning">Cancelar</a>
+            </div>
+        </div>
+    </div>
+  </form>
 </div>
+<div id="push"></div>
