@@ -31,7 +31,7 @@ class OperacionController extends Controller
         $data['robos']=Robo::paginate();
         $data['vehiculos']=Vehiculo::paginate();
         $data['denunciantes']=Denunciante::paginate();
-        return view('index',compact('data'));
+        return view('vehiculosRobados.index',compact('data'));
     }
 
     /**
@@ -52,7 +52,7 @@ class OperacionController extends Controller
         $data['tipoVehiculo'] = TipoVehiculo::all();
         $data['claseVehiculo'] = ClaseVehiculo::all();
         $data['procedencia'] = Procedencia::all();
-        return view('create',compact('data'));
+        return view('vehiculosRobados.create',compact('data'));
     }
 
     /**
@@ -125,7 +125,7 @@ class OperacionController extends Controller
         $data['denunciante'] -> colonia= $request -> colonia;
         $data['denunciante'] -> robo_id = $data['robo']['id'];
         $data['denunciante'] -> save();
-        return redirect()->route('home.index');
+        return redirect()->route('vehiculosRobados.index');
         //return response()->json($data);
     }
 
@@ -167,7 +167,7 @@ class OperacionController extends Controller
         $robo->fecha= $fecha;
         $vehiculo = Vehiculo::findOrFail($id);
         $denunciante = Denunciante::findOrFail($id);;
-        return view('edit', compact('robo','vehiculo','denunciante','data'));
+        return view('vehiculosRobados.edit', compact('robo','vehiculo','denunciante','data'));
     }
 
     /**
@@ -239,7 +239,7 @@ class OperacionController extends Controller
         Robo::where('id','=',$id)->update($robo);
         Vehiculo::where('id','=',$id)->update($vehiculo);
         Denunciante::where('id','=',$id)->update($denunciante);
-        return redirect()->route('home.index');
+        return redirect()->route('vehiculosRobados.index');
     }
 
     /**

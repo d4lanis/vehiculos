@@ -32,4 +32,4 @@ Route::get('vehiculos/{vehiculo}', [VehiculoController::class, 'destroy'])->name
 Route::get('/submarcas_id', [VehiculoController::class, 'getSubmarca']);
 Route::resource('denunciantes', DenuncianteController::class);
 Route::get('denunciantes/{denunciante}', [DenuncianteController::class, 'destroy'])->name('denunciantes.destroy');
-Route::resource('home',OperacionController::class);
+Route::resource('vehiculosRobados',OperacionController::class);

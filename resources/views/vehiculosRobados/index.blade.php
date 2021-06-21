@@ -12,7 +12,7 @@
 
 <div class="container-fluid">
     <br>
-    <a href="{{route('home.create')}}" class="btn btn-success">Nuevo</a>
+    <a href="{{route('vehiculosRobados.create')}}" class="btn btn-success">Nuevo</a>
 <br><br>
 <table id="index" class="table table-striped table-bordered" style="width: 100%;">
     <thead class="table-info">
@@ -33,6 +33,7 @@
             <th data-priority="1">Submarca</th>
             <th data-priority="1">modelo</th>
             <th data-priority="1">color</th>
+            <th> Señas del Vehiculo:</th>
             <th>Tipo de Vehiculo</th>
             <th data-priority="1">Procendencia</th>
             <th>Nombre</th>
@@ -68,6 +69,7 @@
                 <td>{{$vehiculo->subMarca}}</td>
                 <td>{{$vehiculo->modelo}}</td>
                 <td>{{$vehiculo->color}}</td>
+                <td>{{$vehiculo->señas}}</td>
                 <td>{{$vehiculo->tipoVehiculo}}</td>
                 <td>{{$vehiculo->procedencia}}</td>
         @endforeach
@@ -86,7 +88,7 @@
                 <td>{{$denunciante->entidad}}</td>
                 <td>{{$denunciante->municipio}}</td>
                 <td> 
-                    <a class="btn btn-warning" style="width: 40px" href="{{ route('home.edit',$robo->id)}}">
+                    <a class="btn btn-warning" style="width: 40px" href="{{ route('vehiculosRobados.edit',$robo->id)}}">
                         <span class="fa fa-edit"></span>
                     </a>
                     <a class="btn btn-danger" href="#" onclick="return confirm('¿Seguro que desea borrar este regitro?')">

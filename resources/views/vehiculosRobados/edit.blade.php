@@ -28,14 +28,16 @@
     </li>
   </ul>
 
-  <form action="">
+  <form action="{{route('vehiculosRobados.update',$robo->id)}}" method="POST">
+    @csrf
+    {{ method_field('PATCH') }}
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="paso1">
             <h3 class="">Información del Robo</h3>
             @include('robos.form',['modo'=>'Editar']);
             <div class="pull-right">
               <a class="btn btn-primary continue" id="continue">Continuar</a>
-              <a class="btn btn-warning" href="">Cancelar</a>
+              <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}" onclick="return confirm('¿Seguro que desea cancelar se perdera la informacion ingresada?')">Cancelar</a>
             </div>
         </div>
 
@@ -45,7 +47,7 @@
             <div class="pull-right">
               <a class="btn btn-primary back">Regresar</a>
               <a class="btn btn-primary continue">Continuar</a>
-              <a class="btn btn-warning" href="">Cancelar</a>
+              <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}" onclick="return confirm('¿Seguro que desea cancelar se perdera la informacion ingresada?')">Cancelar</a>
             </div>
         </div>
 
@@ -55,7 +57,7 @@
             <div class="pull-right">
               <a class="btn btn-primary back">Regresar</a>
               <button class="btn btn-success" type="submit">Enviar</button>
-              <a class="btn btn-warning">Cancelar</a>
+              <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}" onclick="return confirm('¿Seguro que desea cancelar se perdera la informacion ingresada?')">Cancelar</a>
             </div>
         </div>
     </div>
