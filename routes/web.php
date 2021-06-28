@@ -33,3 +33,4 @@ Route::get('/submarcas_id', [VehiculoController::class, 'getSubmarca']);
 Route::resource('denunciantes', DenuncianteController::class);
 Route::get('denunciantes/{denunciante}', [DenuncianteController::class, 'destroy'])->name('denunciantes.destroy');
 Route::resource('vehiculosRobados',OperacionController::class);
+Route::get('/fillData', [OperacionController::class, 'fillIndexTable']);

@@ -50,61 +50,41 @@
             <th data-priority="1">Acciones</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach ($data['robos'] as $robo)
-            <tr>
-                <td>{{$robo->id}}</td>
-                <td>{{$robo->dateTime}}</td>
-                <td>{{$robo->entidad}}</td>
-                <td>{{$robo->municipio}}</td>
-                <td>{{$robo->localidad}}</td>
-                <td>{{$robo->calle.' '.$robo->numExterior}}</td>
-                <td>{{$robo->tipoLugar}}</td>
-                
-    
-        @endforeach
-        @foreach ($data['vehiculos'] as $vehiculo)
-
-                <td>{{$vehiculo->marca}}</td>
-                <td>{{$vehiculo->subMarca}}</td>
-                <td>{{$vehiculo->modelo}}</td>
-                <td>{{$vehiculo->color}}</td>
-                <td>{{$vehiculo->señas}}</td>
-                <td>{{$vehiculo->tipoVehiculo}}</td>
-                <td>{{$vehiculo->procedencia}}</td>
-        @endforeach
-        @foreach ($data['denunciantes'] as $denunciante)
-                <td>
-                    {{$denunciante->nombre.' '.$denunciante->paterno.' '.$denunciante->materno}}
-                </td>
-                <td>{{$denunciante->rfc}}</td>
-                <td>{{$denunciante->curp}}</td>
-                <td>{{$denunciante->licencia}}</td>
-                <td>{{$denunciante->pasaporte}}</td>
-                <td>{{$denunciante->telefono}}</td>
-                <td>{{$denunciante->correo}}</td>
-                <td>{{$denunciante->domicilio.' '.$denunciante->numExterior.', '.$denunciante->colonia}}</td>
-                <td>{{$denunciante->numInterior}}</td>
-                <td>{{$denunciante->entidad}}</td>
-                <td>{{$denunciante->municipio}}</td>
-                <td> 
-                    <a class="btn btn-warning" style="width: 40px" href="{{ route('vehiculosRobados.edit',$robo->id)}}">
-                        <span class="fa fa-edit"></span>
-                    </a>
-                    <a class="btn btn-danger" href="#" onclick="return confirm('¿Seguro que desea borrar este regitro?')">
-                        <span class="fa fa-trash"></span>
-                    </a>
-                </td>
-        @endforeach
-        
-    </tr>
-    </tbody>
 </table>
 
 <script>
     $(document).ready( function () {
-        $('#index').DataTable({            
-            "lengthMenu": [[5,10,50,100,-1],[5,10,50,100,"Todos"]],
+        $('#index').DataTable({
+            "serverSide": true,
+            "ajax": "/fillData",
+            "columns": [
+                {data: 'id'},
+                {data: 'dateTime'},
+                {data: 'entidad'},
+                {data: 'municipio'},
+                {data: 'localidad'},
+                {data: 'calle'},
+                {data: 'tipoLugar'},
+                {data: 'marca'},
+                {data: 'subMarca'},
+                {data: 'modelo'},
+                {data: 'color'},
+                {data: 'señas'},
+                {data: 'tipoVehiculo'},
+                {data: 'procedencia'},
+                {data: 'nombre'},
+                {data: 'rfc'},
+                {data: 'curp'},
+                {data: 'pasaporte'},
+                {data: 'telefono'},
+                {data: 'correo'},
+                {data: 'domicilio'},
+                {data: 'numInterior'},
+                {data: 'entidad'},
+                {data: 'municipio'},
+
+            ],          
+            "lengthMenu": [[5,10,50,100],[5,10,50,100]],
             "responsive": true,
             "columnDefs": 
             [

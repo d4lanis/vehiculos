@@ -18,6 +18,7 @@ use App\Models\Robo;
 use App\Models\Vehiculo;
 use App\Models\Denunciante;
 use Illuminate\Http\Request;
+use DB;
 
 class OperacionController extends Controller
 {
@@ -28,10 +29,24 @@ class OperacionController extends Controller
      */
     public function index()
     {
-        $data['robos']=Robo::paginate();
-        $data['vehiculos']=Vehiculo::paginate();
-        $data['denunciantes']=Denunciante::paginate();
-        return view('vehiculosRobados.index',compact('data'));
+        $data['robos'] = Robo::all();
+        $data['vehiculos']=Vehiculo::all();
+        $data['denunciantes']=Denunciante::all();
+        return view('vehiculosRobados.index', compact('data'));
+    }
+
+    public function fillIndexTable()
+    {
+        /*$data['robos'] = Robo::select('id','dateTime','entidad');
+        $data['vehiculos']=Vehiculo::all();
+        $data['denunciantes']=Denunciante::all();
+        return datatables()->collection($data['robos'],$data['vehiculos'])->toJson();*/
+        $query = DB::table('robos')
+        ->join('vehiculos','robos.id','=','vehiculos.robo_id')
+        ->join('denunciantes','robos.id','=','denunciantes.robo_id')
+        ->select('robos.id','robos.dateTime','robos.calle','robos.numExterior','robos.localidad','robos.municipio','robos.entidad','robos.codigoPostal','robos.tipoLugar','robos.descLugar','robos.armaAsociada','robos.estatus','vehiculos.marca','vehiculos.subMarca','vehiculos.modelo','vehiculos.color','vehiculos.numSerie','vehiculos.tipoVehiculo','vehiculos.claseVehiculo','vehiculos.señas','vehiculos.procedencia','vehiculos.aseguradora','vehiculos.aseguradora','denunciantes.nombre','denunciantes.paterno','denunciantes.materno','denunciantes.rfc','denunciantes.curp','denunciantes.licencia','denunciantes.pasaporte','denunciantes.telefono','denunciantes.correo','denunciantes.domicilio','denunciantes.numExterior','denunciantes.numInterior','denunciantes.colonia','denunciantes.codigoPostal','denunciantes.entidad','denunciantes.municipio')
+        ->get();
+        return datatables()->of($query)->toJson();
     }
 
     /**
@@ -66,8 +81,24 @@ class OperacionController extends Controller
         $data['robo'] = new Robo;
         $hora = $request -> hora;
         $fecha= $request -> fecha;
-        $dateTime = $fecha.' '.$hora;
-        $data['robo']-> dateTime = $dateTime;
+
+        if(is_null($hora) && is_null($fecha))
+        {
+            $data['robo']-> dateTime = null;
+        }
+        elseif(is_null($hora) && !is_null($fecha))
+        {
+            $data['robo']-> dateTime = $fecha;
+        }
+        elseif(!is_null($hora) && is_null($fecha))
+        {
+            $data['robo']-> dateTime = '0000-00-00'.' '.$hora;
+        }
+        else
+        {
+            $data['robo']-> dateTime = $fecha.' '.$hora;
+        }
+        
         $data['robo']-> entidad_id = $request -> entidad_id;
         $data['robo']-> entidad = $request->entidad;
         $data['robo']-> municipio_id = $request -> municipio_id;
