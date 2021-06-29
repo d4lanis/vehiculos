@@ -17,37 +17,15 @@
 <table id="index" class="table table-striped table-bordered" style="width: 100%;">
     <thead class="table-info">
         <tr>
-            <th rowspan="2" data-priority="1">Id</th>
-            <th colspan="4">Informacion del Robo</th>
-            <th colspan="5">Informacion del Vehiculo</th>
-            <th></th>
-        </tr>
-        <tr>
-            <th data-priority="1">Fecha/Hora</th>
-            <th data-priority="1">Entidad</th>
-            <th data-priority="1">Municipio</th>
-            <th>Localidad</th>
-            <th data-priority="1">Calle</th>
-            <th>Lugar</th>
-            <th data-priority="1">Marca</th>
-            <th data-priority="1">Submarca</th>
-            <th data-priority="1">modelo</th>
-            <th data-priority="1">color</th>
-            <th> Señas del Vehiculo:</th>
-            <th>Tipo de Vehiculo</th>
-            <th data-priority="1">Procendencia</th>
-            <th>Nombre</th>
-            <th>RFC</th>
-            <th>CURP</th>
-            <th>Licencia</th>
-            <th>Pasaporte</th>
-            <th>Telefono</th>
-            <th>Correo</th>
-            <th>Domicilio del Denunciante</th>
-            <th>Numero Interior</th>
-            <th>Entidad del Denunciante</th>
-            <th>Municipio del Denunciante</th>
-            <th data-priority="1">Acciones</th>
+            <th>Id</th>
+            <th>Fecha/Hora</th>
+            <th>Municipio</th>
+            <th>Marca</th>
+            <th>SubMarca</th>
+            <th>Modelo</th>
+            <th>Numero de Serie</th>
+            <th>Nombre Denunciante</th>
+            <th>Acciones</th>
         </tr>
     </thead>
 </table>
@@ -55,42 +33,21 @@
 <script>
     $(document).ready( function () {
         $('#index').DataTable({
+            "processing": true,
             "serverSide": true,
+            "responsive": true,
+            "lengthMenu": [[5,10,50,100],[5,10,50,100]],
             "ajax": "/fillData",
             "columns": [
                 {data: 'id'},
                 {data: 'dateTime'},
-                {data: 'entidad'},
                 {data: 'municipio'},
-                {data: 'localidad'},
-                {data: 'calle'},
-                {data: 'tipoLugar'},
                 {data: 'marca'},
                 {data: 'subMarca'},
                 {data: 'modelo'},
-                {data: 'color'},
-                {data: 'señas'},
-                {data: 'tipoVehiculo'},
-                {data: 'procedencia'},
+                {data: 'numSerie'},
                 {data: 'nombre'},
-                {data: 'rfc'},
-                {data: 'curp'},
-                {data: 'pasaporte'},
-                {data: 'telefono'},
-                {data: 'correo'},
-                {data: 'domicilio'},
-                {data: 'numInterior'},
-                {data: 'entidad'},
-                {data: 'municipio'},
-
             ],          
-            "lengthMenu": [[5,10,50,100],[5,10,50,100]],
-            "responsive": true,
-            "columnDefs": 
-            [
-                { responsivePriority: 1, targets: 0 },
-                { responsivePriority: 2, targets: -2 }
-            ]
         });
     });
 

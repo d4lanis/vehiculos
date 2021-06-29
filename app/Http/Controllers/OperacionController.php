@@ -37,15 +37,12 @@ class OperacionController extends Controller
 
     public function fillIndexTable()
     {
-        /*$data['robos'] = Robo::select('id','dateTime','entidad');
-        $data['vehiculos']=Vehiculo::all();
-        $data['denunciantes']=Denunciante::all();
-        return datatables()->collection($data['robos'],$data['vehiculos'])->toJson();*/
         $query = DB::table('robos')
         ->join('vehiculos','robos.id','=','vehiculos.robo_id')
         ->join('denunciantes','robos.id','=','denunciantes.robo_id')
-        ->select('robos.id','robos.dateTime','robos.calle','robos.numExterior','robos.localidad','robos.municipio','robos.entidad','robos.codigoPostal','robos.tipoLugar','robos.descLugar','robos.armaAsociada','robos.estatus','vehiculos.marca','vehiculos.subMarca','vehiculos.modelo','vehiculos.color','vehiculos.numSerie','vehiculos.tipoVehiculo','vehiculos.claseVehiculo','vehiculos.señas','vehiculos.procedencia','vehiculos.aseguradora','vehiculos.aseguradora','denunciantes.nombre','denunciantes.paterno','denunciantes.materno','denunciantes.rfc','denunciantes.curp','denunciantes.licencia','denunciantes.pasaporte','denunciantes.telefono','denunciantes.correo','denunciantes.domicilio','denunciantes.numExterior','denunciantes.numInterior','denunciantes.colonia','denunciantes.codigoPostal','denunciantes.entidad','denunciantes.municipio')
+        ->select('robos.id','robos.dateTime','robos.municipio','vehiculos.marca','vehiculos.subMarca','vehiculos.modelo','vehiculos.numSerie', DB::raw("concat_ws(' ', denunciantes.nombre, denunciantes.paterno, denunciantes.materno) as nombre"))
         ->get();
+
         return datatables()->of($query)->toJson();
     }
 
@@ -79,26 +76,7 @@ class OperacionController extends Controller
     public function store(Request $request)
     {   
         $data['robo'] = new Robo;
-        $hora = $request -> hora;
-        $fecha= $request -> fecha;
-
-        if(is_null($hora) && is_null($fecha))
-        {
-            $data['robo']-> dateTime = null;
-        }
-        elseif(is_null($hora) && !is_null($fecha))
-        {
-            $data['robo']-> dateTime = $fecha;
-        }
-        elseif(!is_null($hora) && is_null($fecha))
-        {
-            $data['robo']-> dateTime = '0000-00-00'.' '.$hora;
-        }
-        else
-        {
-            $data['robo']-> dateTime = $fecha.' '.$hora;
-        }
-        
+        $data['robo']->dateTime = $request-> date;
         $data['robo']-> entidad_id = $request -> entidad_id;
         $data['robo']-> entidad = $request->entidad;
         $data['robo']-> municipio_id = $request -> municipio_id;
@@ -191,13 +169,10 @@ class OperacionController extends Controller
         $data['claseVehiculo'] = ClaseVehiculo::all();
         $data['procedencia'] = Procedencia::all();
         $robo = Robo::findOrFail($id);
-        $date = strtotime($robo-> dateTime);
-        $hora = date('H:i', $date);
-        $fecha= date('Y-m-d',$date);        
-        $robo->hora = $hora;
-        $robo->fecha= $fecha;
+        $robo['dateTime']=date("Y-m-d\TH:i", strtotime($robo['dateTime']));
+        //return response()->json($robo);
         $vehiculo = Vehiculo::findOrFail($id);
-        $denunciante = Denunciante::findOrFail($id);;
+        $denunciante = Denunciante::findOrFail($id);
         return view('vehiculosRobados.edit', compact('robo','vehiculo','denunciante','data'));
     }
 
@@ -210,11 +185,11 @@ class OperacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $robo['hora']= $request -> hora;
+        /*$robo['hora']= $request -> hora;
         $robo['fecha']= $request -> fecha;
         $dateTime = $robo['fecha'].' '.$robo['hora'].':00';
-        unset($robo['fecha'],$robo['hora']);
-        $robo['dateTime']= $dateTime;
+        unset($robo['fecha'],$robo['hora']);*/
+        $robo['dateTime']= $request-> date;
         $robo['entidad_id']= $request -> entidad_id;
         $robo['entidad']= $request->entidad;
         $robo['municipio_id']= $request -> municipio_id;
