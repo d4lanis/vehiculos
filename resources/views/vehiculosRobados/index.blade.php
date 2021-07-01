@@ -17,15 +17,15 @@
 <table id="index" class="table table-striped table-bordered" style="width: 100%;">
     <thead class="table-info">
         <tr>
-            <th>Id</th>
-            <th>Fecha/Hora</th>
-            <th>Municipio</th>
-            <th>Marca</th>
-            <th>SubMarca</th>
+            <th data-priority="1">Id</th>
+            <th data-priority="2">Fecha/Hora</th>
+            <th data-priority="2">Municipio</th>
+            <th data-priority="2">Marca</th>
+            <th data-priority="2">SubMarca</th>
             <th>Modelo</th>
-            <th>Numero de Serie</th>
+            <th data-priority="1">Numero de Serie</th>
             <th>Nombre Denunciante</th>
-            <th>Acciones</th>
+            <th data-priority="1">Acciones</th>
         </tr>
     </thead>
 </table>
@@ -39,7 +39,7 @@
             "lengthMenu": [[5,10,50,100],[5,10,50,100]],
             "ajax": "/fillData",
             "columns": [
-                {data: 'id'},
+                {data: 'id', orderable: false, searchable: false},
                 {data: 'dateTime'},
                 {data: 'municipio'},
                 {data: 'marca'},
@@ -47,7 +47,17 @@
                 {data: 'modelo'},
                 {data: 'numSerie'},
                 {data: 'nombre'},
-            ],          
+                {data: 'acciones', name:'acciones', searchable:false, orderable:false,
+                     render: function(data,style,row,meta){
+                         return $("<div/>").html(data).text();
+                     }
+                }
+            ],
+            "columnDefs": 
+            [
+                { responsivePriority: 1, targets: 1 },
+                { responsivePriority: 2, targets: -2 }
+            ]          
         });
     });
 

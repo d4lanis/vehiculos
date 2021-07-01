@@ -19,6 +19,7 @@ use App\Models\Vehiculo;
 use App\Models\Denunciante;
 use Illuminate\Http\Request;
 use DB;
+use Yajra\DataTables\DataTables;
 
 class OperacionController extends Controller
 {
@@ -37,13 +38,25 @@ class OperacionController extends Controller
 
     public function fillIndexTable()
     {
-        $query = DB::table('robos')
+        $items = DB::table('robos')
         ->join('vehiculos','robos.id','=','vehiculos.robo_id')
         ->join('denunciantes','robos.id','=','denunciantes.robo_id')
         ->select('robos.id','robos.dateTime','robos.municipio','vehiculos.marca','vehiculos.subMarca','vehiculos.modelo','vehiculos.numSerie', DB::raw("concat_ws(' ', denunciantes.nombre, denunciantes.paterno, denunciantes.materno) as nombre"))
         ->get();
 
-        return datatables()->of($query)->toJson();
+        return Datatables::of($items)
+                ->addColumn('acciones', function($item){
+                    $ver= route('vehiculosRobados.show', $item->id);
+                    $editar= route('vehiculosRobados.edit',$item->id);
+                    $borrar= route('vehiculosRobados.destroy',$item->id);
+
+                    $action_buttons = "
+                        <a href='$ver' class='btn btn-primary fa fa-eye' data-toggle='tooltip' data-placement='bottom' title='Ver'></a>
+                        <a href='$editar' class='btn btn-warning fa fa-edit' data-toggle='tooltip' data-placement='bottom' title='Editar'></a>
+                        <a href'$borrar' class='btn btn-danger fa fa-trash disabled' data-toggle='tooltip' data-placement='bottom' title='Borrar' onclick='return confirm('¿Seguro que desea borrar este regitro?')'></a>";
+
+                return $action_buttons;
+                })->make(TRUE);
     }
 
     /**
@@ -135,7 +148,6 @@ class OperacionController extends Controller
         $data['denunciante'] -> robo_id = $data['robo']['id'];
         $data['denunciante'] -> save();
         return redirect()->route('vehiculosRobados.index');
-        //return response()->json($data);
     }
 
     /**
@@ -144,9 +156,24 @@ class OperacionController extends Controller
      * @param  \App\Models\Operacion  $operacion
      * @return \Illuminate\Http\Response
      */
-    public function show(Operacion $operacion)
+    public function show($id)
     {
-        //
+        /*$data['entidad'] = Entidad::all();
+        $data['municipio'] = Municipio::all();
+        $data['lugar'] = Lugar::all();
+        $data['estatus']= Estatus::all();
+        $data['localidad'] = Localidad::all();
+        $data['marca'] = Marca::all();
+        $data['submarca'] = Submarca::all();
+        $data['colores'] = Colores::all();
+        $data['tipoVehiculo'] = TipoVehiculo::all();
+        $data['claseVehiculo'] = ClaseVehiculo::all();
+        $data['procedencia'] = Procedencia::all();*/
+        $robo = Robo::findOrFail($id);
+        $robo['dateTime']=date("Y-m-d\TH:i", strtotime($robo['dateTime']));
+        $vehiculo = Vehiculo::findOrFail($id);
+        $denunciante = Denunciante::findOrFail($id);
+        return view('vehiculosRobados.show', compact('robo','vehiculo','denunciante'));
     }
 
     /**
@@ -170,7 +197,6 @@ class OperacionController extends Controller
         $data['procedencia'] = Procedencia::all();
         $robo = Robo::findOrFail($id);
         $robo['dateTime']=date("Y-m-d\TH:i", strtotime($robo['dateTime']));
-        //return response()->json($robo);
         $vehiculo = Vehiculo::findOrFail($id);
         $denunciante = Denunciante::findOrFail($id);
         return view('vehiculosRobados.edit', compact('robo','vehiculo','denunciante','data'));
@@ -185,10 +211,6 @@ class OperacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /*$robo['hora']= $request -> hora;
-        $robo['fecha']= $request -> fecha;
-        $dateTime = $robo['fecha'].' '.$robo['hora'].':00';
-        unset($robo['fecha'],$robo['hora']);*/
         $robo['dateTime']= $request-> date;
         $robo['entidad_id']= $request -> entidad_id;
         $robo['entidad']= $request->entidad;
