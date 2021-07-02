@@ -9,6 +9,9 @@
             <option value="">{{isset($vehiculo->marca)?$vehiculo->marca:''}}</option>
         @else
             <option value="">--Seleccione una opcion--</option>
+            @foreach ($data['marca'] as $item)
+                <option value="{{$item['marca_id']}}"" {{ isset($vehiculo->marca_id)? $vehiculo->marca_id == $item['marca_id'] ? 'selected="selected"' : '':'' }}>{{$item['descripcion']}}</option>
+            @endforeach
         @endif
     </select>
     <input type="hidden" name="marca" id="marca" class="form-control" value="{{isset($vehiculo->marca)?$vehiculo->marca:''}}">
@@ -42,6 +45,9 @@
             <option value="">{{isset($vehiculo->color)?$vehiculo->color:''}}</option>
         @else
             <option value="">--Seleccione una opcion--</option>
+            @foreach ($data['colores'] as $item)
+                <option value="{{$item['id']}}" {{ isset($vehiculo->color_id)? $vehiculo->color_id == $item['id'] ? 'selected="selected"' : '':'' }}>{{$item['descripcion']}}</option>
+            @endforeach
         @endif
     </select>
     <input type="hidden" name="color" id="color" class="form-control" value="{{isset($vehiculo->color)?$vehiculo->color:''}}">
@@ -63,6 +69,9 @@
             <option value="">{{isset($vehiculo->tipoVehiculo)?$vehiculo->tipoVehiculo:''}}</option>
         @else
             <option value="">--Seleccione una opcion--</option>
+            @foreach ($data['tipoVehiculo'] as $item)
+                <option value="{{$item['tipoVehiculo_id']}}" {{ isset($vehiculo->tipoVehiculo_id)? $vehiculo->tipoVehiculo_id == $item['tipoVehiculo_id'] ? 'selected="selected"' : '':'' }}>{{$item['descripcion']}}</option>
+            @endforeach
         @endif
     </select>
     <input type="hidden" name="tipoVehiculo" id="tipoVehiculo" class="form-control" value="{{isset($vehiculo->tipoVehiculo)?$vehiculo->tipoVehiculo:''}}">
@@ -77,6 +86,9 @@
             <option value="">{{isset($vehiculo->claseVehiculo)?$vehiculo->claseVehiculo:''}}</option>
         @else
             <option value="">--Seleccione una opcion--</option>
+            @foreach ($data['claseVehiculo'] as $item)
+                <option value="{{$item['claseVehiculo_id']}}" {{ isset($vehiculo->claseVehiculo_id)? $vehiculo->claseVehiculo_id == $item['claseVehiculo_id'] ? 'selected="selected"' : '':'' }}>{{$item['descripcion']}}</option>
+            @endforeach
         @endif
     </select>
     <input type="hidden" name="claseVehiculo" id="claseVehiculo" class="form-control" value="{{isset($vehiculo->claseVehiculo)?$vehiculo->claseVehiculo:''}}">
@@ -97,6 +109,9 @@
             <option value="">{{isset($vehiculo->procedecia)?$vehiculo->procedencia:''}}</option>
         @else
             <option value="">--Seleccione una opcion--</option>
+            @foreach ($data['procedencia'] as $item)
+                <option value="{{$item['id']}}" {{ isset($vehiculo->procedencia_id)? $vehiculo->procedencia_id == $item['id'] ? 'selected="selected"' : '':'' }}>{{$item['descripcion']}}</option>
+            @endforeach
         @endif
     </select>
     <input type="hidden" name="procedencia" id="procedencia" class="form-control" value="{{isset($vehiculo->procedencia)?$vehiculo->procedencia:''}}">

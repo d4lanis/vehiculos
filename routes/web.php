@@ -34,3 +34,5 @@ Route::resource('denunciantes', DenuncianteController::class);
 Route::get('denunciantes/{denunciante}', [DenuncianteController::class, 'destroy'])->name('denunciantes.destroy');
 Route::resource('vehiculosRobados',OperacionController::class);
 Route::get('/fillData', [OperacionController::class, 'fillIndexTable']);
+Route::get('vehiculosRobados.delete/{vehiculosRobado}',[OperacionController::class, 'destroy'])->name('vehiculosRobados.delete');
+Route::get('vehiculosRobados/{vehiculosRobado}',[OperacionController::class, 'show'])->name('vehiculosRobados.show');

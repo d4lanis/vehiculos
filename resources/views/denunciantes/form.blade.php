@@ -100,6 +100,9 @@
             <option value="">{{isset($denunciante->entidad)?$denunciante->entidad:''}}</option>
         @else
             <option value="" >--Seleccione una entidad--</option>
+            @foreach ($data['entidad'] as $entidad)
+                <option value="{{$entidad['entidad_id']}}"  {{ isset($denunciante->entidad_id)? $denunciante->entidad_id == $entidad['entidad_id'] ? 'selected="selected"' : '':'' }}>{{$entidad['nombre']}}</option>
+            @endforeach
         @endif 
     </select>
     <input type="hidden" name="entidadD" id="entidadD" class="form-control" value="{{isset($denunciante->entidad)?$denunciante->entidad:''}}">

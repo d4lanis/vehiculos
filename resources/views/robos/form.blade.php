@@ -18,6 +18,9 @@
             <option value="">{{isset($robo->entidad)?$robo->entidad:''}}</option>
         @else
             <option value="" >--Seleccione una entidad--</option>
+            @foreach ($data['entidad'] as $entidad)
+                <option value="{{$entidad['entidad_id']}}"  {{ isset($robo->entidad_id)? $robo->entidad_id == $entidad['entidad_id'] ? 'selected="selected"' : '':'' }}>{{$entidad['nombre']}}</option>
+            @endforeach 
         @endif 
     </select>
     <br><br>
@@ -81,6 +84,9 @@
             <option value="">{{isset($robo->tipoLugar)?$robo->tipoLugar:''}}</option>
         @else
             <option value="" >--Seleccione el lugar de los hechos--</option>
+            @foreach ($data['lugar'] as $lugar)
+                <option value="{{$lugar['lugar_id']}}" {{ isset($robo->tipoLugar_id)? $robo->tipoLugar_id == $lugar['lugar_id'] ? 'selected="selected"' : '':'' }}>{{$lugar['descripcion']}}</option>
+            @endforeach 
         @endif
     </select>
     <br><br>
@@ -120,6 +126,9 @@
             <option value="">{{isset($robo->estatus)?$robo->estatus:''}}</option>
         @else
             <option value="" >--Seleccione el estatus de la denuncia--</option>
+            @foreach ($data['estatus'] as $estatus)
+                <option value="{{$estatus['estatus_id']}}" {{ isset($robo->estatus_id)? $robo->estatus_id == $estatus['estatus_id'] ? 'selected="selected"' : '':'' }}>{{$estatus['descripcion']}}</option>
+            @endforeach
         @endif
     </select>
     <br><br>
