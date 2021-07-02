@@ -17,10 +17,6 @@ class CreateClaseVehiculosTable extends Migration
             $table->integer('claseVehiculo_id');
             $table->primary('claseVehiculo_id');
             $table->string('descripcion');
-            /*$table->timestamps();
-            $table->softDeletes();
-            Campo no incluidos porque los catalogos no se van a modificar
-            */
         });
     }
 

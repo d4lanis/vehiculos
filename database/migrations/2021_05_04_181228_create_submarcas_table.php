@@ -13,15 +13,6 @@ class CreateSubmarcasTable extends Migration
      */
     public function up()
     {
-        /*Schema::create('submarcas', function (Blueprint $table) {
-            $table->integer('subMarca_id');
-            $table->primary('subMarca_id');
-            $table->integer('marca_id');
-            $table->index(['marca_id','subMarca_id']);
-            $table->integer('tipoVehiculo_id');
-            $table->integer('claseVehiculo_id');
-            $table->string('descripcion');*/
-
         Schema::create('submarcas', function (Blueprint $table) {
             $table->integer('subMarca_id');
             $table->integer('marca_id');

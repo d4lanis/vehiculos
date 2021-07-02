@@ -17,10 +17,6 @@ class CreateTipoUsosTable extends Migration
             $table->integer('tipoUso_id');
             $table->primary('tipoUso_id');
             $table->string('descripcion');
-            /*$table->timestamps();
-            $table->softDeletes();
-            Campo no incluidos porque los catalogos no se van a modificar
-            */
         });
     }
 

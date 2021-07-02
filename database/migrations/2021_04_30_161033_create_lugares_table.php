@@ -19,10 +19,6 @@ class CreateLugaresTable extends Migration
             $table->integer('lugar_id');
             $table->primary('lugar_id');
             $table->string('descripcion');
-            /*$table->timestamps();
-            $table->softDeletes();
-            Campo no incluidos porque los catalogos no se van a modificar
-            */
         });
     }
 

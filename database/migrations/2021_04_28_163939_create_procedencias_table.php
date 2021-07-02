@@ -17,10 +17,6 @@ class CreateProcedenciasTable extends Migration
             $table->integer('id')->unsigned();
             $table->primary('id');
             $table->string('descripcion');
-            /*$table->timestamps();
-            $table->softDeletes();
-            Campo no incluidos porque los catalogos no se van a modificar
-            */
         });
     }
 

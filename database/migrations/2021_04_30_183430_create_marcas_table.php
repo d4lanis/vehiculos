@@ -17,10 +17,6 @@ class CreateMarcasTable extends Migration
             $table->integer('marca_id');
             $table->primary('marca_id');
             $table->string('descripcion');
-            /*$table->timestamps();
-            $table->softDeletes();
-            Campo no incluidos porque los catalogos no se van a modificar
-            */
         });
     }
 

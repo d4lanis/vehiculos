@@ -18,10 +18,6 @@ class CreateMunicipiosTable extends Migration
             $table->integer('municipio_id');
             $table->primary(['entidad_id','municipio_id']);
             $table->string('nombre');
-            /*$table->timestamps();
-            $table->softDeletes();
-            Campo no incluidos porque los catalogos no se van a modificar
-            */
         });
     }
 
