@@ -15,7 +15,7 @@
 
 <div class="container">
     <br>
-    <h1>Denuncia de Vehiculos Robados</h1>
+    <h1>Edicion de registro de Vehiculo Robado</h1>
   <ul class="nav nav-tabs nav-fill mb-3" role="tablist">
     <li class="nav-item active" role="presentation">
       <a class="nav-link active" href="#paso1" aria-controls="paso1" role="tab" data-bs-toggle="tab" aria-expanded="true">Paso 1</a>

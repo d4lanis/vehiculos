@@ -56,7 +56,7 @@
     @if ($modo == 'Ver')
      <input type="text" name="numSerie" id="numSerie" class="form-control" value="{{isset($vehiculo->numSerie)?$vehiculo->numSerie:''}}" readonly>
     @else
-     <input type="text" name="numSerie" id="numSerie" class="form-control" value="{{isset($vehiculo->numSerie)?$vehiculo->numSerie:''}}">
+     <input type="text" name="numSerie" id="numSerie" class="form-control" value="{{isset($vehiculo->numSerie)?$vehiculo->numSerie:''}}" maxlength="17">
     @endif
     <br><br>
     <label for="tipoVehiculo">Tipo de Vehiculo: </label>
