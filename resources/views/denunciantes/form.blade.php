@@ -121,9 +121,9 @@
     <br><br>
     <label for="colonia">Colonia: </label>
     @if ($modo == 'Ver')
-        <input type="text" name="colonia" id="colonia" class="form-control" value="{{isset($denunciante->colonia)?$denunciante->colonia:''}}" readonly>
+        <input type="text" name="coloniaD" id="coloniaD" class="form-control" value="{{isset($denunciante->colonia)?$denunciante->colonia:''}}" readonly>
     @else
-        <input type="text" name="colonia" id="colonia" class="form-control" value="{{isset($denunciante->colonia)?$denunciante->colonia:''}}">
+        <input type="text" name="coloniaD" id="coloniaD" class="form-control" value="{{isset($denunciante->colonia)?$denunciante->colonia:''}}">
     @endif
     <br><br> 
 </div>

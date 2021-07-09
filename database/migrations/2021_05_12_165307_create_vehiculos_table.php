@@ -32,6 +32,9 @@ class CreateVehiculosTable extends Migration
             $table->integer('procedencia_id')->nullable();
             $table->string('procedencia')->nullable();
             $table->string('aseguradora')->nullable();
+            $table->string('placa')->nullable();
+            $table->integer('tipoUso_id')->nullable();
+            $table->string('tipoUso')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

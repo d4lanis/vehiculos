@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
         $this->call( Catalogos\SubmarcaSeeder::class);
         $this->call( Catalogos\EntidadSeeder::class);
         $this->call( Catalogos\LugarSeeder::class);
-        $this->call( Catalogos\LocalidadSeeder::class);
+        //$this->call( Catalogos\LocalidadSeeder::class);
         $this->call( Catalogos\EstatusSeeder::class);
+        $this->call( Catalogos\ModalidadSeeder::class);
     }
 }

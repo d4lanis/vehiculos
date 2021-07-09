@@ -47,4 +47,12 @@ $(document).ready(function(){
     $('#estatus_id').change(function() {
         $('#estatus').val($('#estatus_id :selected').text());
     });
+
+    $('#modalidad_id').change(function() {
+        $('#modalidad').val($('#modalidad_id :selected').text()); 
+    });
+
+    $('#tipoUso_id').change(function() {
+        $('#tipoUso').val($('#tipoUso_id :selected').text()); 
+    });
 })

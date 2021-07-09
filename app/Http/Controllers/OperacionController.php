@@ -17,6 +17,8 @@ use App\Models\Procedencia;
 use App\Models\Robo;
 use App\Models\Vehiculo;
 use App\Models\Denunciante;
+use App\Models\Modalidad;
+use App\Models\TipoUso;
 use Illuminate\Http\Request;
 use DB;
 use Yajra\DataTables\DataTables;
@@ -42,7 +44,7 @@ class OperacionController extends Controller
         ->whereNull('robos.deleted_at')
         ->join('vehiculos','robos.id','=','vehiculos.robo_id')
         ->join('denunciantes','robos.id','=','denunciantes.robo_id')
-        ->select('robos.id','robos.dateTime','robos.municipio','vehiculos.marca','vehiculos.subMarca','vehiculos.modelo','vehiculos.numSerie', DB::raw("concat_ws(' ', denunciantes.nombre, denunciantes.paterno, denunciantes.materno) as nombre"))
+        ->select('robos.id','robos.dateTime','robos.municipio','vehiculos.modelo','vehiculos.numSerie', 'vehiculos.placa',DB::raw("concat_ws(' ', vehiculos.marca, vehiculos.subMarca) as marca"),DB::raw("concat_ws(' ', denunciantes.nombre, denunciantes.paterno, denunciantes.materno) as nombre"))
         ->get();
 
         return Datatables::of($items)
@@ -52,9 +54,11 @@ class OperacionController extends Controller
                     $borrar= route('vehiculosRobados.delete',$item->id);
 
                     $action_buttons = "
-                        <a href='$ver' class='btn btn-primary fa fa-eye' data-toggle='tooltip' data-placement='bottom' title='Ver'></a>
-                        <a href='$editar' class='btn btn-warning fa fa-edit' data-toggle='tooltip' data-placement='bottom' title='Editar'></a>
-                        <a href='$borrar' class='btn btn-danger disabled fa fa-trash' data-toggle='tooltip' data-placement='bottom' title='Borrar' onclick='return confirm('¿Seguro que desea borrar este regitro?')'></a>";
+                        <div class='btn-group'>
+                            <a href='$ver' class='btn btn-primary fa fa-eye' data-toggle='tooltip' data-placement='bottom' title='Ver'></a>
+                            <a href='$editar' class='btn btn-warning fa fa-edit' data-toggle='tooltip' data-placement='bottom' title='Editar'></a>
+                            <a href='$borrar' class='btn btn-danger disabled fa fa-trash' data-toggle='tooltip' data-placement='bottom' title='Borrar' onclick='return confirm('¿Seguro que desea borrar este regitro?')'></a>
+                        </div>";
 
                 return $action_buttons;
                 })->make(TRUE);
@@ -78,6 +82,8 @@ class OperacionController extends Controller
         $data['tipoVehiculo'] = TipoVehiculo::all();
         $data['claseVehiculo'] = ClaseVehiculo::all();
         $data['procedencia'] = Procedencia::all();
+        $data['modalidad'] = Modalidad::all();
+        $data['tipoUso'] = TipoUso::all();
         return view('vehiculosRobados.create',compact('data'));
     }
 
@@ -97,6 +103,7 @@ class OperacionController extends Controller
         $data['robo']-> municipio = $request -> municipio;
         $data['robo']-> localidad_id = $request -> localidad_id;
         $data['robo']-> localidad = $request -> localidad;
+        $data['robo']-> colonia = $request -> colonia;
         $data['robo']-> calle = $request -> calle;
         $data['robo']-> numExterior = $request -> numExterior;
         $data['robo']-> codigoPostal = $request -> codigoPostal;
@@ -105,9 +112,16 @@ class OperacionController extends Controller
         $data['robo']-> descLugar = $request -> descLugar;
         $data['robo']-> delito = $request -> delito;
         $data['robo']-> armaAsociada = $request -> armaAsociada;
-        $data['robo']-> estatus_id = $request -> estatus_id;
-        $data['robo']-> estatus = $request-> estatus;
+        $data['robo']-> agencia_mp= $request-> agencia_mp;
+        $data['robo']-> agente_mp= $request-> agente_mp;
+        $data['robo']-> dateAveriguacion = $request-> dateAveriguacion;
+        $data['robo']-> averiguacion= $request-> averiguacion;
+        $data['robo']-> modalidad_id= $request-> modalidad_id;
+        $data['robo']-> modalidad= $request-> modalidad;
+        //$data['robo']-> estatus_id = $request -> estatus_id;
+        //$data['robo']-> estatus = $request-> estatus;
         $data['robo']-> save();
+
         $data['vehiculo'] = new Vehiculo;
         $data['vehiculo'] -> marca_id = $request -> marca_id;
         $data['vehiculo'] -> marca = $request -> marca;
@@ -117,16 +131,20 @@ class OperacionController extends Controller
         $data['vehiculo'] -> color_id = $request -> color_id;
         $data['vehiculo'] -> color = $request -> color;
         $data['vehiculo'] -> numSerie = $request -> numSerie;
+        $data['vehiculo'] -> placa = $request -> placa;
         $data['vehiculo'] -> tipoVehiculo_id = $request -> tipoVehiculo_id;
         $data['vehiculo'] -> tipoVehiculo = $request -> tipoVehiculo;
         $data['vehiculo'] -> claseVehiculo_id = $request -> claseVehiculo_id;
         $data['vehiculo'] -> claseVehiculo = $request -> claseVehiculo;
         $data['vehiculo'] -> señas= $request -> señas;
+        $data['vehiculo'] -> tipoUso_id = $request -> tipoUso_id;
+        $data['vehiculo'] -> tipoUso = $request -> tipoUso;
         $data['vehiculo'] -> procedencia_id = $request -> procedencia_id;
         $data['vehiculo'] -> procedencia = $request -> procedencia;
         $data['vehiculo'] -> aseguradora = $request -> aseguradora;
         $data['vehiculo'] -> robo_id = $data['robo']['id'];
         $data['vehiculo'] -> save();
+        
         $data['denunciante'] = new Denunciante;
         $data['denunciante'] -> nombre = $request -> nombre;
         $data['denunciante'] -> paterno = $request -> paterno;
@@ -145,9 +163,10 @@ class OperacionController extends Controller
         $data['denunciante'] -> entidad= $request -> entidadD;
         $data['denunciante'] -> municipio_id= $request -> municipio_idD;
         $data['denunciante'] -> municipio= $request -> municipioD;
-        $data['denunciante'] -> colonia= $request -> colonia;
+        $data['denunciante'] -> colonia= $request -> coloniaD;
         $data['denunciante'] -> robo_id = $data['robo']['id'];
         $data['denunciante'] -> save();
+        //return response()->json($data);
         return redirect()->route('vehiculosRobados.index');
     }
 
@@ -161,6 +180,7 @@ class OperacionController extends Controller
     {
         $robo = Robo::findOrFail($id);
         $robo['dateTime']=date("Y-m-d\TH:i", strtotime($robo['dateTime']));
+        $robo['dateAveriguacion']=date("Y-m-d\TH:i", strtotime($robo['dateAveriguacion']));
         $vehiculo = Vehiculo::findOrFail($id);
         $denunciante = Denunciante::findOrFail($id);
         return view('vehiculosRobados.show', compact('robo','vehiculo','denunciante'));
@@ -185,8 +205,11 @@ class OperacionController extends Controller
         $data['tipoVehiculo'] = TipoVehiculo::all();
         $data['claseVehiculo'] = ClaseVehiculo::all();
         $data['procedencia'] = Procedencia::all();
+        $data['modalidad'] = Modalidad::all();
+        $data['tipoUso'] = TipoUso::all();
         $robo = Robo::findOrFail($id);
         $robo['dateTime']=date("Y-m-d\TH:i", strtotime($robo['dateTime']));
+        $robo['dateAveriguacion']=date("Y-m-d\TH:i", strtotime($robo['dateAveriguacion']));
         $vehiculo = Vehiculo::findOrFail($id);
         $denunciante = Denunciante::findOrFail($id);
         return view('vehiculosRobados.edit', compact('robo','vehiculo','denunciante','data'));
@@ -208,6 +231,7 @@ class OperacionController extends Controller
         $robo['municipio']= $request -> municipio;
         $robo['localidad_id']= $request -> localidad_id;
         $robo['localidad']= $request -> localidad;
+        $robo['colonia']= $request -> colonia;
         $robo['calle']= $request -> calle;
         $robo['numExterior']= $request -> numExterior;
         $robo['codigoPostal']= $request -> codigoPostal;
@@ -215,9 +239,15 @@ class OperacionController extends Controller
         $robo['tipoLugar']= $request -> tipoLugar;
         $robo['descLugar']= $request -> descLugar;
         $robo['delito']= $request -> delito;
+        $robo['modalidad_id'] = $request -> modalidad_id;
+        $robo['modalidad'] = $request -> modalidad;
         $robo['armaAsociada']= $request -> armaAsociada;
-        $robo['estatus_id']= $request -> estatus_id;
-        $robo['estatus']= $request-> estatus;
+        $robo['dateAveriguacion'] = $request -> dateAveriguacion;
+        $robo['averiguacion'] = $request -> averiguacion;
+        $robo['agencia_mp'] = $request -> agencia_mp;
+        $robo['agente_mp'] = $request -> agente_mp;
+        //$robo['estatus_id']= $request -> estatus_id;
+        //$robo['estatus']= $request-> estatus;
         $vehiculo['marca_id']= $request -> marca_id;
         $vehiculo['marca']= $request -> marca;
         $vehiculo['subMarca_id']= $request -> subMarca_id;
@@ -226,10 +256,13 @@ class OperacionController extends Controller
         $vehiculo['color_id']= $request -> color_id;
         $vehiculo['color']= $request -> color;
         $vehiculo['numSerie']= $request -> numSerie;
+        $vehiculo['placa'] = $request -> placa;
         $vehiculo['tipoVehiculo_id']= $request -> tipoVehiculo_id;
         $vehiculo['tipoVehiculo']= $request -> tipoVehiculo;
         $vehiculo['claseVehiculo_id']= $request -> claseVehiculo_id;
         $vehiculo['claseVehiculo']= $request -> claseVehiculo;
+        $vehiculo['tipoUso'] = $request -> tipoUso;
+        $vehiculo['tipoUso_id'] = $request -> tipoUso_id;
         $vehiculo['señas']= $request -> señas;
         $vehiculo['procedencia_id']= $request -> procedencia_id;
         $vehiculo['procedencia']= $request -> procedencia;
@@ -251,7 +284,7 @@ class OperacionController extends Controller
         $denunciante['entidad']= $request -> entidadD;
         $denunciante['municipio_id']= $request -> municipio_idD;
         $denunciante['municipio']= $request -> municipioD;
-        $denunciante['colonia']= $request -> colonia;
+        $denunciante['colonia']= $request -> coloniaD;
 
         
         Robo::where('id','=',$id)->update($robo);

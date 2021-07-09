@@ -1,6 +1,6 @@
 <div class="form-group">
-    
-    <label for="date">Fecha y Hora:</label>
+    <br><br>
+    <label for="date">Fecha y Hora del Robo:</label>
     @if ($modo == 'Ver')
         <input type="datetime-local" name="date" class="form-control" value="{{isset($robo->dateTime)?$robo->dateTime:''}}" readonly>
     @else
@@ -51,6 +51,13 @@
             <option>Cargando datos...</option>
         @endif
     </select>
+    <br><br>
+    <label for="colonia">Colonia: </label>
+    @if ($modo == 'Ver')
+        <input type="text" name="colonia" id="colonia" class="form-control" value="{{isset($robo->colonia)?$robo->colonia:''}}" readonly>
+    @else
+        <input type="text" name="colonia" id="colonia" class="form-control" value="{{isset($robo->colonia)?$robo->colonia:''}}">
+    @endif
     <br><br>
     <label for="calle">Calle: </label>
     @if ($modo == 'Ver')
@@ -108,28 +115,56 @@
         <input type="text" name="delito" id="delito" class="form-control" value="{{isset($robo->delito)?$robo->delito:''}}">
     @endif
     <br><br>
+    <label for="modalidad">Modalidad: </label>
+    <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="modalidad_id" id="modalidad_id" class="form-control">
+        @if ($modo == 'Editar')
+            @foreach ($data['modalidad'] as $modalidad)
+                <option value="{{$modalidad['modalidad_id']}}" {{ isset($robo->modalidad_id)? $robo->modalidad_id == $modalidad['modalidad_id'] ? 'selected="selected"' : '':'' }}>{{$modalidad['descripcion']}}</option>
+            @endforeach
+        @elseif($modo == 'Ver')
+            <option value="">{{isset($robo->modalidad)?$robo->modalidad:''}}</option>
+        @else
+            <option value="" >--Seleccione una opcion--</option>
+            @foreach ($data['modalidad'] as $modalidad)
+                <option value="{{$modalidad['modalidad_id']}}" {{ isset($robo->modalidad_id)? $robo->modalidad_id == $modalidad['modalidad_id'] ? 'selected="selected"' : '':'' }}>{{$modalidad['descripcion']}}</option>
+            @endforeach
+        @endif
+    </select>
+    <input type="hidden" name="modalidad" id="modalidad">
+    <br><br>
     <label for="arma">Arma asociada: </label>
     @if ($modo == 'Ver')
-        <input type="text" name="armaAsociada" id="arma" class="form-control" value="{{isset($robo->armaAsociada)?$robo->armaAsociada:''}}" readonly>
+        <input type="text" name="armaAsociada" id="arma" class="form-control" placeholder="{{isset($robo->armaAsociada)?$robo->armaAsociada:''}}" readonly>
     @else
         <input type="text" name="armaAsociada" id="arma" class="form-control" value="{{isset($robo->armaAsociada)?$robo->armaAsociada:''}}">
     @endif
     <br><br>
-    <label for="estatus">Estatus: </label>
-    <input type="hidden" name="estatus" id="estatus" value="{{isset($robo->estatus)?$robo->estatus:''}}">
-    <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="estatus_id" id="estatus_id" class="form-control">
-        @if ($modo == 'Editar')
-            @foreach ($data['estatus'] as $estatus)
-                <option value="{{$estatus['estatus_id']}}" {{ isset($robo->estatus_id)? $robo->estatus_id == $estatus['estatus_id'] ? 'selected="selected"' : '':'' }}>{{$estatus['descripcion']}}</option>
-            @endforeach
-        @elseif($modo == 'Ver')
-            <option value="">{{isset($robo->estatus)?$robo->estatus:''}}</option>
-        @else
-            <option value="" >--Seleccione el estatus de la denuncia--</option>
-            @foreach ($data['estatus'] as $estatus)
-                <option value="{{$estatus['estatus_id']}}" {{ isset($robo->estatus_id)? $robo->estatus_id == $estatus['estatus_id'] ? 'selected="selected"' : '':'' }}>{{$estatus['descripcion']}}</option>
-            @endforeach
-        @endif
-    </select>
+    <label for="dateAveriguacion">Fecha y Hora de Averiguacion: </label>
+    @if ($modo == 'Ver')
+        <input type="datetime-local" name="dateAveriguacion" id="dateAveriguacion" value="{{isset($robo->dateAveriguacion)?$robo->dateAveriguacion:''}}" class="form-control" readonly>
+    @else
+        <input type="datetime-local" name="dateAveriguacion" id="dateAveriguacion" class="form-control" value="{{isset($robo->dateAveriguacion)?$robo->dateAveriguacion:''}}">
+    @endif
     <br><br>
+    <label for="averiguacion">Averiguacion: </label>
+    @if ($modo == 'Ver')
+        <input type="text" name="averiguacion" id="averiguacion" class="form-control" value="{{isset($robo->averiguacion)?$robo->averiguacion:''}}" readonly>
+    @else
+        <input type="text" name="averiguacion" id="averiguacion" class="form-control" value="{{isset($robo->averiguacion)?$robo->averiguacion:''}}">
+    @endif
+    <br><br>
+    <label for="agencia_mp">Agencia Ministerio Publico: </label>
+    @if ($modo == 'Ver')
+        <input type="text" name="agencia_mp" id="agencia_mp" class="form-control" value="{{isset($robo->agencia_mp)?$robo->agencia_mp:''}}" readonly>
+    @else
+        <input type="text" name="agencia_mp" id="agencia_mp" class="form-control" value="{{isset($robo->agencia_mp)?$robo->agencia_mp:''}}">
+    @endif
+    <br><br>
+    <label for="agente_mp">Agente del Ministerio Publico</label>
+    @if ($modo == 'Ver')
+        <input type="text" name="agente_mp" id="agente_mp" class="form-control" value="{{isset($robo->agente_mp)?$robo->agente_mp:''}}" readonly>
+    @else
+        <input type="text" name="agente_mp" id="agente_mp" class="form-control" value="{{isset($robo->agente_mp)?$robo->agente_mp:''}}">
+    @endif
+    <br>
 </div>

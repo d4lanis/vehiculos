@@ -23,9 +23,9 @@
             <th data-priority="2">Fecha/Hora</th>
             <th data-priority="2">Municipio</th>
             <th data-priority="2">Marca</th>
-            <th data-priority="2">SubMarca</th>
             <th>Modelo</th>
             <th data-priority="1">Numero de Serie</th>
+            <th data-priority="1">Placa</th>
             <th>Nombre Denunciante</th>
             <th data-priority="1">Acciones</th>
         </tr>
@@ -45,9 +45,9 @@
                 {data: 'dateTime'},
                 {data: 'municipio'},
                 {data: 'marca'},
-                {data: 'subMarca'},
                 {data: 'modelo'},
                 {data: 'numSerie'},
+                {data: 'placa'},
                 {data: 'nombre'},
                 {data: 'acciones', name:'acciones', searchable:false, orderable:false,
                      render: function(data,style,row,meta){

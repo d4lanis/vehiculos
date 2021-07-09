@@ -32,6 +32,13 @@ class CreateRobosTable extends Migration
             $table->string('armaAsociada')->nullable();
             $table->integer('estatus_id')->nullable();
             $table->string('estatus')->nullable();
+            $table->string('averiguacion')->nullable();
+            $table->timestamp('dateAveriguacion')->nullable();
+            $table->string('agencia_mp')->nullable();
+            $table->string('agente_mp')->nullable();
+            $table->integer('modalidad_id')->nullable();
+            $table->string('modalidad')->nullable();
+            $table->string('colonia')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
