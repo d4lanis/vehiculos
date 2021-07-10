@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Entidad;
 use App\Models\Municipio;
 use App\Models\Localidad;
+use App\Models\Submarca;
 
 class CatalogoController extends Controller
 {
@@ -30,6 +31,21 @@ class CatalogoController extends Controller
 
         for ($i=0; $i < sizeof($data); $i++) {
             $result.='<option value="'.$data[$i]['localidad_id'].'">'.$data[$i]['nombre'].'</option>'; 
+       }
+
+        return response()->json($result);
+    }
+
+    public function getSubmarca(Request $request)
+    {
+        $data = Submarca::select('subMarca_id','descripcion')
+                            ->where('subMarca_id', $request['id'])
+                            ->get();
+
+        $result = '<option value="">--Seleccion una opcion--</option>';
+
+        for ($i=0; $i < sizeof($data); $i++) {
+            $result.='<option value="'.$data[$i]['subMarca_id'].'">'.$data[$i]['descripcion'].'</option>'; 
        }
 
         return response()->json($result);

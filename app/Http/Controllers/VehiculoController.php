@@ -43,21 +43,6 @@ class VehiculoController extends Controller
         return view ('vehiculos.create', compact('data'));
     }
 
-    public function getSubmarca(Request $request)
-    {
-        $data = Submarca::select('subMarca_id','descripcion')
-                            ->where('subMarca_id', $request['id'])
-                            ->get();
-
-        $result = '<option value="">--Seleccion una opcion--</option>';
-
-        for ($i=0; $i < sizeof($data); $i++) {
-            $result.='<option value="'.$data[$i]['subMarca_id'].'">'.$data[$i]['descripcion'].'</option>'; 
-       }
-
-        return response()->json($result);
-    }
-
     /**
      * Store a newly created resource in storage.
      *
