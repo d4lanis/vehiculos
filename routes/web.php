@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ColoresController;
 use App\Http\Controllers\RoboController;
 use App\Http\Controllers\VehiculoController;
 use App\Http\Controllers\DenuncianteController;
