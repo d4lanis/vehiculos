@@ -59,7 +59,6 @@
             ]          
         });
     });
-
     $.extend( true, $.fn.dataTable.defaults, {
     "language": {
         "decimal": ",",

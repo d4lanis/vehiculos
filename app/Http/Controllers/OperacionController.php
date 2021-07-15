@@ -52,13 +52,12 @@ class OperacionController extends Controller
                     $ver= route('vehiculosRobados.show', $item->id);
                     $editar= route('vehiculosRobados.edit',$item->id);
                     $borrar= route('vehiculosRobados.delete',$item->id);
-
                     $action_buttons = "
                         <div class='btn-group'>
                             <a href='$ver' class='btn btn-primary fa fa-eye' data-toggle='tooltip' data-placement='bottom' title='Ver'></a>
                             <a href='$editar' class='btn btn-warning fa fa-edit' data-toggle='tooltip' data-placement='bottom' title='Editar'></a>
-                            <a href='$borrar' class='btn btn-danger disabled fa fa-trash' data-toggle='tooltip' data-placement='bottom' title='Borrar' onclick='return confirm('¿Seguro que desea borrar este regitro?')'></a>
-                        </div>";
+                            <a href='$borrar' class='btn btn-danger fa fa-trash' data-toggle='tooltip' data-placement='bottom' title='Borrar' onclick=' return confirm(&#39¿Seguro que desea borrar este regitro?&#39) '></a>
+                        </div> ";
 
                 return $action_buttons;
                 })->make(TRUE);
@@ -166,7 +165,6 @@ class OperacionController extends Controller
         $data['denunciante'] -> colonia= $request -> coloniaD;
         $data['denunciante'] -> robo_id = $data['robo']['id'];
         $data['denunciante'] -> save();
-        //return response()->json($data);
         return redirect()->route('vehiculosRobados.index');
     }
 
