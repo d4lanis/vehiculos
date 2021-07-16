@@ -37,7 +37,7 @@
                     <option value="{{isset($robo->municipio_id)?$robo->municipio_id:''}}">{{isset($robo->municipio_id)?$robo->municipio:''}}</option>
     
                 @else
-                    <option>Cargando datos...</option>
+                    <option value="" >Cargando datos...</option>
                 @endif
             </select>
             <br>
@@ -53,7 +53,7 @@
                     <option value="{{isset($robo->localidad_id)?$robo->localidad_id:''}}">{{isset($robo->localidad_id)?$robo->localidad:''}}</option>
 
                 @else
-                    <option>Cargando datos...</option>
+                    <option value="">Cargando datos...</option>
                 @endif
             </select>
         </div>

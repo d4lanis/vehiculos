@@ -19,7 +19,7 @@
             <th data-priority="1">Id</th>
             <th data-priority="2">Fecha/Hora</th>
             <th data-priority="2">Municipio</th>
-            <th data-priority="2">Marca</th>
+            <th data-priority="2">Marca/Submarca</th>
             <th>Modelo</th>
             <th data-priority="1">Numero de Serie</th>
             <th data-priority="1">Placa</th>
@@ -39,13 +39,13 @@
             "ajax": "/fillData",
             "columns": [
                 {data: 'id', orderable: false, searchable: false},
-                {data: 'dateTime'},
-                {data: 'municipio'},
-                {data: 'marca'},
-                {data: 'modelo'},
-                {data: 'numSerie'},
-                {data: 'placa'},
-                {data: 'nombre'},
+                {data: 'dateTime', orderable: true, searchable: true},
+                {data: 'municipio', orderable: true, searchable: false},
+                {data: 'marca', orderable: true, searchable: true},
+                {data: 'modelo', orderable: true, searchable: true},
+                {data: 'numSerie', orderable: true, searchable: true},
+                {data: 'placa', orderable: true, searchable: true},
+                {data: 'nombre', orderable: true, searchable: true},
                 {data: 'acciones', name:'acciones', searchable:false, orderable:false,
                      render: function(data,style,row,meta){
                          return $("<div/>").html(data).text();
