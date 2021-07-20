@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoboRequest extends FormRequest
+class VehiculoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,8 @@ class RoboRequest extends FormRequest
     public function rules()
     {
         return [
-            'date' => 'required|before_or_equal:dateAveriguacion',
-            'dateAveriguacion' => 'required',
-            'numExterior' => 'nullable|numeric',
-            'codigoPostal' => 'nullable|numeric',
-            'averiguacion' => 'required'
-
+            'marca_id' => 'required',
+            'subMarca_id' => 'required',
         ];
     }
 }

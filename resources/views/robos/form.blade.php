@@ -3,8 +3,14 @@
     @if ($modo == 'Ver')
         <input type="datetime-local" name="date" class="form-control" value="{{isset($robo->dateTime)?$robo->dateTime:''}}" readonly>
     @else
-        <input type="datetime-local" name="date" class="form-control" value="{{isset($robo->dateTime)?$robo->dateTime:''}}">
+        <input type="datetime-local" name="date" class="form-control" value="{{old('date',isset($robo->dateTime)?$robo->dateTime:'')}}">
     @endif
+
+    @error('date')
+        <br>
+        <small class="alert alert-warning" role="alert">{{$message}}</small>
+        <br>
+    @enderror
     <br>
     <div class="form-group row">
         <div class="form-group col-md-4">
@@ -73,8 +79,13 @@
             @if ($modo == 'Ver')
                 <input type="text" name="numExterior" id="numExterior" class="form-control" value="{{ isset($robo->numExterior)?$robo->numExterior:'' }} " readonly>
             @else
-                <input type="text" name="numExterior" id="numExterior" class="form-control" value="{{ isset($robo->numExterior)?$robo->numExterior:'' }} ">
+                <input type="text" name="numExterior" id="numExterior" class="form-control" value="{{ old('numExterior',isset($robo->numExterior)?$robo->numExterior:'') }} ">
             @endif
+            @error('numExterior')
+            <br>
+            <small class="alert alert-warning" role="alert">{{$message}}</small>
+            <br>
+            @enderror
             <br>
         </div>
         
@@ -95,6 +106,11 @@
             @else
                 <input type="text" name="codigoPostal" id="codigoPostal" class="form-control" value="{{isset($robo->codigoPostal)?$robo->codigoPostal:'' }}">
             @endif
+            @error('codigoPostal')
+            <br>
+            <small class="alert alert-warning" role="alert">{{$message}}</small>
+            <br>
+            @enderror
         </div>
     </div>
     <br>
@@ -171,8 +187,14 @@
             @if ($modo == 'Ver')
                 <input type="datetime-local" name="dateAveriguacion" id="dateAveriguacion" value="{{isset($robo->dateAveriguacion)?$robo->dateAveriguacion:''}}" class="form-control" readonly>
             @else
-                <input type="datetime-local" name="dateAveriguacion" id="dateAveriguacion" class="form-control" value="{{isset($robo->dateAveriguacion)?$robo->dateAveriguacion:''}}">
+                <input type="datetime-local" name="dateAveriguacion" id="dateAveriguacion" class="form-control" value="{{old('dateAveriguacion', isset($robo->dateAveriguacion)?$robo->dateAveriguacion:'')}}">
             @endif
+
+            @error('dateAveriguacion')
+                <br>
+                <small class="alert alert-warning" role="alert">{{$message}}</small>
+                <br>
+            @enderror
             <br>
         </div>
         <div class="form-group col-md-6">

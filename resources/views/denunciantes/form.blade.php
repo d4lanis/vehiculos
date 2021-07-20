@@ -76,6 +76,11 @@
             @else
                 <input type="email" name="correo" id="correo" class="form-control" value="{{isset($denunciante->correo)?$denunciante->correo:''}}" placeholder="ejemplo@correo.com">
             @endif
+            @error('email')
+                <br>
+                <small class="alert alert-warning" role="alert">{{$message}}</small>
+                <br>
+            @enderror
             <br>
         </div>
         <div class="form-group col-md-4">
@@ -85,6 +90,11 @@
             @else
                 <input type="text" name="telefono" id="telefono" class="form-control" value="{{isset($denunciante->telefono)?$denunciante->telefono:''}}" maxlength="12" placeholder="(999) 9999999">
             @endif
+            @error('telefono')
+                <br>
+                <small class="alert alert-warning" role="alert">{{$message}}</small>
+                <br>
+            @enderror
             <br>
         </div>
     </div>
@@ -105,6 +115,10 @@
             @else
                 <input type="text" name="numExteriorD" id="numExteriorD" class="form-control" value="{{isset($denunciante->numExterior)?$denunciante->numExterior:''}}">
             @endif
+            @error('numExteriorD')
+                <br>
+                <small class="d-flex alert alert-warning" role="alert">{{$message}}</small>
+            @enderror
             <br>
         </div>
         <div class="form-group col-md-2">
@@ -114,6 +128,10 @@
             @else
                 <input type="text" name="numInteriorD" id="numInteriorD" class="form-control" value="{{isset($denunciante->numInterior)?$denunciante->numInterior:''}}">
             @endif
+            @error('numExteriorD')
+                <br>
+                <small class="d-flex alert alert-warning" role="alert">{{$message}}</small>
+            @enderror
             <br>
         </div>
         <div class="form-group col-md-2">
@@ -123,6 +141,10 @@
             @else
                 <input type="text" name="codigoPostalD" id="codigoPostalD" class="form-control" value="{{isset($denunciante->codigoPostal)?$denunciante->codigoPostal:''}}" maxlength="10">
             @endif
+            @error('codigoPostalD')
+                <br>
+                <small class="d-flex alert alert-warning" role="alert">{{$message}}</small>
+            @enderror
             <br>
         </div>
     </div>

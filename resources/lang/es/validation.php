@@ -146,6 +146,15 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'date' => 'Fecha/Hora Robo',
+        'dateAveriguacion' => 'Fecha/Hora Averiguacion',
+        'marca_id' => 'Marca',
+        'subMarca_id' => 'Submarca',
+        'codigoPostalD' => 'codigo postal',
+        'email' => 'correo',
+        'numExteriorD' => 'num exterior',
+        'numInteriorD' => 'num interior',
+    ],
 
 ];

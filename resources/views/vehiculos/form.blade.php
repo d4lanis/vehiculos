@@ -16,6 +16,11 @@
                     @endforeach
                 @endif
             </select>
+            @error('marca_id')
+                <br>
+                <small class="alert alert-warning" role="alert">{{$message}}</small>
+                <br>
+            @enderror
             <input type="hidden" name="marca" id="marca" class="form-control" value="{{isset($vehiculo->marca)?$vehiculo->marca:''}}">
             <br>
         </div>
@@ -31,6 +36,11 @@
                 @endif
             </select>
             <input type="hidden" value="{{isset($vehiculo->subMarca)?$vehiculo->subMarca:''}}" name="subMarca" id="subMarca" class="form-control">
+            @error('marca_id')
+                <br>
+                <small class="alert alert-warning" role="alert">{{$message}}</small>
+                <br>
+            @enderror
             <br>
         </div>
         <div class="form-group col-md-4">

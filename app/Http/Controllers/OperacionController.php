@@ -22,6 +22,7 @@ use App\Models\TipoUso;
 use Illuminate\Http\Request;
 use DB;
 use Yajra\DataTables\DataTables;
+use App\Http\Requests\OperacionRequest;
 
 class OperacionController extends Controller
 {
@@ -92,7 +93,7 @@ class OperacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OperacionRequest $request)
     {   
         $data['robo'] = new Robo;
         $data['robo']->dateTime = $request-> date;
@@ -119,7 +120,7 @@ class OperacionController extends Controller
         $data['robo']-> modalidad= $request-> modalidad;
         //$data['robo']-> estatus_id = $request -> estatus_id;
         //$data['robo']-> estatus = $request-> estatus;
-        $data['robo']-> save();
+        //$data['robo']-> save();
 
         $data['vehiculo'] = new Vehiculo;
         $data['vehiculo'] -> marca_id = $request -> marca_id;
@@ -142,7 +143,7 @@ class OperacionController extends Controller
         $data['vehiculo'] -> procedencia = $request -> procedencia;
         $data['vehiculo'] -> aseguradora = $request -> aseguradora;
         $data['vehiculo'] -> robo_id = $data['robo']['id'];
-        $data['vehiculo'] -> save();
+        //$data['vehiculo'] -> save();
         
         $data['denunciante'] = new Denunciante;
         $data['denunciante'] -> nombre = $request -> nombre;
@@ -164,8 +165,9 @@ class OperacionController extends Controller
         $data['denunciante'] -> municipio= $request -> municipioD;
         $data['denunciante'] -> colonia= $request -> coloniaD;
         $data['denunciante'] -> robo_id = $data['robo']['id'];
-        $data['denunciante'] -> save();
-        return redirect()->route('vehiculosRobados.index');
+        //$data['denunciante'] -> save();
+        return response()->json($data);
+        //return redirect()->route('vehiculosRobados.index');
     }
 
     /**
