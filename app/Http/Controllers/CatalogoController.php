@@ -30,7 +30,7 @@ class CatalogoController extends Controller
         $result = '<option value="">--Selecciona la localidad--</option>';
 
         for ($i=0; $i < sizeof($data); $i++) {
-            $result.='<option value="'.$data[$i]['localidad_id'].'">'.$data[$i]['nombre'].'</option>'; 
+            $result.='<option value="'.$data[$i]['localidad_id'].'" {{old("localidad_id") ? "selected" : ""}}>'.$data[$i]['nombre'].'</option>'; 
        }
 
         return response()->json($result);

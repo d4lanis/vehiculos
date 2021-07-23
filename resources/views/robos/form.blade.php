@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="date">Fecha y Hora del Robo:</label>
+    <label for="date">&#39;Fecha y Hora del Robo:&#39;</label>
     @if ($modo == 'Ver')
         <input type="datetime-local" name="date" class="form-control" value="{{isset($robo->dateTime)?$robo->dateTime:''}}" readonly>
     @else
@@ -15,18 +15,18 @@
     <div class="form-group row">
         <div class="form-group col-md-4">
             <label for="entidad">Entidad: </label>
-            <input type="hidden" name="entidad" id="entidad" value="{{isset($robo->entidad)?$robo->entidad:''}}">
+            <input type="hidden" name="entidad" id="entidad" value="{{old('entidad',isset($robo->entidad)?$robo->entidad:'')}}">
             <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="entidad_id" id="entidad_id" class="form-control">
                 @if ($modo == 'Editar')
                     @foreach ($data['entidad'] as $entidad)
-                        <option value="{{$entidad['entidad_id']}}"  {{ isset($robo->entidad_id)? $robo->entidad_id == $entidad['entidad_id'] ? 'selected="selected"' : '':'' }}>{{$entidad['nombre']}}</option>
+                        <option value="{{$entidad['entidad_id']}}" {{ old('entidad_id') ? 'selected' : '' }} {{ isset($robo->entidad_id)? $robo->entidad_id == $entidad['entidad_id'] ? 'selected="selected"' : '':'' }} >{{$entidad['nombre']}}</option>
                     @endforeach    
                 @elseif($modo == 'Ver')
                     <option value="">{{isset($robo->entidad)?$robo->entidad:''}}</option>
                 @else
                     <option value="" >--Seleccione una entidad--</option>
                     @foreach ($data['entidad'] as $entidad)
-                        <option value="{{$entidad['entidad_id']}}"  {{ isset($robo->entidad_id)? $robo->entidad_id == $entidad['entidad_id'] ? 'selected="selected"' : '':'' }}>{{$entidad['nombre']}}</option>
+                        <option value="{{$entidad['entidad_id']}}" {{ old('entidad_id') ? 'selected' : '' }}  {{ isset($robo->entidad_id)? $robo->entidad_id == $entidad['entidad_id'] ? 'selected="selected"' : '':'' }}>{{$entidad['nombre']}}</option>
                     @endforeach 
                 @endif 
             </select>
@@ -34,7 +34,7 @@
         <br>
         <div class="form-group col-md-4">
             <label for="municipio">Municipio: </label>
-            <input type="hidden" name="municipio" id="municipio" value="{{isset($robo->municipio)?$robo->municipio:''}}">
+            <input type="hidden" name="municipio" id="municipio" value="{{old('municipio',isset($robo->municipio)?$robo->municipio:'')}}">
             <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="municipio_id" id="municipio_id" class="form-control">
                 @if ($modo == 'Editar')
                     <option value="{{isset($robo->municipio_id)?$robo->municipio_id:''}}">{{isset($robo->municipio_id)?$robo->municipio:''}}</option>  
@@ -50,7 +50,7 @@
         </div>
         <div class="form-group col-md-4">
             <label for="localidad">Localidad: </label>
-            <input type="hidden" name="localidad" id="localidad" value="{{isset($robo->localidad)?$robo->localidad:''}}">
+            <input type="hidden" name="localidad" id="localidad" value="{{old('localidad',isset($robo->localidad)?$robo->localidad:'')}}">
             <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="localidad_id" id="localidad_id" class="form-control">
                 @if ($modo == 'Editar')
                     <option value="{{isset($robo->localidad_id)?$robo->localidad_id:''}}">{{isset($robo->localidad_id)?$robo->localidad:''}}</option>
@@ -70,7 +70,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="calle" id="calle" class="form-control" value="{{isset($robo->calle)?$robo->calle:''}}" readonly>
             @else
-                <input type="text" name="calle" id="calle" class="form-control" value="{{isset($robo->calle)?$robo->calle:''}}" maxlength="80">
+                <input type="text" name="calle" id="calle" class="form-control" value="{{old('calle',isset($robo->calle)?$robo->calle:'')}}" maxlength="80">
             @endif
             <br>
         </div>
@@ -96,7 +96,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="colonia" id="colonia" class="form-control" value="{{isset($robo->colonia)?$robo->colonia:''}}" readonly>
             @else
-                <input type="text" name="colonia" id="colonia" class="form-control" value="{{isset($robo->colonia)?$robo->colonia:''}}" maxlength="60">
+                <input type="text" name="colonia" id="colonia" class="form-control" value="{{old('colonia',isset($robo->colonia)?$robo->colonia:'')}}" maxlength="60">
             @endif
         </div>
         <div class="form-group col-md-6">
@@ -104,7 +104,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="codigoPostal" id="codigoPostal" class="form-control" value="{{isset($robo->codigoPostal)?$robo->codigoPostal:'' }}" readonly>
             @else
-                <input type="text" name="codigoPostal" id="codigoPostal" class="form-control" value="{{isset($robo->codigoPostal)?$robo->codigoPostal:'' }}">
+                <input type="text" name="codigoPostal" id="codigoPostal" class="form-control" value="{{old('codigoPostal',isset($robo->codigoPostal)?$robo->codigoPostal:'') }}">
             @endif
             @error('codigoPostal')
             <br>
@@ -119,14 +119,14 @@
     <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="tipoLugar_id" id="tipoLugar_id" class="form-control">
         @if ($modo == 'Editar')
             @foreach ($data['lugar'] as $lugar)
-                <option value="{{$lugar['lugar_id']}}" {{ isset($robo->tipoLugar_id)? $robo->tipoLugar_id == $lugar['lugar_id'] ? 'selected="selected"' : '':'' }}>{{$lugar['descripcion']}}</option>
+                <option value="{{$lugar['lugar_id']}}" {{ old('tipoLugar_id') ? 'selected' : '' }} {{ isset($robo->tipoLugar_id)? $robo->tipoLugar_id == $lugar['lugar_id'] ? 'selected="selected"' : '':'' }}>{{$lugar['descripcion']}}</option>
             @endforeach   
         @elseif($modo == 'Ver')
             <option value="">{{isset($robo->tipoLugar)?$robo->tipoLugar:''}}</option>
         @else
             <option value="" >--Seleccione el lugar de los hechos--</option>
             @foreach ($data['lugar'] as $lugar)
-                <option value="{{$lugar['lugar_id']}}" {{ isset($robo->tipoLugar_id)? $robo->tipoLugar_id == $lugar['lugar_id'] ? 'selected="selected"' : '':'' }}>{{$lugar['descripcion']}}</option>
+                <option value="{{$lugar['lugar_id']}}" {{ old('tipoLugar_id') ? 'selected' : '' }} {{ isset($robo->tipoLugar_id)? $robo->tipoLugar_id == $lugar['lugar_id'] ? 'selected="selected"' : '':'' }}>{{$lugar['descripcion']}}</option>
             @endforeach 
         @endif
     </select>
@@ -138,7 +138,7 @@
         </textarea>
     @else
         <textarea name="descLugar" id="descLugar" rows="5" class="form-control">
-            {{isset($robo->descLugar)?$robo->descLugar:''}}
+            {{old('descLugar',isset($robo->descLugar)?$robo->descLugar:'')}}
         </textarea>
     @endif
     <br>
@@ -148,7 +148,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="delito" id="delito" class="form-control" value="{{isset($robo->delito)?$robo->delito:''}}" readonly>
             @else
-                <input type="text" name="delito" id="delito" class="form-control" value="{{isset($robo->delito)?$robo->delito:''}}">
+                <input type="text" name="delito" id="delito" class="form-control" value="{{old('delito',isset($robo->delito)?$robo->delito:'')}}">
             @endif
             <br>
         </div>
@@ -157,14 +157,14 @@
             <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="modalidad_id" id="modalidad_id" class="form-control">
                 @if ($modo == 'Editar')
                     @foreach ($data['modalidad'] as $modalidad)
-                        <option value="{{$modalidad['modalidad_id']}}" {{ isset($robo->modalidad_id)? $robo->modalidad_id == $modalidad['modalidad_id'] ? 'selected="selected"' : '':'' }}>{{$modalidad['descripcion']}}</option>
+                        <option value="{{$modalidad['modalidad_id']}}" {{ old('modalidad_id') ? 'selected' : '' }} {{ isset($robo->modalidad_id)? $robo->modalidad_id == $modalidad['modalidad_id'] ? 'selected="selected"' : '':'' }}>{{$modalidad['descripcion']}}</option>
                     @endforeach
                 @elseif($modo == 'Ver')
                     <option value="">{{isset($robo->modalidad)?$robo->modalidad:''}}</option>
                 @else
                     <option value="" >--Seleccione una opcion--</option>
                     @foreach ($data['modalidad'] as $modalidad)
-                        <option value="{{$modalidad['modalidad_id']}}" {{ isset($robo->modalidad_id)? $robo->modalidad_id == $modalidad['modalidad_id'] ? 'selected="selected"' : '':'' }}>{{$modalidad['descripcion']}}</option>
+                        <option value="{{$modalidad['modalidad_id']}}" {{ old('modalidad_id') ? 'selected' : '' }} {{ isset($robo->modalidad_id)? $robo->modalidad_id == $modalidad['modalidad_id'] ? 'selected="selected"' : '':'' }}>{{$modalidad['descripcion']}}</option>
                     @endforeach
                 @endif
             </select>
@@ -176,7 +176,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="armaAsociada" id="arma" class="form-control" value="{{isset($robo->armaAsociada)?$robo->armaAsociada:''}}" readonly>
             @else
-                <input type="text" name="armaAsociada" id="arma" class="form-control" value="{{isset($robo->armaAsociada)?$robo->armaAsociada:''}}">
+                <input type="text" name="armaAsociada" id="arma" class="form-control" value="{{old('armaAsociada',isset($robo->armaAsociada)?$robo->armaAsociada:'')}}">
             @endif
             <br>
         </div>
@@ -202,7 +202,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="averiguacion" id="averiguacion" class="form-control" value="{{isset($robo->averiguacion)?$robo->averiguacion:''}}" readonly>
             @else
-                <input type="text" name="averiguacion" id="averiguacion" class="form-control" value="{{isset($robo->averiguacion)?$robo->averiguacion:''}}" maxlength="30">
+                <input type="text" name="averiguacion" id="averiguacion" class="form-control" value="{{old('averiguacion',isset($robo->averiguacion)?$robo->averiguacion:'')}}" maxlength="30">
             @endif
             <br>
         </div>
@@ -213,7 +213,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="agencia_mp" id="agencia_mp" class="form-control" value="{{isset($robo->agencia_mp)?$robo->agencia_mp:''}}" readonly>
             @else
-                <input type="text" name="agencia_mp" id="agencia_mp" class="form-control" value="{{isset($robo->agencia_mp)?$robo->agencia_mp:''}}" maxlength="40">
+                <input type="text" name="agencia_mp" id="agencia_mp" class="form-control" value="{{old('agencia_mp',isset($robo->agencia_mp)?$robo->agencia_mp:'')}}" maxlength="40">
             @endif
             <br>
         </div>
@@ -222,7 +222,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="agente_mp" id="agente_mp" class="form-control" value="{{isset($robo->agente_mp)?$robo->agente_mp:''}}" readonly>
             @else
-                <input type="text" name="agente_mp" id="agente_mp" class="form-control" value="{{isset($robo->agente_mp)?$robo->agente_mp:''}}" maxlength="60">
+                <input type="text" name="agente_mp" id="agente_mp" class="form-control" value="{{old('agente_mp',isset($robo->agente_mp)?$robo->agente_mp:'')}}" maxlength="60">
             @endif
             <br>
         </div>

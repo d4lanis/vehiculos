@@ -5,7 +5,7 @@
             @if ($modo == 'Ver')
             <input type="text" name="nombre" id="nombre" class="form-control" value="{{isset($denunciante->nombre)?$denunciante->nombre:''}}" readonly>
             @else
-                <input type="text" name="nombre" id="nombre" class="form-control" value="{{isset($denunciante->nombre)?$denunciante->nombre:''}}" maxlength="20">
+                <input type="text" name="nombre" id="nombre" class="form-control" value="{{old('nombre',isset($denunciante->nombre)?$denunciante->nombre:'')}}" maxlength="20">
             @endif
             <br>
         </div>
@@ -14,7 +14,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="paterno" id="paterno" class="form-control" value="{{isset($denunciante->paterno)?$denunciante->paterno:''}}" readonly>
             @else
-                <input type="text" name="paterno" id="paterno" class="form-control" value="{{isset($denunciante->paterno)?$denunciante->paterno:''}}" maxlength="20">
+                <input type="text" name="paterno" id="paterno" class="form-control" value="{{old('paterno',isset($denunciante->paterno)?$denunciante->paterno:'')}}" maxlength="20">
             @endif
             <br>
         </div>
@@ -23,7 +23,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="materno" id="materno" class="form-control" value="{{isset($denunciante->materno)?$denunciante->materno:''}}" readonly>
             @else
-                <input type="text" name="materno" id="materno" class="form-control" value="{{isset($denunciante->materno)?$denunciante->materno:''}}" maxlength="20">
+                <input type="text" name="materno" id="materno" class="form-control" value="{{old('materno',isset($denunciante->materno)?$denunciante->materno:'')}}" maxlength="20">
             @endif
             <br>
         </div>
@@ -34,7 +34,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="rfc" id="rfc" class="form-control" value="{{isset($denunciante->rfc)?$denunciante->rfc:''}}" readonly>
             @else
-                <input type="text" name="rfc" id="rfc" class="form-control" value="{{isset($denunciante->rfc)?$denunciante->rfc:''}}" maxlength="13">
+                <input type="text" name="rfc" id="rfc" class="form-control" value="{{old('rfc',isset($denunciante->rfc)?$denunciante->rfc:'')}}" maxlength="13">
             @endif
             <br>
         </div>
@@ -43,7 +43,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="curp" id="curp" class="form-control" value="{{isset($denunciante->curp)?$denunciante->curp:''}}" readonly>
             @else
-                <input type="text" name="curp" id="curp" class="form-control" value="{{isset($denunciante->curp)?$denunciante->curp:''}}" maxlength="18">
+                <input type="text" name="curp" id="curp" class="form-control" value="{{old('curp',isset($denunciante->curp)?$denunciante->curp:'')}}" maxlength="18">
             @endif
             <br>
         </div>
@@ -54,7 +54,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="licencia" id="licencia" class="form-control" value="{{isset($denunciante->licencia)?$denunciante->licencia:''}}" readonly>
             @else
-                <input type="text" name="licencia" id="licencia" class="form-control" value="{{isset($denunciante->licencia)?$denunciante->licencia:''}}">
+                <input type="text" name="licencia" id="licencia" class="form-control" value="{{old('licencia',isset($denunciante->licencia)?$denunciante->licencia:'')}}">
             @endif
             <br>
         </div>
@@ -63,7 +63,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="pasaporte" id="pasaporte" class="form-control" value="{{isset($denunciante->pasaporte)?$denunciante->pasaporte:''}}" readonly>
             @else
-                <input type="text" name="pasaporte" id="pasaporte" class="form-control" value="{{isset($denunciante->pasaporte)?$denunciante->pasaporte:''}}" maxlength="15">
+                <input type="text" name="pasaporte" id="pasaporte" class="form-control" value="{{old('pasaporte',isset($denunciante->pasaporte)?$denunciante->pasaporte:'')}}" maxlength="15">
             @endif
             <br>
         </div>
@@ -74,7 +74,7 @@
             @if ($modo == 'Ver')
                 <input type="email" name="correo" id="correo" class="form-control" value="{{isset($denunciante->correo)?$denunciante->correo:''}}" readonly>
             @else
-                <input type="email" name="correo" id="correo" class="form-control" value="{{isset($denunciante->correo)?$denunciante->correo:''}}" placeholder="ejemplo@correo.com">
+                <input type="email" name="correo" id="correo" class="form-control" value="{{old('correo',isset($denunciante->pasaporte)?$denunciante->pasaporte:'')}}" placeholder="ejemplo@correo.com">
             @endif
             @error('email')
                 <br>
@@ -88,7 +88,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="telefono" id="telefono" class="form-control" value="{{isset($denunciante->telefono)?$denunciante->telefono:''}}" readonly>
             @else
-                <input type="text" name="telefono" id="telefono" class="form-control" value="{{isset($denunciante->telefono)?$denunciante->telefono:''}}" maxlength="12" placeholder="(999) 9999999">
+                <input type="text" name="telefono" id="telefono" class="form-control" value="{{old('telefono',isset($denunciante->telefono)?$denunciante->telefono:'')}}" maxlength="12" placeholder="(999) 9999999">
             @endif
             @error('telefono')
                 <br>
@@ -104,7 +104,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="domicilio" id="domicilio" class="form-control" value="{{isset($denunciante->domicilio)?$denunciante->domicilio:''}}" readonly>
             @else
-                <input type="text" name="domicilio" id="domicilio" class="form-control" value="{{isset($denunciante->domicilio)?$denunciante->domicilio:''}}" maxlength="80">
+                <input type="text" name="domicilio" id="domicilio" class="form-control" value="{{old('domicilio',isset($denunciante->domicilio)?$denunciante->domicilio:'')}}" maxlength="80">
             @endif
             <br>
         </div>
@@ -113,7 +113,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="numExteriorD" id="numExteriorD" class="form-control" value="{{isset($denunciante->numExterior)?$denunciante->numExterior:''}}" readonly>
             @else
-                <input type="text" name="numExteriorD" id="numExteriorD" class="form-control" value="{{isset($denunciante->numExterior)?$denunciante->numExterior:''}}">
+                <input type="text" name="numExteriorD" id="numExteriorD" class="form-control" value="{{old('numExteriorD',isset($denunciante->numExterior)?$denunciante->numExterior:'')}}">
             @endif
             @error('numExteriorD')
                 <br>
@@ -126,7 +126,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="numInteriorD" id="numInteriorD" class="form-control" value="{{isset($denunciante->numInterior)?$denunciante->numInterior:''}}" readonly>
             @else
-                <input type="text" name="numInteriorD" id="numInteriorD" class="form-control" value="{{isset($denunciante->numInterior)?$denunciante->numInterior:''}}">
+                <input type="text" name="numInteriorD" id="numInteriorD" class="form-control" value="{{old('numInteriorD',isset($denunciante->numInterior)?$denunciante->numInterior:'')}}">
             @endif
             @error('numExteriorD')
                 <br>
@@ -139,7 +139,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="codigoPostalD" id="codigoPostalD" class="form-control" value="{{isset($denunciante->codigoPostal)?$denunciante->codigoPostal:''}}" readonly>
             @else
-                <input type="text" name="codigoPostalD" id="codigoPostalD" class="form-control" value="{{isset($denunciante->codigoPostal)?$denunciante->codigoPostal:''}}" maxlength="10">
+                <input type="text" name="codigoPostalD" id="codigoPostalD" class="form-control" value="{{old('codigoPostalD',isset($denunciante->codigoPostal)?$denunciante->codigoPostal:'')}}" maxlength="10">
             @endif
             @error('codigoPostalD')
                 <br>
@@ -161,7 +161,7 @@
                 @else
                     <option value="" >--Seleccione una entidad--</option>
                     @foreach ($data['entidad'] as $entidad)
-                        <option value="{{$entidad['entidad_id']}}"  {{ isset($denunciante->entidad_id)? $denunciante->entidad_id == $entidad['entidad_id'] ? 'selected="selected"' : '':'' }}>{{$entidad['nombre']}}</option>
+                        <option value="{{$entidad['entidad_id']}}" {{old('entidad_idD')? 'selected' : ''}} {{ isset($denunciante->entidad_id)? $denunciante->entidad_id == $entidad['entidad_id'] ? 'selected="selected"' : '':'' }}>{{$entidad['nombre']}}</option>
                     @endforeach
                 @endif 
             </select>
@@ -187,7 +187,7 @@
             @if ($modo == 'Ver')
                 <input type="text" name="coloniaD" id="coloniaD" class="form-control" value="{{isset($denunciante->colonia)?$denunciante->colonia:''}}" readonly>
             @else
-                <input type="text" name="coloniaD" id="coloniaD" class="form-control" value="{{isset($denunciante->colonia)?$denunciante->colonia:''}}" maxlength="60">
+                <input type="text" name="coloniaD" id="coloniaD" class="form-control" value="{{old('coloniaD',isset($denunciante->colonia)?$denunciante->colonia:'')}}" maxlength="60">
             @endif
             <br>
         </div>

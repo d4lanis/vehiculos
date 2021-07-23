@@ -44,9 +44,9 @@ $(document).ready(function(){
         $('#tipoLugar').val($('#tipoLugar_id :selected').text());
     });
 
-    $('#estatus_id').change(function() {
+    /*$('#estatus_id').change(function() {
         $('#estatus').val($('#estatus_id :selected').text());
-    });
+    });*/
 
     $('#modalidad_id').change(function() {
         $('#modalidad').val($('#modalidad_id :selected').text()); 
