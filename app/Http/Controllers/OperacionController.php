@@ -3,22 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Operacion;
-use App\Models\Entidad;
-use App\Models\Municipio;
-use App\Models\Localidad;
-use App\Models\Lugar;
-use App\Models\Estatus;
-use App\Models\Marca;
-use App\Models\Submarca;
-use App\Models\Colores;
-use App\Models\TipoVehiculo;
-use App\Models\ClaseVehiculo;
-use App\Models\Procedencia;
 use App\Models\Robo;
 use App\Models\Vehiculo;
 use App\Models\Denunciante;
-use App\Models\Modalidad;
-use App\Models\TipoUso;
 use Illuminate\Http\Request;
 use DB;
 use Yajra\DataTables\DataTables;
@@ -45,7 +32,7 @@ class OperacionController extends Controller
         ->whereNull('robos.deleted_at')
         ->join('vehiculos','robos.id','=','vehiculos.robo_id')
         ->join('denunciantes','robos.id','=','denunciantes.robo_id')
-        ->select('robos.id','robos.dateTime','robos.municipio','vehiculos.modelo','vehiculos.numSerie', 'vehiculos.placa',DB::raw("concat_ws(' ', vehiculos.marca, vehiculos.subMarca) as marca"),DB::raw("concat_ws(' ', denunciantes.nombre, denunciantes.paterno, denunciantes.materno) as nombre"))
+        ->select('robos.id','robos.dateAveriguacion','robos.municipio','vehiculos.modelo','vehiculos.numSerie', 'vehiculos.placa',DB::raw("concat_ws(' ', vehiculos.marca, vehiculos.subMarca) as marca"),DB::raw("concat_ws(' ', denunciantes.nombre, denunciantes.paterno, denunciantes.materno) as nombre"))
         ->get();
 
         return Datatables::of($items)
@@ -71,20 +58,7 @@ class OperacionController extends Controller
      */
     public function create()
     {
-        $data['entidad'] = Entidad::all();
-        $data['municipio'] = Municipio::all();
-        $data['lugar'] = Lugar::all();
-        $data['estatus']= Estatus::all();
-        $data['localidad'] = Localidad::all();
-        $data['marca'] = Marca::all();
-        $data['submarca'] = Submarca::all();
-        $data['colores'] = Colores::all();
-        $data['tipoVehiculo'] = TipoVehiculo::all();
-        $data['claseVehiculo'] = ClaseVehiculo::all();
-        $data['procedencia'] = Procedencia::all();
-        $data['modalidad'] = Modalidad::all();
-        $data['tipoUso'] = TipoUso::all();
-        return view('vehiculosRobados.create',compact('data'));
+        return view('vehiculosRobados.create');
     }
 
     /**
@@ -120,7 +94,7 @@ class OperacionController extends Controller
         $data['robo']-> modalidad= $request-> modalidad;
         //$data['robo']-> estatus_id = $request -> estatus_id;
         //$data['robo']-> estatus = $request-> estatus;
-        //$data['robo']-> save();
+        $data['robo']-> save();
 
         $data['vehiculo'] = new Vehiculo;
         $data['vehiculo'] -> marca_id = $request -> marca_id;
@@ -143,7 +117,7 @@ class OperacionController extends Controller
         $data['vehiculo'] -> procedencia = $request -> procedencia;
         $data['vehiculo'] -> aseguradora = $request -> aseguradora;
         $data['vehiculo'] -> robo_id = $data['robo']['id'];
-        //$data['vehiculo'] -> save();
+        $data['vehiculo'] -> save();
         
         $data['denunciante'] = new Denunciante;
         $data['denunciante'] -> nombre = $request -> nombre;
@@ -165,9 +139,8 @@ class OperacionController extends Controller
         $data['denunciante'] -> municipio= $request -> municipioD;
         $data['denunciante'] -> colonia= $request -> coloniaD;
         $data['denunciante'] -> robo_id = $data['robo']['id'];
-        //$data['denunciante'] -> save();
-        return response()->json($data);
-        //return redirect()->route('vehiculosRobados.index');
+        $data['denunciante'] -> save();
+        return redirect()->route('vehiculosRobados.index');
     }
 
     /**
@@ -194,25 +167,12 @@ class OperacionController extends Controller
      */
     public function edit($id)
     {
-        $data['entidad'] = Entidad::all();
-        $data['municipio'] = Municipio::all();
-        $data['lugar'] = Lugar::all();
-        $data['estatus']= Estatus::all();
-        $data['localidad'] = Localidad::all();
-        $data['marca'] = Marca::all();
-        $data['submarca'] = Submarca::all();
-        $data['colores'] = Colores::all();
-        $data['tipoVehiculo'] = TipoVehiculo::all();
-        $data['claseVehiculo'] = ClaseVehiculo::all();
-        $data['procedencia'] = Procedencia::all();
-        $data['modalidad'] = Modalidad::all();
-        $data['tipoUso'] = TipoUso::all();
         $robo = Robo::findOrFail($id);
         $robo['dateTime']=date("Y-m-d\TH:i", strtotime($robo['dateTime']));
         $robo['dateAveriguacion']=date("Y-m-d\TH:i", strtotime($robo['dateAveriguacion']));
         $vehiculo = Vehiculo::findOrFail($id);
         $denunciante = Denunciante::findOrFail($id);
-        return view('vehiculosRobados.edit', compact('robo','vehiculo','denunciante','data'));
+        return view('vehiculosRobados.edit', compact('robo','vehiculo','denunciante'));
     }
 
     /**
@@ -222,7 +182,7 @@ class OperacionController extends Controller
      * @param  \App\Models\Operacion  $operacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OperacionRequest $request, $id)
     {
         $robo['dateTime']= $request-> date;
         $robo['entidad_id']= $request -> entidad_id;
@@ -285,8 +245,6 @@ class OperacionController extends Controller
         $denunciante['municipio_id']= $request -> municipio_idD;
         $denunciante['municipio']= $request -> municipioD;
         $denunciante['colonia']= $request -> coloniaD;
-
-        
         Robo::where('id','=',$id)->update($robo);
         Vehiculo::where('id','=',$id)->update($vehiculo);
         Denunciante::where('id','=',$id)->update($denunciante);

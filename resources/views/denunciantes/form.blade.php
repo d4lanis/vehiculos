@@ -74,7 +74,7 @@
             @if ($modo == 'Ver')
                 <input type="email" name="correo" id="correo" class="form-control" value="{{isset($denunciante->correo)?$denunciante->correo:''}}" readonly>
             @else
-                <input type="email" name="correo" id="correo" class="form-control" value="{{old('correo',isset($denunciante->pasaporte)?$denunciante->pasaporte:'')}}" placeholder="ejemplo@correo.com">
+                <input type="email" name="correo" id="correo" class="form-control" value="{{old('correo',isset($denunciante->correo)?$denunciante->correo:'')}}" placeholder="ejemplo@correo.com">
             @endif
             @error('email')
                 <br>
@@ -152,18 +152,7 @@
         <div class="form-group col-md-4">
             <label for="entidad">Entidad: </label>
             <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="entidad_idD" id="entidad_idD" class="form-control" >
-                @if ($modo == 'Editar')
-                    @foreach ($data['entidad'] as $entidad)
-                        <option value="{{$entidad['entidad_id']}}"  {{ isset($denunciante->entidad_id)? $denunciante->entidad_id == $entidad['entidad_id'] ? 'selected="selected"' : '':'' }}>{{$entidad['nombre']}}</option>
-                    @endforeach
-                @elseif($modo == 'Ver')
-                    <option value="">{{isset($denunciante->entidad)?$denunciante->entidad:''}}</option>
-                @else
-                    <option value="" >--Seleccione una entidad--</option>
-                    @foreach ($data['entidad'] as $entidad)
-                        <option value="{{$entidad['entidad_id']}}" {{old('entidad_idD')? 'selected' : ''}} {{ isset($denunciante->entidad_id)? $denunciante->entidad_id == $entidad['entidad_id'] ? 'selected="selected"' : '':'' }}>{{$entidad['nombre']}}</option>
-                    @endforeach
-                @endif 
+                
             </select>
             <input type="hidden" name="entidadD" id="entidadD" class="form-control" value="{{isset($denunciante->entidad)?$denunciante->entidad:''}}">
             <br>
@@ -171,13 +160,6 @@
         <div class="form-group col-md-4">
             <label for="municipio">Municipio: </label>
             <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="municipio_idD" id="municipio_idD" class="form-control">
-                @if ($modo == 'Editar')
-                    <option value="{{isset($denunciante->municipio_id)?$denunciante->municipio_id:''}}">{{isset($denunciante->municipio_id)?$denunciante->municipio:''}}</option>
-                @elseif($modo == 'Ver')
-                    <option value="{{isset($denunciante->municipio_id)?$denunciante->municipio_id:''}}">{{isset($denunciante->municipio_id)?$denunciante->municipio:''}}</option>
-                @else
-                    <option value="">Cargando datos...</option>
-                @endif
             </select>
             <input type="hidden" name="municipioD" id="municipioD" class="form-control" value="{{isset($denunciante->municipio)?$denunciante->municipio:''}}">
             <br>
@@ -192,4 +174,86 @@
             <br>
         </div>
     </div>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+        
+        $.ajaxSetup({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }});
+    
+        function dynamicDropdown(url, id = null, target, otro = null) {
+
+        let data = {
+            "_token": "{{ csrf_token() }}",
+            id: id
+        }
+
+        $.post(url, data, function(result){
+            let default_value = 0;
+            let $select = $("#"+target);
+            $select.empty();
+            let options = [];
+
+            if(null == data.id){
+                options.push(`<option value="" selected>`+target+
+                    ` - seleccione una opción</option>`);
+            } else {
+                options.push(`<option value=""> -------------- </option>`);
+                default_value = data.id;
+            }
+
+            if(result.status === 'ok'){
+                $.each(result.data, function(i, item) {
+                    item_name = item.name.toUpperCase();
+                    if(item.id == default_value){
+                        options.push(`<option value="${item.id}" selected>${item_name}</option>`);
+                    } else {
+                        options.push(`<option value="${item.id}">${item_name}</option>`);
+                    }
+
+                });
+                if (null != otro) {
+                     options.push(`<option value="1">`+otro+`</option>`);
+                }
+            }
+            
+            $select.append(options);
+
+        }).fail(function(){
+            $('#getDiv').html('algo salio mal');
+        });
+    }
+
+    function clearDropdown(select)
+    {
+        select.empty();
+        let options = [];
+        options.push(`<option value="" disabled selected> Cargando datos </option>`);
+        select.append(options);
+    }
+
+        dynamicDropdown("/get_estados/", {{ old('entidad_idD',isset($denunciante->entidad_id)?$denunciante->entidad_id:0) }}, 'entidad_idD');
+        dynamicDropdown('/get_municipios/'+{{ old('entidad_idD') ?? isset($denunciante->entidad_id)?$denunciante->entidad_id:0 }}, 
+            {{ old('municipio_idD') ?? isset($denunciante->municipio_id)?$denunciante->municipio_id:0 }}, 'municipio_idD');
+        
+        
+        $('select[name="entidad_idD"]').change(function(e){
+            clearDropdown( $('select[name="municipio_idD"]') );
+            clearDropdown( $('select[name="localidad_idD"]') );
+            var optionId = $('select[name="entidad_idD"] option:selected').val();
+            $('#entidadD').val($('#entidad_idD :selected').text());
+            dynamicDropdown('/get_municipios/'+optionId, 0, 'municipio_idD');
+        });
+
+        $('select[name="municipio_idD"]').change(function(e){
+            clearDropdown( $('select[name="localidad_idD"]') );
+            var optionId = $('select[name="municipio_idD"] option:selected').val();
+            $('#municipioD').val($('#municipio_idD :selected').text());
+        });
+
+    });
+</script>
 </div>

@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="date">&#39;Fecha y Hora del Robo:&#39;</label>
+    <label for="date">Fecha y Hora del Robo:</label>
     @if ($modo == 'Ver')
         <input type="datetime-local" name="date" class="form-control" value="{{isset($robo->dateTime)?$robo->dateTime:''}}" readonly>
     @else
@@ -17,18 +17,7 @@
             <label for="entidad">Entidad: </label>
             <input type="hidden" name="entidad" id="entidad" value="{{old('entidad',isset($robo->entidad)?$robo->entidad:'')}}">
             <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="entidad_id" id="entidad_id" class="form-control">
-                @if ($modo == 'Editar')
-                    @foreach ($data['entidad'] as $entidad)
-                        <option value="{{$entidad['entidad_id']}}" {{ old('entidad_id') ? 'selected' : '' }} {{ isset($robo->entidad_id)? $robo->entidad_id == $entidad['entidad_id'] ? 'selected="selected"' : '':'' }} >{{$entidad['nombre']}}</option>
-                    @endforeach    
-                @elseif($modo == 'Ver')
-                    <option value="">{{isset($robo->entidad)?$robo->entidad:''}}</option>
-                @else
-                    <option value="" >--Seleccione una entidad--</option>
-                    @foreach ($data['entidad'] as $entidad)
-                        <option value="{{$entidad['entidad_id']}}" {{ old('entidad_id') ? 'selected' : '' }}  {{ isset($robo->entidad_id)? $robo->entidad_id == $entidad['entidad_id'] ? 'selected="selected"' : '':'' }}>{{$entidad['nombre']}}</option>
-                    @endforeach 
-                @endif 
+
             </select>
         </div>
         <br>
@@ -36,15 +25,7 @@
             <label for="municipio">Municipio: </label>
             <input type="hidden" name="municipio" id="municipio" value="{{old('municipio',isset($robo->municipio)?$robo->municipio:'')}}">
             <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="municipio_id" id="municipio_id" class="form-control">
-                @if ($modo == 'Editar')
-                    <option value="{{isset($robo->municipio_id)?$robo->municipio_id:''}}">{{isset($robo->municipio_id)?$robo->municipio:''}}</option>  
                 
-                @elseif($modo == 'Ver')
-                    <option value="{{isset($robo->municipio_id)?$robo->municipio_id:''}}">{{isset($robo->municipio_id)?$robo->municipio:''}}</option>
-    
-                @else
-                    <option value="" >Cargando datos...</option>
-                @endif
             </select>
             <br>
         </div>
@@ -52,15 +33,7 @@
             <label for="localidad">Localidad: </label>
             <input type="hidden" name="localidad" id="localidad" value="{{old('localidad',isset($robo->localidad)?$robo->localidad:'')}}">
             <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="localidad_id" id="localidad_id" class="form-control">
-                @if ($modo == 'Editar')
-                    <option value="{{isset($robo->localidad_id)?$robo->localidad_id:''}}">{{isset($robo->localidad_id)?$robo->localidad:''}}</option>
                 
-                @elseif($modo == 'Ver')
-                    <option value="{{isset($robo->localidad_id)?$robo->localidad_id:''}}">{{isset($robo->localidad_id)?$robo->localidad:''}}</option>
-
-                @else
-                    <option value="">Cargando datos...</option>
-                @endif
             </select>
         </div>
     </div>
@@ -117,18 +90,7 @@
     <label for="tipoLugar">Tipo de lugar: </label>
     <input type="hidden" name="tipoLugar" id="tipoLugar" value="{{isset($robo->tipoLugar)?$robo->tipoLugar:''}}">
     <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="tipoLugar_id" id="tipoLugar_id" class="form-control">
-        @if ($modo == 'Editar')
-            @foreach ($data['lugar'] as $lugar)
-                <option value="{{$lugar['lugar_id']}}" {{ old('tipoLugar_id') ? 'selected' : '' }} {{ isset($robo->tipoLugar_id)? $robo->tipoLugar_id == $lugar['lugar_id'] ? 'selected="selected"' : '':'' }}>{{$lugar['descripcion']}}</option>
-            @endforeach   
-        @elseif($modo == 'Ver')
-            <option value="">{{isset($robo->tipoLugar)?$robo->tipoLugar:''}}</option>
-        @else
-            <option value="" >--Seleccione el lugar de los hechos--</option>
-            @foreach ($data['lugar'] as $lugar)
-                <option value="{{$lugar['lugar_id']}}" {{ old('tipoLugar_id') ? 'selected' : '' }} {{ isset($robo->tipoLugar_id)? $robo->tipoLugar_id == $lugar['lugar_id'] ? 'selected="selected"' : '':'' }}>{{$lugar['descripcion']}}</option>
-            @endforeach 
-        @endif
+        
     </select>
     <br>
     <label for="descLugar">Descripcion del Lugar: </label>
@@ -155,18 +117,7 @@
         <div class="form group col-md-4">
             <label for="modalidad">Modalidad: </label>
             <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="modalidad_id" id="modalidad_id" class="form-control">
-                @if ($modo == 'Editar')
-                    @foreach ($data['modalidad'] as $modalidad)
-                        <option value="{{$modalidad['modalidad_id']}}" {{ old('modalidad_id') ? 'selected' : '' }} {{ isset($robo->modalidad_id)? $robo->modalidad_id == $modalidad['modalidad_id'] ? 'selected="selected"' : '':'' }}>{{$modalidad['descripcion']}}</option>
-                    @endforeach
-                @elseif($modo == 'Ver')
-                    <option value="">{{isset($robo->modalidad)?$robo->modalidad:''}}</option>
-                @else
-                    <option value="" >--Seleccione una opcion--</option>
-                    @foreach ($data['modalidad'] as $modalidad)
-                        <option value="{{$modalidad['modalidad_id']}}" {{ old('modalidad_id') ? 'selected' : '' }} {{ isset($robo->modalidad_id)? $robo->modalidad_id == $modalidad['modalidad_id'] ? 'selected="selected"' : '':'' }}>{{$modalidad['descripcion']}}</option>
-                    @endforeach
-                @endif
+                
             </select>
             <input type="hidden" name="modalidad" id="modalidad">
             <br>
@@ -227,4 +178,107 @@
             <br>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+    
+            
+            $.ajaxSetup({
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }});
+        
+            function dynamicDropdown(url, id = null, target, otro = null) {
+
+            let data = {
+                "_token": "{{ csrf_token() }}",
+                id: id
+            }
+    
+            $.post(url, data, function(result){
+                let default_value = 0;
+                let $select = $("#"+target);
+                $select.empty();
+                let options = [];
+    
+                if(null == data.id){
+                    options.push(`<option value="" selected>`+
+                        ` - seleccione una opción</option>`);
+                } else {
+                    options.push(`<option value=""> -------------- </option>`);
+                    default_value = data.id;
+                }
+    
+                if(result.status === 'ok'){
+                    $.each(result.data, function(i, item) {
+                        item_name = item.name.toUpperCase();
+                        if(item.id == default_value){
+                            options.push(`<option value="${item.id}" selected>${item_name}</option>`);
+                        } else {
+                            options.push(`<option value="${item.id}">${item_name}</option>`);
+                        }
+    
+                    });
+                    if (null != otro) {
+                         options.push(`<option value="1">`+otro+`</option>`);
+                    }
+                }
+                
+                $select.append(options);
+    
+            }).fail(function(){
+                $('#getDiv').html('algo salio mal');
+            });
+        }
+    
+        function clearDropdown(select)
+        {
+            select.empty();
+            let options = [];
+            options.push(`<option value="" disabled selected> Cargando datos </option>`);
+            select.append(options);
+        }
+    
+            dynamicDropdown("/get_estados", {{ old('entidad_id,') ?? isset($robo->entidad_id)?$robo->entidad_id: 0 }}, 'entidad_id');
+            dynamicDropdown('/get_municipios/'+{{ old('entidad_id') ?? isset($robo->entidad_id)?$robo->entidad_id:0 }}, 
+                {{ old('municipio_id') ?? isset($robo->municipio_id)?$robo->municipio_id:0 }}, 'municipio_id');
+            dynamicDropdown('/get_poblaciones/'+{{ old('entidad_id') ?? isset($robo->entidad_id)?$robo->entidad_id:0 }}+'/'+{{ old('municipio_id') ?? isset($robo->municipio_id)?$robo->municipio_id:0 }}, 
+                {{ old('localidad_id') ?? isset($robo->localidad_id)?$robo->localidad_id:0 }}, 'localidad_id');
+            dynamicDropdown("/get_tipolugar", {{ old('tipoLugar_id') ?? isset($robo->tipoLugar_id)?$robo->tipoLugar_id:-1}}, 'tipoLugar_id');
+            dynamicDropdown("/get_modalidad", {{ old('modalidad_id') ?? isset($robo->modalidad_id)?$robo->modalidad_id:-1}}, 'modalidad_id');
+            
+            $('select[name="entidad_id"]').change(function(e){
+                clearDropdown( $('select[name="municipio_id"]') );
+                clearDropdown( $('select[name="localidad_id"]') );
+                var optionId = $('select[name="entidad_id"] option:selected').val();
+                $('#entidad').val($('#entidad_id :selected').text());
+                dynamicDropdown('/get_municipios/'+optionId, 0, 'municipio_id');
+            });
+
+        
+            $('select[name="municipio_id"]').change(function(e){
+                clearDropdown( $('select[name="localidad_id"]') );
+                var entidadId = $('select[name="entidad_id"] option:selected').val();
+                var municipioId = $('select[name="municipio_id"] option:selected').val();
+                $('#municipio').val($('#municipio_id :selected').text());
+                dynamicDropdown('/get_poblaciones/'+entidadId+'/'+municipioId, 0, 'localidad_id');
+                
+            });
+    
+            $('select[name="localidad_id"]').change(function(e){
+                var optionId = $('select[name="localidad_id"] option:selected').val();
+                $('#localidad').val($('#localidad_id :selected').text());
+            });
+
+            $('select[name="tipoLugar_id"]').change(function(e){
+                var optionId = $('select[name="tipoLugar_id"] option:selected').val();
+                $('#tipoLugar').val($('#tipoLugar_id :selected').text());
+            });
+
+            $('select[name="modalidad_id"]').change(function(e){
+                var optionId = $('select[name="modalidad_id"] option:selected').val();
+                $('#modalidad').val($('#modalidad_id :selected').text()); 
+            });
+        });
+    </script>
 </div>

@@ -1,15 +1,11 @@
 <head>
     <link rel="stylesheet" href="{{asset('bootstrap-5/css/bootstrap.min.css')}}" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('bootstrap-5/css/bootstrap-theme.min.css')}}" crossorigin="anonymous">
     <script src="{{asset('bootstrap-5/js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{asset('font_awesome/css/font-awesome.min.css')}}">
     <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('datatables/datatables.min.css')}}"/>
     <script type="text/javascript" src="{{asset('datatables/datatables.min.js')}}"></script>
     <script src="{{asset('js/navegacion.js')}}"></script>
-    <script src="{{asset('js/vehiculo.js')}}"></script>
-    <script src="{{asset('js/robo.js')}}"></script>
-    <script src="{{asset('js/denunciante.js')}}"></script>
   </head>
 
 <div class="container">

@@ -1,6 +1,5 @@
 <head>
     <link rel="stylesheet" href="{{asset('bootstrap-5/css/bootstrap.min.css')}}" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('bootstrap-5/css/bootstrap-theme.min.css')}}" crossorigin="anonymous">
     <script src="{{asset('bootstrap-5/js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{asset('font_awesome/css/font-awesome.min.css')}}">
     <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
@@ -29,7 +28,7 @@
         @include('robos.form',['modo'=>'Ver']);
         <div class="pull-right">
           <a class="btn btn-primary continue" id="continue">Pagina siguiente</a>
-          <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}" onclick="return confirm('¿Regresar a la Pagina Principal?')">Regresar</a>
+          <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}">Regresar</a>
         </div>
     </div>
 
@@ -38,7 +37,7 @@
         <div class="pull-right">
           <a class="btn btn-primary back">Pagina anterior</a>
           <a class="btn btn-primary continue">Pagina Siguiente</a>
-          <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}" onclick="return confirm('¿Regresar a la Pagina Principal?')">Regresar</a>
+          <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}">Regresar</a>
         </div>
     </div>
 
@@ -46,7 +45,7 @@
         @include('denunciantes.form',['modo'=>'Ver']);
         <div class="pull-right">
           <a class="btn btn-primary back">Pagina anterior</a>
-          <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}" onclick="return confirm('¿Regresar a la Pagina Principal?')">Regresar</a>
+          <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}">Regresar</a>
         </div>
     </div>
 </div>

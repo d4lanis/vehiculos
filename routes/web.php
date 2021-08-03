@@ -22,10 +22,18 @@ Route::get('/', function () {
     return view('index');
 });
 
-
-Route::get('/municipios_id', [CatalogoController::class, 'getMunicipio']);
-Route::get('/localidades_id', [CatalogoController::class, 'getLocalidad']);
-Route::get('/submarcas_id', [CatalogoController::class, 'getSubmarca']);
+Route::match(['get','post'],'/get_estados', [CatalogoController::class,'getEstados']);
+Route::match(['get','post'],'/get_municipios/{id}', [CatalogoController::class,'getMunicipios']);
+Route::match(['get','post'],'/get_poblaciones/{entidad}/{municipio}', [CatalogoController::class,'getPoblaciones']);
+Route::match(['get','post'], '/get_marcas', [CatalogoController::class,'getMarcas']);
+Route::match(['get','post'], '/get_submarcas/{id}',[CatalogoController::Class,'getSubMarcas']);
+Route::match(['get','post'], '/get_tipolugar',[CatalogoController::Class,'getLugares']);
+Route::match(['get','post'], '/get_modalidad',[CatalogoController::Class,'getModalidades']);
+Route::match(['get','post'], '/get_colores',[CatalogoController::Class,'getColores']);
+Route::match(['get','post'], '/get_tipovehiculos/{id}',[CatalogoController::Class,'getTipoVehiculos']);
+Route::match(['get','post'], '/get_clasevehiculos',[CatalogoController::Class,'getClaseVehiculos']);
+Route::match(['get','post'], '/get_tipousos',[CatalogoController::Class,'getTipoUsos']);
+Route::match(['get','post'], '/get_procedencias',[CatalogoController::Class,'getProcedencias']);
 Route::resource('vehiculosRobados',OperacionController::class);
 Route::get('/fillData', [OperacionController::class, 'fillIndexTable']);
 Route::get('vehiculosRobados.delete/{vehiculosRobado}',[OperacionController::class, 'destroy'])->name('vehiculosRobados.delete');
