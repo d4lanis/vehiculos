@@ -28,11 +28,18 @@ class OperacionController extends Controller
 
     public function fillIndexTable()
     {
-        $items = DB::table('robos')
+        /*$items = DB::table('robos')
         ->whereNull('robos.deleted_at')
         ->join('vehiculos','robos.id','=','vehiculos.robo_id')
         ->join('denunciantes','robos.id','=','denunciantes.robo_id')
         ->select('robos.id','robos.dateAveriguacion','robos.municipio','vehiculos.modelo','vehiculos.numSerie', 'vehiculos.placa',DB::raw("concat_ws(' ', vehiculos.marca, vehiculos.subMarca) as marca"),DB::raw("concat_ws(' ', denunciantes.nombre, denunciantes.paterno, denunciantes.materno) as nombre"))
+        ->get();*/
+
+        $items = DB::table('robos')
+        ->whereNull('robos.deleted_at')
+        ->join('vehiculos','robos.id','=','vehiculos.robo_id')
+        ->join('denunciantes','robos.id','=','denunciantes.robo_id')
+        ->select('robos.id','robos.dateAveriguacion',DB::raw("(SELECT municipios.nombre FROM municipios WHERE municipios.entidad_id = robos.entidad_id and municipios.municipio_id = robos.municipio_id) as municipio"),'vehiculos.modelo','vehiculos.numSerie', 'vehiculos.placa',DB::raw("concat_ws(' ', (SELECT marcas.descripcion FROM marcas WHERE marcas.marca_id = vehiculos.marca_id), (SELECT submarcas.descripcion FROM submarcas WHERE submarcas.marca_id = vehiculos.marca_id and submarcas.subMarca_id = vehiculos.subMarca_id)) as marca"),DB::raw("concat_ws(' ', denunciantes.nombre, denunciantes.paterno, denunciantes.materno) as nombre"))
         ->get();
 
         return Datatables::of($items)

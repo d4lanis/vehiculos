@@ -24,8 +24,15 @@ class VehiculoRequest extends FormRequest
     public function rules()
     {
         return [
-            'marca_id' => 'required',
-            'subMarca_id' => 'required',
+            'marca_id' => 'required|numeric',
+            'subMarca_id' => 'required|numeric',
+            //'marca' => 'regex:/^[A-Za-z0-9 ]+$/',
+            'subMarca' => 'regex:/^[A-Za-z0-9 \- \. \/]+$/',
+            'color' => 'regex:/^[A-Za-z0-9 ]+$/',
+            'claseVehiculo' => 'nullable|regex:/^[A-Za-z0-9 ]+$/',
+            'tipoVehiculo' => 'nullable|regex:/^[A-Za-z0-9 ]+$/',
+            'tipoUso' => 'nullable|regex:/^[A-Za-z0-9 ]+$/',
+            'procedencia' => 'nullable|regex:/^[A-Za-z0-9 ]+$/',
         ];
     }
 }

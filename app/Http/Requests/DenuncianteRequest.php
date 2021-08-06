@@ -29,6 +29,8 @@ class DenuncianteRequest extends FormRequest
             'numExteriorD' => 'nullable|numeric',
             'numInteriorD' => 'nullable|numeric',
             'codigoPostalD' => 'nullable|numeric',
+            /*'entidadD' => 'regex:/^[A-Za-z0-9 ]+$/',
+            'municipioD' => 'regex:/^[A-Za-z0-9 ]+$/',*/
         ];
     }
 }
