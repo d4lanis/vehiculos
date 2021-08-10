@@ -31,9 +31,9 @@ class CreateDenunciantesTable extends Migration
             $table->string('colonia')->nullable();
             $table->integer('codigoPostal')->nullable();
             $table->integer('entidad_id')->nullable();
-            $table->string('entidad')->nullable();
+            //$table->string('entidad')->nullable();
             $table->integer('municipio_id')->nullable();
-            $table->string('municipio')->nullable();
+            //$table->string('municipio')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

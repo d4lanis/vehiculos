@@ -30,8 +30,8 @@ Route::match(['get','post'], '/get_submarcas/{id}',[CatalogoController::Class,'g
 Route::match(['get','post'], '/get_tipolugar',[CatalogoController::Class,'getLugares']);
 Route::match(['get','post'], '/get_modalidad',[CatalogoController::Class,'getModalidades']);
 Route::match(['get','post'], '/get_colores',[CatalogoController::Class,'getColores']);
-Route::match(['get','post'], '/get_tipovehiculos/{id}',[CatalogoController::Class,'getTipoVehiculos']);
 Route::match(['get','post'], '/get_clasevehiculos',[CatalogoController::Class,'getClaseVehiculos']);
+Route::match(['get','post'], '/get_tipovehiculos/{id}',[CatalogoController::Class,'getTipoVehiculos']);
 Route::match(['get','post'], '/get_tipousos',[CatalogoController::Class,'getTipoUsos']);
 Route::match(['get','post'], '/get_procedencias',[CatalogoController::Class,'getProcedencias']);
 Route::resource('vehiculosRobados',OperacionController::class);

@@ -144,7 +144,7 @@
                   clearDropdown( $('select[name="municipio_id"]') );
                   clearDropdown( $('select[name="localidad_id"]') );
                   var optionId = $('select[name="entidad_id"] option:selected').val();
-                  $('#entidad').val($('#entidad_id :selected').text());
+                  //$('#entidad').val($('#entidad_id :selected').text());
                   dynamicDropdown('/get_municipios/'+optionId, 0, 'municipio_id');
               });
     
@@ -153,79 +153,79 @@
                   clearDropdown( $('select[name="localidad_id"]') );
                   var entidadId = $('select[name="entidad_id"] option:selected').val();
                   var municipioId = $('select[name="municipio_id"] option:selected').val();
-                  $('#municipio').val($('#municipio_id :selected').text());
+                  //$('#municipio').val($('#municipio_id :selected').text());
                   dynamicDropdown('/get_poblaciones/'+entidadId+'/'+municipioId, 0, 'localidad_id');
                   
               });
       
               $('select[name="localidad_id"]').change(function(e){
                   var optionId = $('select[name="localidad_id"] option:selected').val();
-                  $('#localidad').val($('#localidad_id :selected').text());
+                  //$('#localidad').val($('#localidad_id :selected').text());
               });
     
               $('select[name="tipoLugar_id"]').change(function(e){
                   var optionId = $('select[name="tipoLugar_id"] option:selected').val();
-                  $('#tipoLugar').val($('#tipoLugar_id :selected').text());
+                  //$('#tipoLugar').val($('#tipoLugar_id :selected').text());
               });
     
               $('select[name="modalidad_id"]').change(function(e){
                   var optionId = $('select[name="modalidad_id"] option:selected').val();
-                  $('#modalidad').val($('#modalidad_id :selected').text()); 
+                  //$('#modalidad').val($('#modalidad_id :selected').text()); 
               });
     
               $('select[name="marca_id"]').change(function(e){
                 clearDropdown( $('select[name="subMarca_id"]') );
                 clearDropdown( $('select[name="subMarca_id"]') );
                 var optionId = $('select[name="marca_id"] option:selected').val();
-                $('#marca').val($('#marca_id :selected').text());
+                //$('#marca').val($('#marca_id :selected').text());
                 dynamicDropdown('/get_submarcas/'+optionId, -1, 'subMarca_id');
             });
     
             $('select[name="subMarca_id"]').change(function(e){
                 var optionId = $('select[name="marca_id"] option:selected').val();
-                $('#subMarca').val($('#subMarca_id :selected').text());
+                //$('#subMarca').val($('#subMarca_id :selected').text());
             });
     
             $('select[name="color_id"]').change(function(e){
                 var optionId = $('select[name="color_id"] option:selected').val();
-                $('#color').val($('#color_id :selected').text());
+                //$('#color').val($('#color_id :selected').text());
             });
     
             $('select[name="claseVehiculo_id"]').change(function(e){
                 clearDropdown( $('select[name="tipoVehiculo_id"]') );
                 clearDropdown( $('select[name="tipoVehiculo_id"]') );
                 var optionId = $('select[name="claseVehiculo_id"] option:selected').val();
-                $('#claseVehiculo').val($('#claseVehiculo_id :selected').text());
+                //$('#claseVehiculo').val($('#claseVehiculo_id :selected').text());
                 dynamicDropdown('/get_tipovehiculos/'+optionId, -1, 'tipoVehiculo_id');
             });
     
             $('select[name="tipoVehiculo_id"]').change(function(e){
                 var optionId = $('select[name="claseVehiculo"] option:selected').val();
-                $('#tipoVehiculo').val($('#tipoVehiculo_id :selected').text());
+                //$('#tipoVehiculo').val($('#tipoVehiculo_id :selected').text());
             });
     
             $('select[name="tipoUso_id"]').change(function(e){
                 var optionId = $('select[name="tipoUso_id"] option:selected').val();
-                $('#tipoUso').val($('#tipoUso_id :selected').text());
+                //$('#tipoUso').val($('#tipoUso_id :selected').text());
             });
     
             $('select[name="procedencia_id"]').change(function(e){
                 var optionId = $('select[name="procedencia_id"] option:selected').val();
-                $('#procedencia').val($('#procedencia_id :selected').text());
+                //$('#procedencia').val($('#procedencia_id :selected').text());
             });
     
             $('select[name="entidad_idD"]').change(function(e){
               clearDropdown( $('select[name="municipio_idD"]') );
               clearDropdown( $('select[name="localidad_idD"]') );
               var optionId = $('select[name="entidad_idD"] option:selected').val();
-              $('#entidadD').val($('#entidad_idD :selected').text());
+              //$('#entidadD').val($('#entidad_idD :selected').text());
               dynamicDropdown('/get_municipios/'+optionId, 0, 'municipio_idD');
             });
     
             $('select[name="municipio_idD"]').change(function(e){
               clearDropdown( $('select[name="localidad_idD"]') );
               var optionId = $('select[name="municipio_idD"] option:selected').val();
-              $('#municipioD').val($('#municipio_idD :selected').text());
+              //$('#municipioD').val($('#municipio_idD :selected').text());
             });
     
           });
