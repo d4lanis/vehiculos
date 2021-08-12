@@ -38,3 +38,5 @@ Route::resource('vehiculosRobados',OperacionController::class);
 Route::get('/fillData', [OperacionController::class, 'fillIndexTable']);
 Route::get('vehiculosRobados.delete/{vehiculosRobado}',[OperacionController::class, 'destroy'])->name('vehiculosRobados.delete');
 Route::get('vehiculosRobados/{vehiculosRobado}',[OperacionController::class, 'show'])->name('vehiculosRobados.show');
+Route::get('vistaCatalogos/',[CatalogoController::class, 'index']);
+Route::get('vistaCatalogos/entidades',[CatalogoController::class, 'entidades']);

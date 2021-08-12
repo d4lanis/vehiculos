@@ -58,8 +58,9 @@ class OperacionController extends Controller
                         <div class='btn-group'>
                             <a href='$ver' class='btn btn-primary fa fa-eye' data-toggle='tooltip' data-placement='bottom' title='Ver'></a>
                             <a href='$editar' class='btn btn-warning fa fa-edit' data-toggle='tooltip' data-placement='bottom' title='Editar'></a>
-                            <a href='$borrar' class='btn btn-danger fa fa-trash disabled' data-toggle='tooltip' data-placement='bottom' title='Borrar' onclick=' return confirm(&#39¿Seguro que desea borrar este regitro?&#39) '></a>
+                            
                         </div> ";
+                    //<a href='$borrar' class='btn btn-danger fa fa-trash disabled' data-toggle='tooltip' data-placement='bottom' title='Borrar' onclick=' return confirm(&#39¿Seguro que desea borrar este regitro?&#39) '></a>
 
                 return $action_buttons;
                 })->make(TRUE);

@@ -17,6 +17,17 @@ use App\Models\ClaseVehiculo;
 use App\Models\TipoVehiculo;
 class CatalogoController extends Controller
 {
+    public function index()
+    {
+        return view('vistaCatalogos.index');
+    }
+    
+    public function entidades()
+    {
+        $data = Entidad::all();
+        return view('vistaCatalogos.entidades',compact('data'));
+    }
+    
     public function getEstados ()
     {
         $data = Entidad::select('entidad_id as id', 'nombre as name')->get();
