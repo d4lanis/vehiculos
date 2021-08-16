@@ -6,7 +6,7 @@ $(document).ready(function() {
         function bootstrapTabControl(){
             var i, items = $('.nav-link'), pane = $('.tab-pane');
             // next
-            $('.continue').on('click', function(){
+            $('.continue').click(function(){
                 for(i = 0; i < items.length; i++){
                     if($(items[i]).hasClass('active') == true){
                         break;
@@ -23,7 +23,7 @@ $(document).ready(function() {
 
             });
             // Prev
-            $('.back').on('click', function(){
+            $('.back').click(function(){
                 for(i = 0; i < items.length; i++){
                     if($(items[i]).hasClass('active') == true){
                         break;
