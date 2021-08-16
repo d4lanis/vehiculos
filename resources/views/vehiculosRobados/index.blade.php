@@ -1,33 +1,28 @@
-<head>
-    <link rel="stylesheet" href="{{asset('bootstrap-5/css/bootstrap.min.css')}}" crossorigin="anonymous">
-    <script src="{{asset('bootstrap-5/js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{asset('font_awesome/css/font-awesome.min.css')}}">
-    <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
-    <link rel="stylesheet" type="text/css" href="{{asset('datatables/datatables.min.css')}}"/>
-    <script type="text/javascript" src="{{asset('datatables/datatables.min.js')}}"></script>
-</head>
-
-
-<div class="container-fluid">
-    <h1>Denuncia de Vehiculos Robados</h1>
-    <a href="{{route('vehiculosRobados.create')}}" class="btn btn-success">Nuevo</a>
-<br><br>
-<table id="index" class="table table-striped table-bordered" style="width: 100%;">
-    <thead class="table-info">
-        <tr>
-            <th data-priority="1">Id</th>
-            <th data-priority="2">Fecha/Hora</th>
-            <th data-priority="2">Municipio</th>
-            <th data-priority="2">Marca/Submarca</th>
-            <th>Modelo</th>
-            <th data-priority="1">Numero de Serie</th>
-            <th data-priority="1">Placa</th>
-            <th>Nombre Denunciante</th>
-            <th data-priority="1">Acciones</th>
-        </tr>
-    </thead>
-</table>
-
+@extends('layouts.layout')
+@section('content')
+    <div class="container">
+        <br>
+        <h2>Denuncia de Vehiculos Robados</h2>
+        <a href="{{route('vehiculosRobados.create')}}" class="btn btn-success">Nuevo</a>
+    <br><br>
+    <table id="index" class="table table-striped table-bordered" style="width: 100%;">
+        <thead class="table-info">
+            <tr>
+                <th data-priority="1">Id</th>
+                <th data-priority="2">Fecha/Hora</th>
+                <th data-priority="2">Municipio</th>
+                <th data-priority="2">Marca/Submarca</th>
+                <th>Modelo</th>
+                <th data-priority="1">Numero de Serie</th>
+                <th data-priority="1">Placa</th>
+                <th>Nombre Denunciante</th>
+                <th data-priority="1">Acciones</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+@endsection
+@push('scripts')
 <script>
     $(document).ready( function () {
         $('#index').DataTable({
@@ -46,9 +41,9 @@
                 {data: 'placa', orderable: true, searchable: true},
                 {data: 'nombre', orderable: true, searchable: true},
                 {data: 'acciones', name:'acciones', searchable:false, orderable:false,
-                     render: function(data,style,row,meta){
-                         return $("<div/>").html(data).text();
-                     }
+                    render: function(data,style,row,meta){
+                        return $("<div/>").html(data).text();
+                    }
                 }
             ],
             "columnDefs": 
@@ -107,4 +102,4 @@
     }           
 } );
 </script>
-</div>
+@endpush

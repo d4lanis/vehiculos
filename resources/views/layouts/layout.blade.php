@@ -12,7 +12,7 @@
     <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('datatables/datatables.min.css')}}"/>
     <script type="text/javascript" src="{{asset('datatables/datatables.min.js')}}"></script>
-    <script src="{{asset('js/navegacion.js')}}"></script>
+    <!--<script type="text/javascript" src="{{asset('js/navegacion.js')}}" crossorigin="anonymous"></script>-->
 </head>
 <body>
     <!--Navbar-->    
@@ -31,13 +31,7 @@
                         <a class="nav-link" href="#">Inicio</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Vehiculos Robados</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Vehiculos Recuperados</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Acerca de</a>
+                        <a class="nav-link" href="{{route('vehiculosRobados.index')}}">Vehiculos Robados</a>
                     </li>
                 </ul>
             </div>
@@ -46,5 +40,6 @@
 
     <!--Content-->
     @yield('content')
+    @stack('scripts')
 </body>
 </html>
