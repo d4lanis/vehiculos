@@ -35,6 +35,7 @@ Route::match(['get','post'], '/get_tipovehiculos/{id}',[CatalogoController::Clas
 Route::match(['get','post'], '/get_tipousos',[CatalogoController::Class,'getTipoUsos']);
 Route::match(['get','post'], '/get_procedencias',[CatalogoController::Class,'getProcedencias']);
 Route::resource('vehiculosRobados',OperacionController::class);
+Route::resource('vehiculosRobadosAdmin',OperacionController::class);
 Route::get('/fillData', [OperacionController::class, 'fillIndexTable']);
 Route::get('vehiculosRobados.delete/{vehiculosRobado}',[OperacionController::class, 'destroy'])->name('vehiculosRobados.delete');
 Route::get('vehiculosRobados/{vehiculosRobado}',[OperacionController::class, 'show'])->name('vehiculosRobados.show');

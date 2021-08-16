@@ -10,7 +10,7 @@
 
 <div class="container-fluid">
     <h1>Denuncia de Vehiculos Robados</h1>
-    <a href="{{route('vehiculosRobados.create')}}" class="btn btn-success">Nuevo</a>
+    <!--<a href="{{route('vehiculosRobados.create')}}" class="btn btn-success">Nuevo</a>-->
 <br><br>
 <table id="index" class="table table-striped table-bordered" style="width: 100%;">
     <thead class="table-info">
