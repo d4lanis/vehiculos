@@ -2,46 +2,44 @@
 @section('content')
   <div class="container">
     <br>
-    <h2> Registro de Vehiculo Robado</h2>
-  <ul class="nav nav-tabs nav-fill mb-3" role="tablist">
-    <li class="nav-item active" role="presentation">
-      <a class="nav-link active" href="#paso1" aria-controls="paso1" role="tab" data-bs-toggle="tab" aria-expanded="true">Paso 1</a>
-    </li>
-    <li class="nav-item" role="presentation">
-      <a class="nav-link" href="#paso2" aria-controls="paso2" role="tab" data-bs-toggle="tab" aria-expanded="false">Paso 2</a>
-    </li>
-    <li class="nav-item" role="presentation">
-      <a class="nav-link" href="#paso3" aria-controls="paso3" role="tab" data-bs-toggle="tab" aria-expanded="false">Paso 3</a>
-    </li>
-  </ul>
+    <div class="panel-body sticky-top" style="background-color: white">
+      <h2> Registro de Vehiculo Robado</h2>
+      <ul class="nav nav-tabs nav-justified" role="tablist">
+        <li class="nav-item active" role="tablist">
+          <a class="nav-link active" href="#paso1" aria-controls="paso1" role="tab" data-toggle="tab" aria-expanded="true">Paso 1</a>
+        </li>
+        <li class="nav-item" role="tablist">
+          <a class="nav-link" href="#paso2" aria-controls="paso2" role="tab" data-toggle="tab" aria-expanded="false">Paso 2</a>
+        </li>
+        <li class="nav-item" role="tablist">
+          <a class="nav-link" href="#paso3" aria-controls="paso3" role="tab" data-toggle="tab" aria-expanded="false">Paso 3</a>
+        </li>
+      </ul>
+    </div>
 
   <form action="{{route('vehiculosRobados.store')}}" method="POST">
     @csrf
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade show active" id="paso1">
+        <div role="tabpanel" class="tab-pane show active" id="paso1">
             <h3 class="">Información del Robo</h3>
             @include('robos.form',['modo'=>'Ingresar'])
             <div class="pull-right">
-              <a class="btn btn-primary continue">Continuar</a>
               <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}" onclick="return confirm('¿Seguro que desea cancelar se perdera la informacion ingresada?')">Cancelar</a>
             </div>
         </div>
 
-        <div role="tabpanel" class="tab-pane fade" id="paso2">
+        <div role="tabpanel" class="tab-pane" id="paso2">
             <h3 class="">Información del Vehiculo</h3>
             @include('vehiculos.form',['modo'=>'Ingresar'])
             <div class="pull-right">
-              <a class="btn btn-primary back">Regresar</a>
-              <a class="btn btn-primary continue">Continuar</a>
               <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}" onclick="return confirm('¿Seguro que desea cancelar se perdera la informacion ingresada?')">Cancelar</a>
             </div>
         </div>
 
-        <div role="tabpanel" class="tab-pane fade" id="paso3">
+        <div role="tabpanel" class="tab-pane" id="paso3">
             <h3 class="">Información del Denunciante</h3>
             @include('denunciantes.form',['modo'=>'Ingresar'])
             <div class="pull-right">
-              <a class="btn btn-primary back">Regresar</a>
               <button class="btn btn-success" type="submit">Enviar</button>
               <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}" onclick="return confirm('¿Seguro que desea cancelar se perdera la informacion ingresada?')">Cancelar</a>
             </div>
@@ -108,9 +106,7 @@
       let options = [];
       options.push(`<option value="" disabled selected> Cargando datos </option>`);
       select.append(options);
-  }
-
-  
+  }  
       //form robos
       dynamicDropdown('/get_estados',{{ old('entidad_id')?? 0}}, 'entidad_id')
       dynamicDropdown('/get_municipios/'+{{ old('entidad_id') ??  0 }},{{ old('municipio_id') ??  0 }}, 'municipio_id');
@@ -134,6 +130,7 @@
       dynamicDropdown("/get_estados/", {{ old('entidad_idD') ??  0 }}, 'entidad_idD');
       dynamicDropdown('/get_municipios/'+{{ old('entidad_idD') ??  0 }}, 
       {{ old('municipio_idD') ??  0 }}, 'municipio_idD');
+      
       
       $('select[name="entidad_id"]').change(function(e){
           clearDropdown( $('select[name="municipio_id"]') );

@@ -2,24 +2,25 @@
 @section('content')
     <div class="container">
         <br>
-        <h2>Denuncia de Vehiculos Robados</h2>
-    <ul class="nav nav-tabs nav-fill mb-3" role="tablist">
-        <li class="nav-item active" role="presentation">
-        <a class="nav-link active" href="#paso1" aria-controls="paso1" role="tab" data-bs-toggle="tab" aria-expanded="true">Información del Robo</a>
-        </li>
-        <li class="nav-item" role="presentation">
-        <a class="nav-link" href="#paso2" aria-controls="paso2" role="tab" data-bs-toggle="tab" aria-expanded="false">Información del Vehiculo</a>
-        </li>
-        <li class="nav-item" role="presentation">
-        <a class="nav-link" href="#paso3" aria-controls="paso3" role="tab" data-bs-toggle="tab" aria-expanded="false">Informacion del Denunciante</a>
-        </li>
-    </ul>
+        <div class="panel-body sticky-top" style="background-color: white">
+            <h2> Registro de Vehiculo Robado</h2>
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li class="nav-item active" role="tablist">
+                <a class="nav-link active" href="#paso1" aria-controls="paso1" role="tab" data-toggle="tab" aria-expanded="true">Paso 1</a>
+              </li>
+              <li class="nav-item" role="tablist">
+                <a class="nav-link" href="#paso2" aria-controls="paso2" role="tab" data-toggle="tab" aria-expanded="false">Paso 2</a>
+              </li>
+              <li class="nav-item" role="tablist">
+                <a class="nav-link" href="#paso3" aria-controls="paso3" role="tab" data-toggle="tab" aria-expanded="false">Paso 3</a>
+              </li>
+            </ul>
+        </div>
 
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="paso1">
             @include('robos.form',['modo'=>'Ver']);
             <div class="pull-right">
-            <a class="btn btn-primary continue" id="continue">Pagina siguiente</a>
             <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}">Regresar</a>
             </div>
         </div>
@@ -27,8 +28,6 @@
         <div role="tabpanel" class="tab-pane" id="paso2">
             @include('vehiculos.form',['modo'=>'Ver']);
             <div class="pull-right">
-            <a class="btn btn-primary back">Pagina anterior</a>
-            <a class="btn btn-primary continue">Pagina Siguiente</a>
             <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}">Regresar</a>
             </div>
         </div>
@@ -36,7 +35,6 @@
         <div role="tabpanel" class="tab-pane" id="paso3">
             @include('denunciantes.form',['modo'=>'Ver']);
             <div class="pull-right">
-            <a class="btn btn-primary back">Pagina anterior</a>
             <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}">Regresar</a>
             </div>
         </div>   
