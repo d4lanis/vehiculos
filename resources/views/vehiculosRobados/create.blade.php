@@ -107,6 +107,7 @@
       options.push(`<option value="" disabled selected> Cargando datos </option>`);
       select.append(options);
   }  
+  
       //form robos
       dynamicDropdown('/get_estados',{{ old('entidad_id')?? 0}}, 'entidad_id')
       dynamicDropdown('/get_municipios/'+{{ old('entidad_id') ??  0 }},{{ old('municipio_id') ??  0 }}, 'municipio_id');
