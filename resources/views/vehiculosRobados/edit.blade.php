@@ -97,6 +97,7 @@
             }
             
             $select.append(options);
+            $select.selectize();
 
         }).fail(function(){
             $('#getDiv').html('algo salio mal');
@@ -108,6 +109,10 @@
         select.empty();
         let options = [];
         options.push(`<option value="" disabled selected> Cargando datos </option>`);
+        var dropdown = select.selectize();
+        var selectize = dropdown[0].selectize;
+        selectize.clear();
+        selectize.destroy();
         select.append(options);
     }
         //form robos

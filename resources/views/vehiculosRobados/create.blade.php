@@ -57,7 +57,7 @@
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }});
   
-      function dynamicDropdown(url, id = null, target, otro = null) {
+      function dynamicDropdown(url, id, target, otro = null) {
 
       let data = {
           "_token": "{{ csrf_token() }}",
@@ -94,6 +94,7 @@
           }
           
           $select.append(options);
+          $select.selectize();
 
       }).fail(function(){
           $('#getDiv').html('algo salio mal');
@@ -104,8 +105,14 @@
   {
       select.empty();
       let options = [];
-      options.push(`<option value="" disabled selected> Cargando datos </option>`);
+      options.push(`<option value="0" disabled selected> Cargando datos </option>`);
+      var dropdown = select.selectize();
+      var selectize = dropdown[0].selectize;
+      selectize.clear();
+      selectize.destroy();
       select.append(options);
+
+      
   }  
   
       //form robos

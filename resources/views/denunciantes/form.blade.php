@@ -151,7 +151,7 @@
     <div class="form-group row">
         <div class="form-group col-md-4">
             <label for="entidad">Entidad: </label>
-            <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="entidad_idD" id="entidad_idD" class="form-control" >
+            <select placeholder="Selecciona una opcion..." {{($modo == 'Ver')?'disabled="disabled"':''}} name="entidad_idD" id="entidad_idD" class="form-control" >
                 
             </select>
             <!--<input type="hidden" name="entidadD" id="entidadD" class="form-control" value="{{isset($denunciante->entidad)?$denunciante->entidad:''}}">-->
@@ -159,7 +159,7 @@
         </div>
         <div class="form-group col-md-4">
             <label for="municipio">Municipio: </label>
-            <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="municipio_idD" id="municipio_idD" class="form-control">
+            <select placeholder="Selecciona una opcion..." {{($modo == 'Ver')?'disabled="disabled"':''}} name="municipio_idD" id="municipio_idD" class="form-control">
             </select>
             <!--<input type="hidden" name="municipioD" id="municipioD" class="form-control" value="{{isset($denunciante->municipio)?$denunciante->municipio:''}}">-->
             <br>

@@ -16,7 +16,7 @@
         <div class="form-group col-md-4">
             <label for="entidad">Entidad: </label>
             <!--<input type="hidden" name="entidad" id="entidad" value="{{old('entidad',isset($robo->entidad)?$robo->entidad:'')}}">-->
-            <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="entidad_id" id="entidad_id" class="form-control">
+            <select placeholder="Selecciona una opcion..." {{($modo == 'Ver')?'disabled="disabled"':''}} name="entidad_id" id="entidad_id" class="form-control">
 
             </select>
         </div>
@@ -24,7 +24,7 @@
         <div class="form-group col-md-4">
             <label for="municipio">Municipio: </label>
             <!--<input type="hidden" name="municipio" id="municipio" value="{{old('municipio',isset($robo->municipio)?$robo->municipio:'')}}">-->
-            <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="municipio_id" id="municipio_id" class="form-control">
+            <select placeholder="Selecciona una opcion..." {{($modo == 'Ver')?'disabled="disabled"':''}} name="municipio_id" id="municipio_id" class="form-control">
                 
             </select>
             <br>
@@ -32,7 +32,7 @@
         <div class="form-group col-md-4">
             <label for="localidad">Localidad: </label>
             <!--<input type="hidden" name="localidad" id="localidad" value="{{old('localidad',isset($robo->localidad)?$robo->localidad:'')}}">-->
-            <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="localidad_id" id="localidad_id" class="form-control">
+            <select placeholder="Selecciona una opcion..."  {{($modo == 'Ver')?'disabled="disabled"':''}} name="localidad_id" id="localidad_id" class="form-control">
                 
             </select>
         </div>
@@ -89,7 +89,7 @@
     <br>
     <label for="tipoLugar">Tipo de lugar: </label>
     <!--<input type="hidden" name="tipoLugar" id="tipoLugar" value="{{isset($robo->tipoLugar)?$robo->tipoLugar:''}}">-->
-    <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="tipoLugar_id" id="tipoLugar_id" class="form-control">
+    <select placeholder="Selecciona una opcion..." {{($modo == 'Ver')?'disabled="disabled"':''}} name="tipoLugar_id" id="tipoLugar_id" class="form-control">
         
     </select>
     <br>
@@ -114,7 +114,7 @@
         </div>
         <div class="form group col-md-4">
             <label for="modalidad">Modalidad: </label>
-            <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="modalidad_id" id="modalidad_id" class="form-control">
+            <select placeholder="Selecciona una opcion..." {{($modo == 'Ver')?'disabled="disabled"':''}} name="modalidad_id" id="modalidad_id" class="form-control">
                 
             </select>
         <!--<input type="hidden" name="modalidad" id="modalidad">-->

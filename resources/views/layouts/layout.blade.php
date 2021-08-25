@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{asset('font_awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('datatables/datatables.min.css')}}"/>
     <script type="text/javascript" src="{{asset('datatables/datatables.min.js')}}"></script>
+    <script src="{{asset('selectize-js/dist/js/standalone/selectize.min.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('selectize-js/dist/css/selectize.bootstrap4.min.css')}}">
 </head>
 <body>
     <!--Navbar-->    

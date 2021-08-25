@@ -2,7 +2,7 @@
     <div class="form-group row">
         <div class="form-group col-md-4">
             <label for="marca">Marca del Vehiculo: </label>
-            <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="marca_id" id="marca_id" class="form-control">
+            <select placeholder="Selecciona una opcion..." {{($modo == 'Ver')?'disabled="disabled"':''}} name="marca_id" id="marca_id" class="form-control">
                 
             </select>
             @error('marca_id')
@@ -15,7 +15,7 @@
         </div>
         <div class="form-group col-md-4">
             <label for="submarca">Submarca del Vehiculo: </label>
-            <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="subMarca_id" id="subMarca_id" class="form-control">
+            <select placeholder="Selecciona una opcion..." {{($modo == 'Ver')?'disabled="disabled"':''}} name="subMarca_id" id="subMarca_id" class="form-control">
 
             </select>
             <!--<input type="hidden" value="{{old('subMarca',isset($vehiculo->subMarca)?$vehiculo->subMarca:'')}}" name="subMarca" id="subMarca" class="form-control">-->
@@ -39,7 +39,7 @@
     <div class="form-group row">
         <div class="form-group col-md-4">
             <label for="color">Color:</label>
-            <select  {{($modo == 'Ver')?'disabled="disabled"':''}} name="color_id" id="color_id" class="form-control">
+            <select placeholder="Selecciona una opcion..." {{($modo == 'Ver')?'disabled="disabled"':''}} name="color_id" id="color_id" class="form-control">
                
             </select>
             <!--<input type="hidden" name="color" id="color" class="form-control" value="{{old('color',isset($vehiculo->color)?$vehiculo->color:'')}}">-->
@@ -67,7 +67,7 @@
     <div class="form-group row">
         <div class="form-group col-md-4">
             <label for="claseVehiculo">Clase de Vehiculo: </label>
-            <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="claseVehiculo_id" id="claseVehiculo_id" class="form-control">
+            <select placeholder="Selecciona una opcion..." {{($modo == 'Ver')?'disabled="disabled"':''}} name="claseVehiculo_id" id="claseVehiculo_id" class="form-control">
                 
             </select>
             <!--<input type="hidden" name="claseVehiculo" id="claseVehiculo" class="form-control" value="{{old('claseVehiculo',isset($vehiculo->claseVehiculo)?$vehiculo->claseVehiculo:'')}}">-->
@@ -75,7 +75,7 @@
         </div>
         <div class="form-group col-md-4">
             <label for="tipoVehiculo">Tipo de Vehiculo: </label>
-            <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="tipoVehiculo_id" id="tipoVehiculo_id" class="form-control">
+            <select placeholder="Selecciona una opcion..." {{($modo == 'Ver')?'disabled="disabled"':''}} name="tipoVehiculo_id" id="tipoVehiculo_id" class="form-control">
                 
             </select>
             <!--<input type="hidden" name="tipoVehiculo" id="tipoVehiculo" class="form-control" value="{{old('tipoVehiculo',isset($vehiculo->tipoVehiculo)?$vehiculo->tipoVehiculo:'')}}">-->
@@ -83,7 +83,7 @@
         </div>
         <div class="form-group col-md-4">
             <label for="tipoUso">Tipo de Uso: </label>
-            <select {{($modo == 'Ver')?'disabled="disabled"':''}} name="tipoUso_id" id="tipoUso_id" class="form-control">
+            <select placeholder="Selecciona una opcion..." {{($modo == 'Ver')?'disabled="disabled"':''}} name="tipoUso_id" id="tipoUso_id" class="form-control">
                 
             </select>
             <!--<input type="hidden" name="tipoUso" id="tipoUso"  class="form-control" value="{{old('tipoUso',isset($vehiculo->tipoUso)?$vehiculo->tipoUso:'')}}">-->
@@ -101,7 +101,7 @@
     <div class="form-group row">
         <div class="form-group col-md-6">
             <label for="procedencia">Procedencia: </label>
-            <select  {{($modo == 'Ver')?'disabled="disabled"':''}} name="procedencia_id" id="procedencia_id" class="form-control">
+            <select  placeholder="Selecciona una opcion..." {{($modo == 'Ver')?'disabled="disabled"':''}} name="procedencia_id" id="procedencia_id" class="form-control">
                 
             </select>
             <!--<input type="hidden" name="procedencia" id="procedencia" class="form-control" value="{{old('procedencia',isset($vehiculo->procedencia)?$vehiculo->procedencia:'')}}">-->
