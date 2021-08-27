@@ -4,7 +4,7 @@
     <br>
     <div class="panel-body sticky-top" style="background-color: white">
       <h2> Registro de Vehiculo Robado</h2>
-      <ul class="nav nav-tabs nav-justified" role="tablist">
+      <ul id="main-nav" class="nav nav-tabs nav-justified" role="tablist">
         <li class="nav-item active" role="tablist">
           <a class="nav-link active" href="#paso1" aria-controls="paso1" role="tab" data-toggle="tab" aria-expanded="true">Paso 1</a>
         </li>
@@ -139,7 +139,13 @@
       dynamicDropdown('/get_municipios/'+{{ old('entidad_idD') ??  0 }}, 
       {{ old('municipio_idD') ??  0 }}, 'municipio_idD');
       
-      
+      $('#main-nav li a').click(function(e) {
+        var targetHref = $(this).attr('href');
+        $('html, body').animate({
+          scrollTop: $(targetHref).offset().top}, 1000);
+          e.preventDefault();
+      });
+
       $('select[name="entidad_id"]').change(function(e){
           clearDropdown( $('select[name="municipio_id"]') );
           clearDropdown( $('select[name="localidad_id"]') );
