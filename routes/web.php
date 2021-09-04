@@ -35,9 +35,10 @@ Route::match(['get','post'], '/get_tipovehiculos/{id}',[CatalogoController::Clas
 Route::match(['get','post'], '/get_tipousos',[CatalogoController::Class,'getTipoUsos']);
 Route::match(['get','post'], '/get_procedencias',[CatalogoController::Class,'getProcedencias']);
 Route::resource('vehiculosRobados',OperacionController::class);
-Route::resource('vehiculosRobadosAdmin',OperacionController::class);
+//Route::resource('vehiculosRobadosAdmin',OperacionController::class);
 Route::get('/fillData', [OperacionController::class, 'fillIndexTable']);
 Route::get('vehiculosRobados.delete/{vehiculosRobado}',[OperacionController::class, 'destroy'])->name('vehiculosRobados.delete');
 Route::get('vehiculosRobados/{vehiculosRobado}',[OperacionController::class, 'show'])->name('vehiculosRobados.show');
-Route::get('vistaCatalogos/',[CatalogoController::class, 'index']);
-Route::get('vistaCatalogos/entidades',[CatalogoController::class, 'entidades']);
+Route::get('vistaCatalogos',[CatalogoController::class, 'index'])->name('vistaCatalogos.index');
+Route::get('vistaCatalogos.catalogo/{id}',[CatalogoController::class, 'viewCatalogo']);
+Route::get('/getData/{id}',[CatalogoController::class,'getData']);
