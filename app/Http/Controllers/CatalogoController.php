@@ -15,17 +15,64 @@ use App\Models\TipoUso;
 use App\Models\Procedencia;
 use App\Models\ClaseVehiculo;
 use App\Models\TipoVehiculo;
+use Yajra\DataTables\DataTables;
 class CatalogoController extends Controller
 {
+
     public function index()
     {
         return view('vistaCatalogos.index');
     }
-    
-    public function entidades()
+ 
+    public function viewCatalogo($id)
     {
-        $data = Entidad::all();
-        return view('vistaCatalogos.entidades',compact('data'));
+        $data = $id;
+        return view('vistaCatalogos.catalogo', compact('data'));
+    }
+
+    public function getData($id)
+    {
+        if ($id == 1)
+        {
+            $items= Entidad::select('entidad_id as id', 'nombre as name')->get();
+            return Datatables::of($items)->addColumn('acciones', function($item){$route="/get_municipios/".$item->id;$action_buttons ="<div class='btn-group'><a href='$route' class='btn btn-primary'>Ver</a></div>"; return $action_buttons;})->make(TRUE);
+        }
+        if ($id == 2)
+        {
+            $items= Marca::select('marca_id as id', 'descripcion as name')->get();
+            return Datatables::of($items)->addColumn('acciones', function($item){$route="/get_submarcas/".$item->id;$action_buttons ="<div class='btn-group'><a href='$route' class='btn btn-primary'>Ver</a></div>"; return $action_buttons;})->make(TRUE);
+
+        }
+        if ($id == 3)
+        {
+            $items= Colores::select('id as id', 'descripcion as name')->get();
+            return Datatables::of($items)->addColumn('acciones', function($item){$action_buttons ="<div class='btn-group'><a href='$#' class='btn btn-primary disabled'>Ver</a></div>"; return $action_buttons;})->make(TRUE);
+
+        }
+        if ($id == 4)
+        {
+            $items= ClaseVehiculo::select('clasevehiculo_id as id', 'descripcion as name')->get();
+            return Datatables::of($items)->addColumn('acciones', function($item){$route="/get_tipovehiculos/".$item->id;$action_buttons ="<div class='btn-group'><a href='$route' class='btn btn-primary'>Ver</a></div>"; return $action_buttons;})->make(TRUE);
+
+        }
+        if ($id == 5)
+        {
+            $items= TipoUso::select('tipoUso_id as id', 'descripcion as name')->get();
+            return Datatables::of($items)->addColumn('acciones', function($item){$action_buttons ="<div class='btn-group'><a href='#' class='btn btn-primary disabled'>Ver</a></div>"; return $action_buttons;})->make(TRUE);
+
+        }
+        if ($id == 6)
+        {
+            $items= Lugar::select('lugar_id as id', 'descripcion as name')->get();
+            return Datatables::of($items)->addColumn('acciones', function($item){$action_buttons ="<div class='btn-group'><a href='#' class='btn btn-primary disabled'>Ver</a></div>"; return $action_buttons;})->make(TRUE);
+
+        }
+        if ($id == 7)
+        {
+            $items= Procedencia::select('id as id', 'descripcion as name')->get();
+            return Datatables::of($items)->addColumn('acciones', function($item){$action_buttons ="<div class='btn-group'><a href='#' class='btn btn-primary disabled'>Ver</a></div>"; return $action_buttons;})->make(TRUE);
+
+        }
     }
     
     public function getEstados ()
@@ -74,6 +121,8 @@ class CatalogoController extends Controller
     {
         $data = Lugar::select('lugar_id as id', 'descripcion as name')->get();
         return response()->json(['status'=>'ok','data'=>$data]);
+        /*$info = json_encode(['status'=>'ok','data'=>$data]);
+        return $info;*/
     }
 
     public function getModalidades ()
