@@ -16,6 +16,7 @@ use App\Models\Procedencia;
 use App\Models\ClaseVehiculo;
 use App\Models\TipoVehiculo;
 use Yajra\DataTables\DataTables;
+use DB;
 class CatalogoController extends Controller
 {
 
@@ -27,7 +28,11 @@ class CatalogoController extends Controller
     public function viewCatalogo($id)
     {
         $data = $id;
-        return view('vistaCatalogos.catalogo', compact('data'));
+        
+        if($data == "2" || $data == "3" || $data == "7")
+            return view('vistaCatalogos.child',compact('data'));
+        else
+            return view('vistaCatalogos.catalogo', compact('data'));
     }
 
     public function getData($id)
@@ -35,42 +40,59 @@ class CatalogoController extends Controller
         if ($id == 1)
         {
             $items= Entidad::select('entidad_id as id', 'nombre as name')->get();
-            return Datatables::of($items)->addColumn('acciones', function($item){$route="/get_municipios/".$item->id;$action_buttons ="<div class='btn-group'><a href='$route' class='btn btn-primary'>Ver</a></div>"; return $action_buttons;})->make(TRUE);
+            return Datatables::of($items)->toJSON();
         }
         if ($id == 2)
         {
-            $items= Marca::select('marca_id as id', 'descripcion as name')->get();
-            return Datatables::of($items)->addColumn('acciones', function($item){$route="/get_submarcas/".$item->id;$action_buttons ="<div class='btn-group'><a href='$route' class='btn btn-primary'>Ver</a></div>"; return $action_buttons;})->make(TRUE);
-
+            //$items= Municipio::select('entidad_id as entidad','municipio_id as id', 'nombre as name')->get();
+            $items= DB::table('municipios')->join('entidades','municipios.entidad_id','=','entidades.entidad_id')->select('municipios.municipio_id as id','municipios.nombre as name',DB::raw("(SELECT entidades.nombre FROM entidades WHERE entidades.entidad_id = municipios.entidad_id) as extra"))->get();
+            return Datatables::of($items)->toJSON();
         }
-        if ($id == 3)
+        if($id == 3)
         {
-            $items= Colores::select('id as id', 'descripcion as name')->get();
-            return Datatables::of($items)->addColumn('acciones', function($item){$action_buttons ="<div class='btn-group'><a href='$#' class='btn btn-primary disabled'>Ver</a></div>"; return $action_buttons;})->make(TRUE);
-
+            //$items= DB::table('localidades')->join('entidades','localidades.entidad_id','=','entidades.entidad_id')->join('municipios','localidades.municipio_id','=','municipios.municipio_id')->select('localidades.localidad_id as id','localidades.nombre as name',DB::raw("(SELECT entidades.nombre FROM entidades WHERE entidades.entidad_id = localidades.entidad_id) as entidad"),DB::raw("(SELECT municipios.nombre FROM municipios WHERE municipios.municipio_id = localidades.municipio_id) as municipio"))->get();
+            $items=Localidad::join('municipios','municipios.municipio_id','localidades.municipio_id')->select('localidades.localidad_id')->get();
+            return Datatables::of($items)->toJSON();
         }
         if ($id == 4)
         {
-            $items= ClaseVehiculo::select('clasevehiculo_id as id', 'descripcion as name')->get();
-            return Datatables::of($items)->addColumn('acciones', function($item){$route="/get_tipovehiculos/".$item->id;$action_buttons ="<div class='btn-group'><a href='$route' class='btn btn-primary'>Ver</a></div>"; return $action_buttons;})->make(TRUE);
+            $items= Marca::select('marca_id as id', 'descripcion as name')->get();
+            return Datatables::of($items)->toJSON();
 
         }
         if ($id == 5)
         {
-            $items= TipoUso::select('tipoUso_id as id', 'descripcion as name')->get();
-            return Datatables::of($items)->addColumn('acciones', function($item){$action_buttons ="<div class='btn-group'><a href='#' class='btn btn-primary disabled'>Ver</a></div>"; return $action_buttons;})->make(TRUE);
+            $items= Colores::select('id as id', 'descripcion as name')->get();
+            return Datatables::of($items)->toJSON();
 
         }
         if ($id == 6)
         {
-            $items= Lugar::select('lugar_id as id', 'descripcion as name')->get();
-            return Datatables::of($items)->addColumn('acciones', function($item){$action_buttons ="<div class='btn-group'><a href='#' class='btn btn-primary disabled'>Ver</a></div>"; return $action_buttons;})->make(TRUE);
+            $items= ClaseVehiculo::select('clasevehiculo_id as id', 'descripcion as name')->get();
+            return Datatables::of($items)->toJSON();
 
         }
         if ($id == 7)
         {
+            $items= DB::table('tipo_vehiculos')->join('clase_vehiculos','tipo_vehiculos.claseVehiculo_id','=','clase_vehiculos.claseVehiculo_id')->select('tipo_vehiculos.tipoVehiculo_id as id','tipo_vehiculos.descripcion as name',DB::raw("(SELECT clase_vehiculos.descripcion FROM clase_vehiculos WHERE clase_vehiculos.claseVehiculo_id = tipo_vehiculos.tipoVehiculo_id) as extra"))->get();
+            return Datatables::of($items)->toJSON();
+        }
+        if ($id == 8)
+        {
+            $items= TipoUso::select('tipoUso_id as id', 'descripcion as name')->get();
+            return Datatables::of($items)->toJSON();
+
+        }
+        if ($id == 9)
+        {
+            $items= Lugar::select('lugar_id as id', 'descripcion as name')->get();
+            return Datatables::of($items)->toJSON();
+
+        }
+        if ($id == 0)
+        {
             $items= Procedencia::select('id as id', 'descripcion as name')->get();
-            return Datatables::of($items)->addColumn('acciones', function($item){$action_buttons ="<div class='btn-group'><a href='#' class='btn btn-primary disabled'>Ver</a></div>"; return $action_buttons;})->make(TRUE);
+            return Datatables::of($items)->toJSON();
 
         }
     }

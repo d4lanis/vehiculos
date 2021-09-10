@@ -1,11 +1,12 @@
 @extends('layouts.adminlayout')
 @section('content')
     <div class="container">
-        <table id="table" class="table table-light">
+        <table id="catalogo" class="table table-light">
             <thead class="thead-light">
                 <tr>
                     <th>Id</th>
                     <th>Descripcion</th>
+                    <th>Origen</th>
                 </tr>
             </thead>
         </table>
@@ -19,7 +20,7 @@
     <script>
         $(document).ready( function () {
             var id = "{{$data}}";
-        $('#table').DataTable({
+        $('#catalogo').DataTable({
             "processing": true,
             "serverSide": true,
             "responsive": true,
@@ -28,6 +29,7 @@
             "columns": [
                 {data: 'id', orderable: false, searchable: false},
                 {data: 'name',orderable: true, searchable: true},
+                {data: 'extra',orderable: true, searchable: true},
             ],       
         });
     });
