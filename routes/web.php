@@ -17,28 +17,32 @@ use App\Http\Controllers\CatalogoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('index');
+Auth::routes(['register'=>true]);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', function () {
+        return view('home');
+    });
+    
+    Route::match(['get','post'],'/get_estados', [CatalogoController::class,'getEstados']);
+    Route::match(['get','post'],'/get_municipios/{id}', [CatalogoController::class,'getMunicipios']);
+    Route::match(['get','post'],'/get_poblaciones/{entidad}/{municipio}', [CatalogoController::class,'getPoblaciones']);
+    Route::match(['get','post'], '/get_marcas', [CatalogoController::class,'getMarcas']);
+    Route::match(['get','post'], '/get_submarcas/{id}',[CatalogoController::Class,'getSubMarcas']);
+    Route::match(['get','post'], '/get_tipolugar',[CatalogoController::Class,'getLugares']);
+    Route::match(['get','post'], '/get_modalidad',[CatalogoController::Class,'getModalidades']);
+    Route::match(['get','post'], '/get_colores',[CatalogoController::Class,'getColores']);
+    Route::match(['get','post'], '/get_clasevehiculos',[CatalogoController::Class,'getClaseVehiculos']);
+    Route::match(['get','post'], '/get_tipovehiculos/{id}',[CatalogoController::Class,'getTipoVehiculos']);
+    Route::match(['get','post'], '/get_tipousos',[CatalogoController::Class,'getTipoUsos']);
+    Route::match(['get','post'], '/get_procedencias',[CatalogoController::Class,'getProcedencias']);
+    Route::resource('vehiculosRobados',OperacionController::class);
+    //Route::resource('vehiculosRobadosAdmin',OperacionController::class);
+    Route::get('/fillData', [OperacionController::class, 'fillIndexTable']);
+    Route::get('vehiculosRobados.delete/{vehiculosRobado}',[OperacionController::class, 'destroy'])->name('vehiculosRobados.delete');
+    Route::get('vehiculosRobados/{vehiculosRobado}',[OperacionController::class, 'show'])->name('vehiculosRobados.show');
+    Route::get('catalogos',[CatalogoController::class, 'index'])->name('vistaCatalogos.index');
+    Route::get('catalogos/{id}',[CatalogoController::class, 'viewCatalogo']);
+    Route::get('/getData/{id}',[CatalogoController::class,'getData']);
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    
 });
-
-Route::match(['get','post'],'/get_estados', [CatalogoController::class,'getEstados']);
-Route::match(['get','post'],'/get_municipios/{id}', [CatalogoController::class,'getMunicipios']);
-Route::match(['get','post'],'/get_poblaciones/{entidad}/{municipio}', [CatalogoController::class,'getPoblaciones']);
-Route::match(['get','post'], '/get_marcas', [CatalogoController::class,'getMarcas']);
-Route::match(['get','post'], '/get_submarcas/{id}',[CatalogoController::Class,'getSubMarcas']);
-Route::match(['get','post'], '/get_tipolugar',[CatalogoController::Class,'getLugares']);
-Route::match(['get','post'], '/get_modalidad',[CatalogoController::Class,'getModalidades']);
-Route::match(['get','post'], '/get_colores',[CatalogoController::Class,'getColores']);
-Route::match(['get','post'], '/get_clasevehiculos',[CatalogoController::Class,'getClaseVehiculos']);
-Route::match(['get','post'], '/get_tipovehiculos/{id}',[CatalogoController::Class,'getTipoVehiculos']);
-Route::match(['get','post'], '/get_tipousos',[CatalogoController::Class,'getTipoUsos']);
-Route::match(['get','post'], '/get_procedencias',[CatalogoController::Class,'getProcedencias']);
-Route::resource('vehiculosRobados',OperacionController::class);
-//Route::resource('vehiculosRobadosAdmin',OperacionController::class);
-Route::get('/fillData', [OperacionController::class, 'fillIndexTable']);
-Route::get('vehiculosRobados.delete/{vehiculosRobado}',[OperacionController::class, 'destroy'])->name('vehiculosRobados.delete');
-Route::get('vehiculosRobados/{vehiculosRobado}',[OperacionController::class, 'show'])->name('vehiculosRobados.show');
-Route::get('catalogos',[CatalogoController::class, 'index'])->name('vistaCatalogos.index');
-Route::get('catalogos/{id}',[CatalogoController::class, 'viewCatalogo']);
-Route::get('/getData/{id}',[CatalogoController::class,'getData']);
