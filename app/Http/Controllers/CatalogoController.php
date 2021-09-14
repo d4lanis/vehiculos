@@ -29,7 +29,7 @@ class CatalogoController extends Controller
     {
         $data = $id;
         
-        if($data == "2" || $data == "3" || $data == "7")
+        if($data == "2" || $data == "3" || $data == "5" || $data == "8")
             return view('vistaCatalogos.child',compact('data'));
         else
             return view('vistaCatalogos.catalogo', compact('data'));
@@ -44,46 +44,50 @@ class CatalogoController extends Controller
         }
         if ($id == 2)
         {
-            //$items= Municipio::select('entidad_id as entidad','municipio_id as id', 'nombre as name')->get();
+            
             $items= DB::table('municipios')->join('entidades','municipios.entidad_id','=','entidades.entidad_id')->select('municipios.municipio_id as id','municipios.nombre as name',DB::raw("(SELECT entidades.nombre FROM entidades WHERE entidades.entidad_id = municipios.entidad_id) as extra"))->get();
             return Datatables::of($items)->toJSON();
         }
         if($id == 3)
         {
             //$items= DB::table('localidades')->join('entidades','localidades.entidad_id','=','entidades.entidad_id')->join('municipios','localidades.municipio_id','=','municipios.municipio_id')->select('localidades.localidad_id as id','localidades.nombre as name',DB::raw("(SELECT entidades.nombre FROM entidades WHERE entidades.entidad_id = localidades.entidad_id) as entidad"),DB::raw("(SELECT municipios.nombre FROM municipios WHERE municipios.municipio_id = localidades.municipio_id) as municipio"))->get();
-            $items=Localidad::join('municipios','municipios.municipio_id','localidades.municipio_id')->select('localidades.localidad_id')->get();
+            $items=Localidad::join('entidades','entidades.entidad_id','=','localidades.entidad_id')->select('localidades.localidad_id as id','localidades.nombre as name',DB::raw("(SELECT entidades.nombre FROM entidades WHERE entidades.entidad_id = localidades.entidad_id) as extra"))->get();
             return Datatables::of($items)->toJSON();
         }
         if ($id == 4)
         {
             $items= Marca::select('marca_id as id', 'descripcion as name')->get();
             return Datatables::of($items)->toJSON();
-
         }
-        if ($id == 5)
+        if($id == 5)
+        {
+            $items= Submarca::join('marcas','marcas.marca_id','=', 'submarcas.submarca_id')->select('submarcas.submarca_id as id','submarcas.descripcion as name',DB::raw("(SELECT marcas.descripcion FROM marcas WHERE marcas.marca_id = submarcas.marca_id) as extra"))->get();
+            return Datatables::of($items)->toJSON();   
+        }
+        if ($id == 6)
         {
             $items= Colores::select('id as id', 'descripcion as name')->get();
             return Datatables::of($items)->toJSON();
 
         }
-        if ($id == 6)
+        if ($id == 7)
         {
             $items= ClaseVehiculo::select('clasevehiculo_id as id', 'descripcion as name')->get();
             return Datatables::of($items)->toJSON();
 
         }
-        if ($id == 7)
+        if ($id == 8)
         {
             $items= DB::table('tipo_vehiculos')->join('clase_vehiculos','tipo_vehiculos.claseVehiculo_id','=','clase_vehiculos.claseVehiculo_id')->select('tipo_vehiculos.tipoVehiculo_id as id','tipo_vehiculos.descripcion as name',DB::raw("(SELECT clase_vehiculos.descripcion FROM clase_vehiculos WHERE clase_vehiculos.claseVehiculo_id = tipo_vehiculos.tipoVehiculo_id) as extra"))->get();
             return Datatables::of($items)->toJSON();
         }
-        if ($id == 8)
+        if ($id == 9)
         {
             $items= TipoUso::select('tipoUso_id as id', 'descripcion as name')->get();
             return Datatables::of($items)->toJSON();
 
         }
-        if ($id == 9)
+        if ($id == 10)
         {
             $items= Lugar::select('lugar_id as id', 'descripcion as name')->get();
             return Datatables::of($items)->toJSON();
