@@ -50,7 +50,6 @@ class CatalogoController extends Controller
         }
         if($id == 3)
         {
-            //$items= DB::table('localidades')->join('entidades','localidades.entidad_id','=','entidades.entidad_id')->join('municipios','localidades.municipio_id','=','municipios.municipio_id')->select('localidades.localidad_id as id','localidades.nombre as name',DB::raw("(SELECT entidades.nombre FROM entidades WHERE entidades.entidad_id = localidades.entidad_id) as entidad"),DB::raw("(SELECT municipios.nombre FROM municipios WHERE municipios.municipio_id = localidades.municipio_id) as municipio"))->get();
             $items=Localidad::join('entidades','entidades.entidad_id','=','localidades.entidad_id')->select('localidades.localidad_id as id','localidades.nombre as name',DB::raw("(SELECT entidades.nombre FROM entidades WHERE entidades.entidad_id = localidades.entidad_id) as extra"))->get();
             return Datatables::of($items)->toJSON();
         }
