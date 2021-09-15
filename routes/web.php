@@ -36,12 +36,12 @@ Route::middleware(['auth'])->group(function () {
     Route::match(['get','post'], '/get_tipousos',[CatalogoController::Class,'getTipoUsos']);
     Route::match(['get','post'], '/get_procedencias',[CatalogoController::Class,'getProcedencias']);
     Route::resource('vehiculos_robados',OperacionController::class);
-    //Route::resource('vehiculosRobadosAdmin',OperacionController::class);
+    //Route::resource('admin/vehiculos_robados',OperacionController::class);
     Route::get('/fillData', [OperacionController::class, 'fillIndexTable']);
     Route::get('vehiculos_robados.delete/{id}',[OperacionController::class, 'destroy'])->name('vehiculos_robados.delete');
     Route::get('vehiculos_robados/{id}',[OperacionController::class, 'show'])->name('vehiculos_robados.show');
-    Route::get('catalogos',[CatalogoController::class, 'index'])->name('vistaCatalogos.index');
-    Route::get('catalogos/{id}',[CatalogoController::class, 'viewCatalogo']);
+    Route::get('admin/catalogos',[CatalogoController::class, 'index'])->name('vistaCatalogos.index');
+    Route::get('admin/catalogos/{id}',[CatalogoController::class, 'viewCatalogo']);
     Route::get('/getData/{id}',[CatalogoController::class,'getData']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     

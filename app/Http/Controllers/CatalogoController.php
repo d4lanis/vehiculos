@@ -22,7 +22,7 @@ class CatalogoController extends Controller
 
     public function index()
     {
-        return view('vistaCatalogos.index');
+        return view('admin.vistaCatalogos.index');
     }
  
     public function viewCatalogo($id)
@@ -30,9 +30,9 @@ class CatalogoController extends Controller
         $data = $id;
         
         if($data == "2" || $data == "3" || $data == "5" || $data == "8")
-            return view('vistaCatalogos.child',compact('data'));
+            return view('admin.vistaCatalogos.child',compact('data'));
         else
-            return view('vistaCatalogos.catalogo', compact('data'));
+            return view('admin.vistaCatalogos.catalogo', compact('data'));
     }
 
     public function getData($id)

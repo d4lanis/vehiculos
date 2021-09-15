@@ -21,21 +21,21 @@
         <div role="tabpanel" class="tab-pane active" id="paso1">
             @include('robos.form',['modo'=>'Ver']);
             <div class="pull-right">
-            <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}">Regresar</a>
+            <a class="btn btn-warning" href="{{route('vehiculos_robados.index')}}">Regresar</a>
             </div>
         </div>
 
         <div role="tabpanel" class="tab-pane" id="paso2">
             @include('vehiculos.form',['modo'=>'Ver']);
             <div class="pull-right">
-            <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}">Regresar</a>
+            <a class="btn btn-warning" href="{{route('vehiculos_robados.index')}}">Regresar</a>
             </div>
         </div>
 
         <div role="tabpanel" class="tab-pane" id="paso3">
             @include('denunciantes.form',['modo'=>'Ver']);
             <div class="pull-right">
-            <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}">Regresar</a>
+            <a class="btn btn-warning" href="{{route('vehiculos_robados.index')}}">Regresar</a>
             </div>
         </div>   
     </div>

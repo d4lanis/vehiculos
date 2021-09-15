@@ -51,9 +51,9 @@ class OperacionController extends Controller
 
         return Datatables::of($items)
                 ->addColumn('acciones', function($item){
-                    $ver= route('vehiculosRobados.show', $item->id);
-                    $editar= route('vehiculosRobados.edit',$item->id);
-                    $borrar= route('vehiculosRobados.delete',$item->id);
+                    $ver= route('vehiculos_robados.show', $item->id);
+                    $editar= route('vehiculos_robados.edit',$item->id);
+                    $borrar= route('vehiculos_robados.delete',$item->id);
                     $action_buttons = "
                         <div class='btn-group'>
                             <a href='$ver' class='btn btn-primary fa fa-eye' data-toggle='tooltip' data-placement='bottom' title='Ver'></a>
@@ -167,7 +167,7 @@ class OperacionController extends Controller
         $data['denunciante'] -> colonia= $request -> coloniaD;
         $data['denunciante'] -> robo_id = $data['robo']['id'];
         $data['denunciante'] -> save();
-        return redirect()->route('vehiculosRobados.index');
+        return redirect()->route('vehiculos_robados.index');
     }
 
     /**
@@ -299,7 +299,7 @@ class OperacionController extends Controller
         Robo::where('id','=',$id)->update($robo);
         Vehiculo::where('id','=',$id)->update($vehiculo);
         Denunciante::where('id','=',$id)->update($denunciante);
-        return redirect()->route('vehiculosRobados.index');
+        return redirect()->route('vehiculos_robados.index');
     }
 
     /**
@@ -323,6 +323,6 @@ class OperacionController extends Controller
         $data->delete();
         $data = Denunciante::find($id);
         $data->delete();
-        return redirect()->route('vehiculosRobados.index');
+        return redirect()->route('vehiculos_robados.index');
     }
 }
