@@ -17,14 +17,14 @@
       </ul>
     </div>
 
-  <form action="{{route('vehiculosRobados.store')}}" method="POST">
+  <form action="{{route('vehiculos_robados.store')}}" method="POST">
     @csrf
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane show active" id="paso1">
             <h3 class="">Información del Robo</h3>
             @include('robos.form',['modo'=>'Ingresar'])
             <div class="pull-right">
-              <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}" onclick="return confirm('¿Seguro que desea cancelar se perdera la informacion ingresada?')">Cancelar</a>
+              <a class="btn btn-warning" href="{{route('vehiculos_robados.index')}}" onclick="return confirm('¿Seguro que desea cancelar se perdera la informacion ingresada?')">Cancelar</a>
             </div>
         </div>
 
@@ -32,7 +32,7 @@
             <h3 class="">Información del Vehiculo</h3>
             @include('vehiculos.form',['modo'=>'Ingresar'])
             <div class="pull-right">
-              <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}" onclick="return confirm('¿Seguro que desea cancelar se perdera la informacion ingresada?')">Cancelar</a>
+              <a class="btn btn-warning" href="{{route('vehiculos_robados.index')}}" onclick="return confirm('¿Seguro que desea cancelar se perdera la informacion ingresada?')">Cancelar</a>
             </div>
         </div>
 
@@ -41,7 +41,7 @@
             @include('denunciantes.form',['modo'=>'Ingresar'])
             <div class="pull-right">
               <button class="btn btn-success" type="submit">Enviar</button>
-              <a class="btn btn-warning" href="{{route('vehiculosRobados.index')}}" onclick="return confirm('¿Seguro que desea cancelar se perdera la informacion ingresada?')">Cancelar</a>
+              <a class="btn btn-warning" href="{{route('vehiculos_robados.index')}}" onclick="return confirm('¿Seguro que desea cancelar se perdera la informacion ingresada?')">Cancelar</a>
             </div>
         </div>
     </div>

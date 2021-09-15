@@ -36,7 +36,7 @@
                         <a class="nav-link" href="{{route('vistaCatalogos.index')}}">Catalogos</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{route('vehiculosRobados.index')}}">Vehiculos Robados</a>
+                        <a class="nav-link" href="{{route('vehiculos_robados.index')}}">Vehiculos Robados</a>
                     </li>
                     <!-- Authentication Links -->
                     @guest
