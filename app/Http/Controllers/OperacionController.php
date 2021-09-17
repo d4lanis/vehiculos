@@ -53,15 +53,13 @@ class OperacionController extends Controller
                 ->addColumn('acciones', function($item){
                     $ver= route('vehiculos_robados.show', $item->id);
                     $editar= route('vehiculos_robados.edit',$item->id);
-                    $borrar= route('vehiculos_robados.delete',$item->id);
+                    $borrar= route('vehiculos_robados.destroy',$item->id);
                     $action_buttons = "
                         <div class='btn-group'>
                             <a href='$ver' class='btn btn-primary fa fa-eye' data-toggle='tooltip' data-placement='bottom' title='Ver'></a>
                             <a href='$editar' class='btn btn-warning fa fa-edit' data-toggle='tooltip' data-placement='bottom' title='Editar'></a>
-                            
                         </div> ";
-                    //<a href='$borrar' class='btn btn-danger fa fa-trash disabled' data-toggle='tooltip' data-placement='bottom' title='Borrar' onclick=' return confirm(&#39¿Seguro que desea borrar este regitro?&#39) '></a>
-
+                        //<a href='$borrar' class='btn btn-danger fa fa-trash' data-toggle='tooltip' data-placement='bottom' title='Borrar' onclick=' return confirm(&#39¿Seguro que desea borrar este regitro?&#39) '></a>
                 return $action_buttons;
                 })->make(TRUE);
     }
