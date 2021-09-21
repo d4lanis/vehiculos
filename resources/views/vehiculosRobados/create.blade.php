@@ -23,6 +23,7 @@
         <div role="tabpanel" class="tab-pane show active" id="paso1">
             <h3 class="">Información del Robo</h3>
             @include('robos.form',['modo'=>'Ingresar'])
+            <small class="text-muted">Para continuar haga click en el sig. paso</small>
             <div class="pull-right">
               <a class="btn btn-warning" href="{{route('vehiculos_robados.index')}}" onclick="return confirm('¿Seguro que desea cancelar se perdera la informacion ingresada?')">Cancelar</a>
             </div>
@@ -31,6 +32,7 @@
         <div role="tabpanel" class="tab-pane" id="paso2">
             <h3 class="">Información del Vehiculo</h3>
             @include('vehiculos.form',['modo'=>'Ingresar'])
+            <small class="text-muted">Para continuar haga click en el sig. paso</small>
             <div class="pull-right">
               <a class="btn btn-warning" href="{{route('vehiculos_robados.index')}}" onclick="return confirm('¿Seguro que desea cancelar se perdera la informacion ingresada?')">Cancelar</a>
             </div>
