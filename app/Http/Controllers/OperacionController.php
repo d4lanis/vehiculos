@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use DB;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\OperacionRequest;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class OperacionController extends Controller
 {
@@ -19,10 +20,26 @@ class OperacionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    use AuthenticatesUsers;
+
+    public function __construct()
+    {
+      $this->middleware('can:vehiculos_robados.index')->only('index');
+      $this->middleware('can:vehiculos_robados.create')->only('create','store');
+      $this->middleware('can:vehiculos_robados.edit')->only('edit','update');
+      $this->middleware('can:vehiculos_robados.show')->only('show');
+      $this->middleware('can:vehiculos_robados.destroy')->only('destroy');
+    }
+
     //metodo index retorno la vista de html de vehiculos robados
     public function index()
     {
+      if (auth()->user()->role == 'Admin'){
+        return view('admin.vehiculosRobados.index');
+      }
+      else{
         return view('vehiculosRobados.index');
+      }
     }
 
     /*

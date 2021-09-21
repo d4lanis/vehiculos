@@ -17,7 +17,7 @@ use App\Http\Controllers\CatalogoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes(['register'=>true]);
+Auth::routes(['register'=>false]);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {return view('home');});
@@ -35,11 +35,11 @@ Route::middleware(['auth'])->group(function () {
     Route::match(['get','post'], '/get_procedencias',[CatalogoController::Class,'getProcedencias']);
     Route::get('/fillData', [OperacionController::class, 'fillIndexTable']);
     Route::resource('vehiculos_robados',OperacionController::class);
-    Route::get('vehiculos_robados',[OperacionController::class,'index'])->middleware('can:vehiculos_robados.index')->name('vehiculos_robados.index');
-    Route::get('vehiculos_robados/create',[OperacionController::class,'create'])->middleware('can:vehiculos_robados.create')->name('vehiculos_robados.create');
-    Route::get('vehiculos_robados/{vehiculos_robado}/edit',[OperacionController::class,'create'])->middleware('can:vehiculos_robados.edit')->name('vehiculos_robados.edit');
-    Route::get('vehiculos_robados.delete/{id}',[OperacionController::class, 'destroy'])->middleware('can:vehiculos_robados.delete')->name('vehiculos_robados.destroy');
-    Route::get('vehiculos_robados/{vehiculos_robado}',[OperacionController::class, 'show'])->middleware('can:vehiculos_robados.show')->name('vehiculos_robados.show');
+    Route::get('vehiculos_robados',[OperacionController::class,'index'])->name('vehiculos_robados.index');
+    Route::get('vehiculos_robados/create',[OperacionController::class,'create'])->name('vehiculos_robados.create');
+    Route::get('vehiculos_robados/{vehiculos_robado}/edit',[OperacionController::class,'edit'])->name('vehiculos_robados.edit');
+    Route::get('vehiculos_robados.delete/{id}',[OperacionController::class, 'destroy'])->name('vehiculos_robados.destroy');
+    Route::get('vehiculos_robados/{vehiculos_robado}',[OperacionController::class, 'show'])->name('vehiculos_robados.show');
     //Route::resource('admin/vehiculos_robados',OperacionController::class);
     Route::get('admin/catalogos',[CatalogoController::class, 'index'])->middleware('can:admin.catalogos.index')->name('vistaCatalogos.index');
     Route::get('admin/catalogos/{id}',[CatalogoController::class, 'viewCatalogo'])->middleware('can:admin.catalogos.catalogo');
