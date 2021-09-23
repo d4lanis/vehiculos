@@ -11,6 +11,7 @@ use DB;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\OperacionRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Spatie\Permission\Models\Role;
 
 class OperacionController extends Controller
 {
@@ -34,7 +35,7 @@ class OperacionController extends Controller
     //metodo index retorno la vista de html de vehiculos robados
     public function index()
     {
-      if (auth()->user()->role == 'Admin'){
+      if (auth()->user()->hasRole('Admin')){
         return view('admin.vehiculosRobados.index');
       }
       else{
@@ -91,7 +92,12 @@ class OperacionController extends Controller
       de registro de vehiculo robado*/
     public function create()
     {
+      if (auth()->user()->hasRole('Admin')){
+        return view('admin.vehiculosRobados.create');
+      }
+      else{
         return view('vehiculosRobados.create');
+      }
     }
 
     /**
@@ -207,7 +213,12 @@ class OperacionController extends Controller
         $robo['dateAveriguacion']=date("Y-m-d\TH:i", strtotime($robo['dateAveriguacion']));
         $vehiculo = Vehiculo::findOrFail($id);
         $denunciante = Denunciante::findOrFail($id);
-        return view('vehiculosRobados.show', compact('robo','vehiculo','denunciante'));
+        if (auth()->user()->hasRole('Admin')){
+          return view('admin.vehiculosRobados.show', compact('robo','vehiculo','denunciante'));
+        }
+        else{
+          return view('vehiculosRobados.show', compact('robo','vehiculo','denunciante'));
+        }
     }
 
     /**
@@ -231,7 +242,12 @@ class OperacionController extends Controller
         $robo['dateAveriguacion']=date("Y-m-d\TH:i", strtotime($robo['dateAveriguacion']));
         $vehiculo = Vehiculo::findOrFail($id);
         $denunciante = Denunciante::findOrFail($id);
-        return view('vehiculosRobados.edit', compact('robo','vehiculo','denunciante'));
+        if (auth()->user()->hasRole('Admin')){
+          return view('admin.vehiculosRobados.edit', compact('robo','vehiculo','denunciante'));
+        }
+        else{
+          return view('vehiculosRobados.edit', compact('robo','vehiculo','denunciante'));
+        }
     }
 
     /**
