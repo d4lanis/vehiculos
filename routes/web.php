@@ -40,9 +40,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('vehiculos_robados/{vehiculos_robado}/edit',[OperacionController::class,'edit'])->name('vehiculos_robados.edit');
     Route::get('vehiculos_robados.delete/{id}',[OperacionController::class, 'destroy'])->name('vehiculos_robados.destroy');
     Route::get('vehiculos_robados/{vehiculos_robado}',[OperacionController::class, 'show'])->name('vehiculos_robados.show');
-    //Route::resource('admin/vehiculos_robados',OperacionController::class);
-    Route::get('admin/catalogos',[CatalogoController::class, 'index'])->middleware('can:admin.catalogos.index')->name('vistaCatalogos.index');
-    Route::get('admin/catalogos/{id}',[CatalogoController::class, 'viewCatalogo'])->middleware('can:admin.catalogos.catalogo');
+    
+    Route::group(['prefix'=>'admin'], function(){
+        //Route::resource('vehiculos_robados',OperacionController::class);
+        Route::get('/catalogos',[CatalogoController::class, 'index'])->middleware('can:admin.catalogos.index')->name('vistaCatalogos.index');
+        Route::get('/catalogos/{id}',[CatalogoController::class, 'viewCatalogo'])->middleware('can:admin.catalogos.catalogo');
+    });
+
     Route::get('/getData/{id}',[CatalogoController::class,'getData']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); 
 });
