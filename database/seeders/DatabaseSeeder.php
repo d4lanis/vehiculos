@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         //$this->call( Catalogos\LocalidadSeeder::class);
         $this->call( Catalogos\EstatusSeeder::class);
         $this->call( Catalogos\ModalidadSeeder::class);
+        $this->call(Catalogos\DelegacionSeeder::Class);
     }
 }
