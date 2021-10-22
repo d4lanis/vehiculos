@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <br>
-        <h2>Denuncia de Vehiculos Robados</h2>
+        <h2>Vehiculos Robados</h2>
         <a href="{{route('vehiculos_robados.create')}}" class="btn btn-success">Nuevo</a>
     <br><br>
     <table id="index" class="table table-striped table-bordered" style="width: 100%;">
