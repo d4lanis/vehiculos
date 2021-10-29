@@ -3,37 +3,42 @@
     <div class="container">
         <br>
         <h2>Vehiculos Robados</h2>
-        <a href="{{route('vehiculos_robados.create')}}" class="btn btn-success">Nuevo</a>
-    <br><br>
-    <table id="index" class="table table-striped table-bordered" style="width: 100%;">
-        <thead class="table-info">
-            <tr>
-                <th></th>
-                <th data-priority="1">Id</th>
-                <th data-priority="2">Fecha/Hora</th>
-                <th data-priority="2">Municipio</th>
-                <th data-priority="2">Marca/Submarca</th>
-                <th>Modelo</th>
-                <th data-priority="1">Numero de Serie</th>
-                <th data-priority="1">Placa</th>
-                <th>Nombre Denunciante</th>
-                <th data-priority="1">Acciones</th>
-            </tr>
-        </thead>
-    </table>
+       <form action="#" method="POST" id="form">
+            <a href="{{route('vehiculos_robados.create')}}" class="btn btn-success">Nuevo Registro</a>
+            <button class="btn btn-success" type="button" name="send" id="send">Cambiar Estatus</button>
+            <br><br>
+            <table id="index" class="table table-striped table-bordered" style="width: 100%;">
+                <thead class="table-info">
+                    <tr>
+                        <th id='checkbox'><div><input type="checkbox" id="select-all"></th>
+                        <th data-priority="1">Id</th>
+                        <th data-priority="2">Fecha/Hora</th>
+                        <th data-priority="2">Municipio</th>
+                        <th data-priority="2">Marca/Submarca</th>
+                        <th>Modelo</th>
+                        <th data-priority="1">Numero de Serie</th>
+                        <th data-priority="1">Placa</th>
+                        <th>Nombre Denunciante</th>
+                        <th data-priority="1">Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </form>
 </div>
 @endsection
 @push('scripts')
 <script>
     $(document).ready( function () {
-        $('#index').DataTable({
+        var table;
+        table = $('#index').DataTable({
             "processing": true,
             "serverSide": true,
             "responsive": true,
+            "select": true,
             "lengthMenu": [[5,10,50,100],[5,10,50,100]],
             "ajax": "/fillData",
             "columns": [
-                {data:  null, defaultContent: '', orderable: false, searchable:false,},
+                {data:  null, defaultContent: '', orderable: false, searchable:false},
                 {data: 'id', orderable: false, searchable: false},
                 {data: 'dateAveriguacion', orderable: true, searchable: true},
                 {data: 'municipio', orderable: true, searchable: false},
@@ -49,16 +54,27 @@
                 }
             ],
             "columnDefs": 
-            [
+            [   
+                
                 { orderable: false, className: 'select-checkbox', targets: 0},
                 { responsivePriority: 1, targets: 1 },
-                { responsivePriority: 2, targets: -2 }
+                { responsivePriority: 2, targets: -2 },
             ],
             retrieve : true,
             select: {
                         style: 'multi',
                         selector: 'td:first-child'
                     }        
+        });
+
+        $('#form').on("click","#select-all", function (e){
+            if ($('#select_all:checked').val() === 'on')
+						table.rows().attr('selected','selected');
+					else
+						table.rows().deselect();
+
+            var idArray = table.rows({selected: true}).ids().toArray();
+            alert(idArray);
         });
     });
     $.extend( true, $.fn.dataTable.defaults, {
@@ -108,6 +124,6 @@
             }
         }
     }           
-} );
+});
 </script>
 @endpush
