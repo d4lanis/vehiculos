@@ -10,14 +10,14 @@
             <table id="index" class="table table-striped table-bordered" style="width: 100%;">
                 <thead class="table-info">
                     <tr>
-                        <th id='checkbox'><div><input type="checkbox" id="select-all"></th>
+                        <th id='checkbox' data-priority="1"><div><input type="checkbox" id="select-all"></th>
                         <th data-priority="1">Id</th>
                         <th data-priority="2">Fecha/Hora</th>
                         <th data-priority="2">Municipio</th>
                         <th data-priority="2">Marca/Submarca</th>
                         <th>Modelo</th>
                         <th data-priority="1">Numero de Serie</th>
-                        <th data-priority="1">Placa</th>
+                        <th data-priority="2">Placa</th>
                         <th>Nombre Denunciante</th>
                         <th data-priority="1">Acciones</th>
                     </tr>
