@@ -29,6 +29,7 @@
 @push('scripts')
 <script>
     $(document).ready( function () {
+        var selectedIds = [];
         var table;
         table = $('#index').DataTable({
             "processing": true,
@@ -60,14 +61,14 @@
                 { responsivePriority: 1, targets: 1 },
                 { responsivePriority: 2, targets: -2 },
             ],
-            retrieve : true,
+            retrieve : false,
             select: {
                         style: 'multi',
                         selector: 'td:first-child'
                     }        
         });
 
-        $('#form').on("click","#select-all", function (e){
+        /*$('#form').on("click","#select-all", function (e){
             if ($('#select_all:checked').val() === 'on')
 						table.rows().attr('selected','selected');
 					else
@@ -75,6 +76,16 @@
 
             var idArray = table.rows({selected: true}).ids().toArray();
             alert(idArray);
+        });*/
+
+        table.on('select.dt', function(e, dt, type, indexes){
+            selectedIds.push(indexes[0]+1);
+            alert(selectedIds);
+        });
+
+        table.on('deselect.dt', function(e, dt, type, indexes){
+            selectedIds.splice(selectedIds.indexOf(indexes[0],1));
+            alert(selectedIds);
         });
     });
     $.extend( true, $.fn.dataTable.defaults, {
