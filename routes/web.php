@@ -48,5 +48,6 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::get('/getData/{id}',[CatalogoController::class,'getData']);
+    Route::get('/home', function (){ return view('admin.home');})->name('admin.home');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); 
 });
