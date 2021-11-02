@@ -17,7 +17,7 @@ use App\Http\Controllers\CatalogoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes(['register'=>false]);
+Auth::routes(['register'=>false, 'reset'=>false]);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
