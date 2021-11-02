@@ -20,7 +20,14 @@ use App\Http\Controllers\CatalogoController;
 Auth::routes(['register'=>false]);
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', function () {return view('home');});
+    Route::get('/', function () {
+        if(Auth::user()->hasRole('Admin')){
+            return view('admin.home');
+        }
+        else{
+            return view('home');
+        }
+    });
     Route::match(['get','post'],'/get_estados', [CatalogoController::class,'getEstados']);
     Route::match(['get','post'],'/get_municipios/{id}', [CatalogoController::class,'getMunicipios']);
     Route::match(['get','post'],'/get_poblaciones/{entidad}/{municipio}', [CatalogoController::class,'getPoblaciones']);
