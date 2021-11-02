@@ -12,6 +12,7 @@ use Yajra\DataTables\DataTables;
 use App\Http\Requests\OperacionRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 class OperacionController extends Controller
 {
@@ -136,7 +137,7 @@ class OperacionController extends Controller
         $data['robo']-> averiguacion= $request-> averiguacion;
         $data['robo']-> modalidad_id= $request-> modalidad_id;
         //$robo['estatus_id']= $request -> estatus_id;
-        $data['robo']->user_id = $request->user()->id;
+        $data['robo']->user_id = Auth::id();
         $data['robo']-> save();
 
         $data['vehiculo'] = new Vehiculo;
@@ -270,7 +271,7 @@ class OperacionController extends Controller
         $robo['agencia_mp'] = $request -> agencia_mp;
         $robo['agente_mp'] = $request -> agente_mp;
         //$robo['estatus_id']= $request -> estatus_id;
-        $robo['user_id'] = $request->user()->id;
+        $robo['user_id'] = Auth::id();
         $vehiculo['marca_id']= $request -> marca_id;
         $vehiculo['subMarca_id']= $request -> subMarca_id;
         $vehiculo['modelo']= $request -> modelo;
