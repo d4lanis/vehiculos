@@ -36,7 +36,7 @@ class OperacionController extends Controller
     //metodo index retorno la vista de html de vehiculos robados
     public function index()
     {
-      if (auth()->user()->hasRole('Admin')){
+      if (Auth::user()->hasRole('Admin')){
         return view('admin.vehiculosRobados.index');
       }
       else{
