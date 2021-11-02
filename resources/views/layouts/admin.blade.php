@@ -10,14 +10,20 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('datatables/datatables.min.js')}}"></script>
+    <script src="{{asset('selectize-js/dist/js/standalone/selectize.min.js')}}"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('bootstrap-4/css/bootstrap.min.css')}}" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('font_awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('datatables/datatables.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('selectize-js/dist/css/selectize.bootstrap4.min.css')}}">
 </head>
 <body>
     <div id="app">
@@ -57,10 +63,13 @@
                             @else
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
+                                        Bienvenido - {{ Auth::user()->name }}
                                     </a>
     
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <!-- Navigation links-->
+                                        <a class="dropdown-item" href="{{route('vistaCatalogos.index')}}">Catalogos</a>
+                                        <a class="dropdown-item" href="{{route('vehiculos_robados.index')}}">Vehiculos Robados</a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
@@ -80,6 +89,7 @@
         </header>
         <main class="py-4">
             @yield('content')
+            @stack('scripts')
         </main>
     </div>
 </body>

@@ -1,7 +1,6 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 @section('content')
     <div class="container">
-        <br>
         <h2>Vehiculos Robados</h2>
         <a href="{{route('vehiculos_robados.create')}}" class="btn btn-success">Nuevo</a>
     <br><br>

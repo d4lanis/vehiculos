@@ -1,4 +1,4 @@
-@extends('layouts.adminlayout')
+@extends('layouts.admin')
 @section('content')
     <div class="container">
         <table id="table" class="table table-light">

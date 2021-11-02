@@ -1,8 +1,8 @@
-@extends('layouts.adminlayout')
+@extends('layouts.admin')
 @section('content')
     <div class="container">
-        <br>
         <h2>Catalogos</h2>
+        <br>
         <table id="catalogos" class="table table-light">
             <thead class="thead-light">
                 <tr>
