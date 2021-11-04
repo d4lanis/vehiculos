@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 @section('content')
     <div class="container">
-        <br>
         <h2>Vehiculos Robados</h2>
        <form action="#" method="POST" id="form">
             <a href="{{route('vehiculos_robados.create')}}" class="btn btn-success">Nuevo Registro</a>
@@ -10,7 +9,7 @@
             <table id="index" class="table table-striped table-bordered" style="width: 100%;">
                 <thead class="table-info">
                     <tr>
-                        <th id='checkbox' data-priority="1"><div><input type="checkbox" id="select-all"></th>
+                        <th data-priority="1"><div><input type="checkbox" id="select-all"></th>
                         <th data-priority="1">Id</th>
                         <th data-priority="2">Fecha/Hora</th>
                         <th data-priority="2">Municipio</th>
@@ -36,13 +35,14 @@
             "serverSide": true,
             "responsive": true,
             "select": true,
+            "rowId": 'id',
             "lengthMenu": [[5,10,50,100],[5,10,50,100]],
             "ajax": "/fillData",
             "columns": [
                 {data:  null, defaultContent: '', orderable: false, searchable:false},
                 {data: 'id', orderable: false, searchable: false},
                 {data: 'dateAveriguacion', orderable: true, searchable: true},
-                {data: 'municipio', orderable: true, searchable: false},
+                {data: 'municipio', orderable: true, searchable: true},
                 {data: 'marca', orderable: true, searchable: true},
                 {data: 'modelo', orderable: true, searchable: true},
                 {data: 'numSerie', orderable: true, searchable: true},
@@ -68,19 +68,25 @@
                     }        
         });
 
-        /*$('#form').on("click","#select-all", function (e){
-            if ($('#select_all:checked').val() === 'on')
-						table.rows().attr('selected','selected');
-					else
-						table.rows().deselect();
-
-            var idArray = table.rows({selected: true}).ids().toArray();
-            alert(idArray);
-        });*/
-
+        table.on('change','#select-all', function(e, dt, type, indexes){
+            if(this.checked)
+            {
+                selectedIds = table.column(1).data().toArray();
+                table.rows().select();
+                alert(selectedIds);
+            }
+            else
+            {
+                table.rows().deselect();
+                selectedIds.length = 0;
+            }
+        });
+        
         table.on('select.dt', function(e, dt, type, indexes){
-            selectedIds.push(indexes[0]+1);
-            alert(selectedIds);
+                selectedIds.push(indexes[0]+1);
+                alert(selectedIds);
+                /*selectedIds = table.row(this).id();
+                alert(selectedIds);*/
         });
 
         table.on('deselect.dt', function(e, dt, type, indexes){
