@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
         //Route::resource('vehiculos_robados',OperacionController::class);
         Route::get('/catalogos',[CatalogoController::class, 'index'])->middleware('can:admin.catalogos.index')->name('vistaCatalogos.index');
         Route::get('/catalogos/{id}',[CatalogoController::class, 'viewCatalogo'])->middleware('can:admin.catalogos.catalogo');
+        Route::post('/status',[OperacionController::class, 'status'])->name('status');
     });
 
     Route::get('/getData/{id}',[CatalogoController::class,'getData']);

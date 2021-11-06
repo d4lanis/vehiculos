@@ -69,6 +69,11 @@ class OperacionController extends Controller
         ->get();
 
         return Datatables::of($items)
+                ->addColumn('checkboxes', function($item){
+                  $id= $item->id;
+                  $input = "<div><input id='registro' type='checkbox' name='registro[]' class='checkboxes' value='$id'></div>";
+                  return $input;
+                })
                 ->addColumn('acciones', function($item){
                     $ver= route('vehiculos_robados.show', $item->id);
                     $editar= route('vehiculos_robados.edit',$item->id);
@@ -80,7 +85,9 @@ class OperacionController extends Controller
                         </div> ";
                         //<a href='$borrar' class='btn btn-danger fa fa-trash' data-toggle='tooltip' data-placement='bottom' title='Borrar' onclick=' return confirm(&#39¿Seguro que desea borrar este regitro?&#39) '></a>
                 return $action_buttons;
-                })->make(TRUE);
+                })
+                ->rawColumns([1,9])
+                ->make(true);
     }
 
     /**
@@ -328,5 +335,11 @@ class OperacionController extends Controller
         $data = Denunciante::find($id);
         $data->delete();
         return redirect()->route('vehiculos_robados.index');
+    }
+
+    public function status(Request $request)
+    {
+      $data = $request->all();
+      dd($data);
     }
 }

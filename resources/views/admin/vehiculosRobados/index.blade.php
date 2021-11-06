@@ -2,14 +2,20 @@
 @section('content')
     <div class="container">
         <h2>Vehiculos Robados</h2>
-       <form action="#" method="POST" id="form">
-            <a href="{{route('vehiculos_robados.create')}}" class="btn btn-success">Nuevo Registro</a>
-            <button class="btn btn-success" type="button" name="send" id="send">Cambiar Estatus</button>
-            <br><br>
+       <form action="{{route('status')}}" method="POST" id="form">
+        @csrf
+            <div>
+                <a href="{{route('vehiculos_robados.create')}}" class="btn btn-success">Nuevo Registro</a>
+
+                <button class="btn btn-success" type="submit">Cambiar Estatus</button>
+            </div>
+            
+            <br>
+            
             <table id="index" class="table table-striped table-bordered" style="width: 100%;">
                 <thead class="table-info">
                     <tr>
-                        <th data-priority="1"><div><input type="checkbox" id="select-all"></th>
+                        <th data-priority="1"><input type="checkbox" id="select-all"></th>
                         <th data-priority="1">Id</th>
                         <th data-priority="2">Fecha/Hora</th>
                         <th data-priority="2">Municipio</th>
@@ -34,12 +40,12 @@
             "processing": true,
             "serverSide": true,
             "responsive": true,
-            "select": true,
-            "rowId": 'id',
             "lengthMenu": [[5,10,50,100],[5,10,50,100]],
             "ajax": "/fillData",
             "columns": [
-                {data:  null, defaultContent: '', orderable: false, searchable:false},
+                {data:  'checkboxes', orderable: false, searchable:false, render: function(data,style,row,meta){
+                        return $("<div/>").html(data).text();
+                    }},
                 {data: 'id', orderable: false, searchable: false},
                 {data: 'dateAveriguacion', orderable: true, searchable: true},
                 {data: 'municipio', orderable: true, searchable: true},
@@ -51,48 +57,38 @@
                 {data: 'acciones', name:'acciones', searchable:false, orderable:false,
                     render: function(data,style,row,meta){
                         return $("<div/>").html(data).text();
-                    }
-                }
+                    }},
             ],
             "columnDefs": 
             [   
                 
-                { orderable: false, className: 'select-checkbox', targets: 0},
                 { responsivePriority: 1, targets: 1 },
                 { responsivePriority: 2, targets: -2 },
             ],
-            retrieve : false,
-            select: {
-                        style: 'multi',
-                        selector: 'td:first-child'
-                    }        
+            retrieve : false,      
         });
 
-        table.on('change','#select-all', function(e, dt, type, indexes){
+        table.on('change','#select-all', function(){
             if(this.checked)
             {
-                selectedIds = table.column(1).data().toArray();
-                table.rows().select();
-                alert(selectedIds);
+                $('.checkboxes').attr("checked", true);
             }
             else
             {
-                table.rows().deselect();
-                selectedIds.length = 0;
+                $('.checkboxes').attr("checked", false);
             }
         });
-        
-        table.on('select.dt', function(e, dt, type, indexes){
-                selectedIds.push(indexes[0]+1);
-                alert(selectedIds);
-                /*selectedIds = table.row(this).id();
-                alert(selectedIds);*/
-        });
 
-        table.on('deselect.dt', function(e, dt, type, indexes){
-            selectedIds.splice(selectedIds.indexOf(indexes[0],1));
-            alert(selectedIds);
-        });
+        /*$(".checkboxes").click(function(){
+            var numberOfCheckboxes = $(".checkboxes").length;
+            var numberOfCheckboxesChecked = $('.checkboxes:checked').length;
+            if(numberOfCheckboxes == numberOfCheckboxesChecked) {
+                $(".checkAll").prop("checked", true);
+            } else {
+                $(".checkAll").prop("checked", false);
+            }
+        });*/
+
     });
     $.extend( true, $.fn.dataTable.defaults, {
     "language": {
