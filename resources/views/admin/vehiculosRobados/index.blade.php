@@ -4,10 +4,29 @@
         <h2>Vehiculos Robados</h2>
        <form action="{{route('status')}}" method="POST" id="form">
         @csrf
-            <div>
-                <a href="{{route('vehiculos_robados.create')}}" class="btn btn-success">Nuevo Registro</a>
+            <div class="form-group">
 
-                <button class="btn btn-success" type="submit">Cambiar Estatus</button>
+                <div class="form-row">
+                    <div class="col-md-0">
+                        <a href="{{route('vehiculos_robados.create')}}" class="btn btn-success">Nuevo Registro</a>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control" name="estatus" required>
+                            <option value="">Seleccione un estatus...</option>
+                            <option value="0">Pre-proceso</option>
+                            <option value="1">Procesar a plataforma Mexico</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-success" type="submit">Cambiar Estatus</button>
+                    </div> 
+                    
+                    @error('registro')
+                    <div class="col-md-0">
+                        <small class="alert alert-warning" role="alert">Por favor seleccione uno o mas registros</small>
+                    </div>
+                    @enderror
+                </div>
             </div>
             
             <br>

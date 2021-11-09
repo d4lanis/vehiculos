@@ -339,7 +339,10 @@ class OperacionController extends Controller
 
     public function status(Request $request)
     {
-      $data = $request->all();
-      dd($data);
+      $request-> validate(['registro' => 'required',]);
+      $ids = $request->registro;
+      $estatus = $request->estatus;
+      Robo::whereIn('id',$ids)->update(['estatus_id' => $estatus]);
+      dd($estatus,$ids);
     }
 }
