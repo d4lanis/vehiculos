@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
   <div class="container">
-    <div class="panel-body sticky-top" style="background-color: white">
+    <div class="panel-body">
       <h2> Edicion de registro de Vehiculo Robado</h2>
       <ul id="main-nav" class="nav nav-tabs nav-justified" role="tablist">
         <li class="nav-item active" role="tablist">
